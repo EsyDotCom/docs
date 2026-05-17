@@ -1,20 +1,26 @@
+/* ──────────────────────────────────────────────────────────────────
+   Design tokens — Navy Calm (Light)
+   Mirrors esy.com/agents palette + adds dark theme via body.docs-dark
+   ────────────────────────────────────────────────────────────────── */
+
 :root {
   /* Surfaces */
-  --color-bg: #F5F8FB;
-  --color-bg-alt: #EEF4F8;
-  --color-bg-elevated: rgba(255, 255, 255, 0.92);
-  --color-bg-hover: rgba(10, 37, 64, 0.05);
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F8FAFC;
+  --color-bg-elevated: #F8FAFC;
+  --color-bg-card: #F1F5F9;
+  --color-bg-hover: rgba(10, 37, 64, 0.04);
   --color-bg-subtle: rgba(10, 37, 64, 0.035);
-  --color-bg-glass: rgba(255, 255, 255, 0.78);
-  --color-bg-inverse: #0A1A2C;
-  --color-bg-inverse-soft: #0E2235;
+  --color-bg-glass: rgba(255, 255, 255, 0.85);
+  --color-bg-inverse: #0A2540;
+  --color-bg-inverse-soft: #0F3460;
 
   /* Ink */
-  --color-text: #0D1B2A;
-  --color-text-secondary: #3B4F66;
-  --color-text-muted: #607486;
-  --color-text-subtle: #8395A4;
-  --color-text-faint: #B4C0CB;
+  --color-text: #0A2540;
+  --color-text-secondary: rgba(10, 37, 64, 0.85);
+  --color-text-muted: rgba(10, 37, 64, 0.7);
+  --color-text-subtle: rgba(10, 37, 64, 0.5);
+  --color-text-faint: rgba(10, 37, 64, 0.4);
 
   /* Brand */
   --color-primary: #0A2540;
@@ -25,27 +31,30 @@
   --color-accent-dark: #008F7A;
   --color-accent-light: #5EEAD4;
   --color-accent-tint: rgba(0, 168, 150, 0.08);
-  --color-accent-glow: rgba(0, 168, 150, 0.18);
-  --color-accent-border: rgba(0, 168, 150, 0.26);
+  --color-accent-glow: rgba(0, 168, 150, 0.15);
+  --color-accent-border: rgba(0, 168, 150, 0.25);
   --color-accent-bg: rgba(0, 168, 150, 0.09);
+  --color-accent-muted: rgba(0, 168, 150, 0.15);
   --color-amber: #F2B23F;
   --color-rose: #F26B6B;
   --color-violet: #8A6CFF;
 
   /* Lines */
-  --color-border: #E4EAEF;
-  --color-border-strong: #D5DDE4;
-  --color-border-subtle: rgba(10, 37, 64, 0.08);
-  --color-border-hover: #C2CCD5;
-  --color-code-bg: rgba(10, 37, 64, 0.045);
-  --color-code-border: rgba(10, 37, 64, 0.09);
+  --color-border: rgba(10, 37, 64, 0.08);
+  --color-border-strong: rgba(10, 37, 64, 0.12);
+  --color-border-subtle: rgba(10, 37, 64, 0.06);
+  --color-border-hover: rgba(10, 37, 64, 0.16);
+  --color-code-bg: rgba(0, 168, 150, 0.08);
+  --color-code-border: rgba(0, 168, 150, 0.15);
+  --color-code-text: #00A896;
 
   /* Effects */
-  --shadow-sm: 0 1px 2px rgba(6, 21, 39, 0.06);
-  --shadow-md: 0 12px 30px rgba(6, 21, 39, 0.07);
-  --shadow-lg: 0 24px 70px rgba(6, 21, 39, 0.11);
+  --shadow-sm: 0 1px 2px rgba(10, 37, 64, 0.06);
+  --shadow-md: 0 4px 12px rgba(10, 37, 64, 0.08);
+  --shadow-lg: 0 8px 24px rgba(10, 37, 64, 0.1);
   --shadow-inverse: 0 30px 60px rgba(6, 21, 39, 0.18);
   --shadow-glow: 0 0 0 1px var(--color-accent-border), 0 10px 28px var(--color-accent-glow);
+  --shadow-cta: 0 4px 16px rgba(0, 168, 150, 0.25);
 
   /* Geometry */
   --radius-card: 6px;
@@ -54,6 +63,59 @@
   --grid-cell: 44px;
   --content-max: 1180px;
   --content-narrow: 920px;
+  --content-reading: 780px;
+  --sidebar-width: 260px;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Design tokens — Navy Calm (Dark)
+   Activated by body.docs-dark via theme toggle
+   ────────────────────────────────────────────────────────────────── */
+
+body.docs-dark {
+  --color-bg: #0A2540;
+  --color-bg-alt: #061527;
+  --color-bg-elevated: #0F3460;
+  --color-bg-card: #143D6B;
+  --color-bg-hover: rgba(255, 255, 255, 0.05);
+  --color-bg-subtle: rgba(255, 255, 255, 0.04);
+  --color-bg-glass: rgba(10, 37, 64, 0.85);
+  --color-bg-inverse: #FFFFFF;
+  --color-bg-inverse-soft: #F8FAFC;
+
+  --color-text: #FFFFFF;
+  --color-text-secondary: rgba(255, 255, 255, 0.85);
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+  --color-text-subtle: rgba(255, 255, 255, 0.5);
+  --color-text-faint: rgba(255, 255, 255, 0.35);
+
+  --color-accent: #00D4AA;
+  --color-accent-hover: #5EEAD4;
+  --color-accent-dark: #00A896;
+  --color-accent-tint: rgba(0, 212, 170, 0.1);
+  --color-accent-glow: rgba(0, 212, 170, 0.2);
+  --color-accent-border: rgba(0, 212, 170, 0.25);
+  --color-accent-bg: rgba(0, 212, 170, 0.12);
+  --color-accent-muted: rgba(0, 212, 170, 0.15);
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.15);
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.2);
+  --color-code-bg: rgba(0, 212, 170, 0.1);
+  --color-code-border: rgba(0, 212, 170, 0.2);
+  --color-code-text: #00D4AA;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-cta: 0 4px 16px rgba(0, 212, 170, 0.3);
+
+  color-scheme: dark;
+}
+
+html.docs-theme-init body {
+  visibility: visible;
 }
 
 * {
@@ -1387,6 +1449,451 @@ code {
 
 .footer--light .social-link:hover {
   color: #7c3aed;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Docs shell — sidebar + main column
+   Ported from esy.com/agents layout primitives
+   ────────────────────────────────────────────────────────────────── */
+
+.docs-shell {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.docs-shell-inner {
+  display: flex;
+  min-height: 100vh;
+}
+
+.docs-main {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--color-bg);
+  position: relative;
+}
+
+/* Page wrapper for reference content */
+.docs-page {
+  display: flex;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem 4rem;
+}
+
+.docs-page-content {
+  flex: 1;
+  min-width: 0;
+  max-width: var(--content-reading);
+}
+
+/* Hub layout (for index pages) */
+.docs-hub {
+  padding: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.docs-hub-header {
+  margin-bottom: 3rem;
+  max-width: 680px;
+}
+
+.docs-hub-header h1 {
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-text);
+  margin: 0 0 1rem;
+}
+
+.docs-hub-header p {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--color-text-subtle);
+  margin: 0;
+}
+
+/* Typography hierarchy inside .docs-page */
+.docs-page h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--color-text);
+  margin: 0 0 0.75rem;
+}
+
+.docs-page h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--color-text);
+  margin: 2.5rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.docs-page h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 2rem;
+}
+
+.docs-page h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--color-text);
+  margin: 1.75rem 0 0.625rem;
+}
+
+.docs-page h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.docs-lede {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0 0 2rem;
+  letter-spacing: -0.01em;
+}
+
+.docs-page p {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+  margin: 0 0 1rem;
+  letter-spacing: -0.005em;
+}
+
+.docs-page strong {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.docs-page ul,
+.docs-page ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.docs-page li {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin-bottom: 0.375rem;
+}
+
+.docs-page li::marker {
+  color: var(--color-text-subtle);
+}
+
+.docs-page a:not(.docs-chip):not(.docs-card-link) {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.docs-page a:not(.docs-chip):not(.docs-card-link):hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.docs-page code {
+  font-family: var(--font-geist-mono), 'SF Mono', 'Fira Code', Consolas, monospace;
+  font-size: 0.8125rem;
+  padding: 0.125rem 0.375rem;
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-code-border);
+  border-radius: 4px;
+  color: var(--color-code-text);
+}
+
+.docs-page pre {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.docs-page pre code {
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.docs-page blockquote {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-accent-muted);
+  border-radius: 0 8px 8px 0;
+}
+
+.docs-page blockquote p {
+  margin: 0;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.docs-page hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2.5rem 0;
+}
+
+.docs-page [id] {
+  scroll-margin-top: 6rem;
+}
+
+/* Key takeaways callout */
+.docs-takeaways {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(0, 168, 150, 0.06) 0%, rgba(0, 212, 170, 0.04) 100%);
+  border: 1px solid rgba(0, 168, 150, 0.12);
+  border-radius: 12px;
+}
+
+body.docs-dark .docs-takeaways {
+  background: linear-gradient(135deg, rgba(0, 212, 170, 0.08) 0%, rgba(0, 168, 150, 0.04) 100%);
+  border-color: rgba(0, 212, 170, 0.18);
+}
+
+.docs-takeaways h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.docs-takeaways ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.docs-takeaways li {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-muted);
+}
+
+.docs-takeaways li:last-child {
+  margin-bottom: 0;
+}
+
+/* Sidebar shell (component styles inline; this is layout-level) */
+.docs-sidebar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background-color: var(--color-bg);
+  border-right: 1px solid var(--color-border);
+  overflow-y: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 101;
+}
+
+/* Scrollbar — light & dark aware */
+.docs-sidebar,
+.docs-main,
+.docs-page,
+.docs-hub {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+
+.docs-sidebar::-webkit-scrollbar,
+.docs-main::-webkit-scrollbar,
+.docs-page::-webkit-scrollbar,
+.docs-hub::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.docs-sidebar::-webkit-scrollbar-track,
+.docs-main::-webkit-scrollbar-track,
+.docs-page::-webkit-scrollbar-track,
+.docs-hub::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb,
+.docs-main::-webkit-scrollbar-thumb,
+.docs-page::-webkit-scrollbar-thumb,
+.docs-hub::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.2s ease;
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb:hover,
+.docs-main::-webkit-scrollbar-thumb:hover,
+.docs-page::-webkit-scrollbar-thumb:hover,
+.docs-hub::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+  background-clip: padding-box;
+}
+
+/* Floating theme toggle */
+.docs-theme-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.docs-theme-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Mobile sidebar behavior */
+.docs-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+}
+
+.docs-mobile-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 99;
+  padding: 0.875rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0 8px 24px var(--color-accent-glow);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1023px) {
+  .docs-sidebar {
+    position: fixed !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .docs-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .docs-mobile-toggle,
+  .docs-mobile-overlay.is-open {
+    display: flex;
+  }
+}
+
+@media (max-width: 1279px) {
+  .docs-page {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .docs-page {
+    padding: 1.5rem;
+  }
+
+  .docs-hub {
+    padding: 2rem 1.5rem;
+  }
+
+  .docs-hub-header h1 {
+    font-size: 2rem;
+  }
+
+  .docs-page h1 {
+    font-size: 1.75rem;
+  }
+
+  .docs-page h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .docs-page {
+    padding: 1.25rem 1rem;
+  }
+
+  .docs-hub {
+    padding: 1.5rem 1rem;
+  }
+
+  .docs-hub-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .docs-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .docs-lede {
+    font-size: 1rem;
+  }
+}
+
+@media print {
+  .docs-sidebar,
+  .docs-theme-toggle,
+  .docs-mobile-toggle {
+    display: none !important;
+  }
+
+  .docs-page {
+    padding: 0;
+    max-width: none;
+  }
 }
 
 /* ──────────────────────────────────────────────────────────────────

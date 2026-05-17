@@ -23,7 +23,8 @@ const costExample = `{
 
 export default function CostsPage() {
   return (
-    <div className="content contentNarrow">
+    <div className="docs-page">
+      <div className="docs-page-content">
       <PageHeader
         eyebrow="Concepts · Costs"
         title="Costs"
@@ -93,6 +94,7 @@ export default function CostsPage() {
           ],
         ]}
       />
+      </div>
     </div>
   );
 }

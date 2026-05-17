@@ -28,7 +28,8 @@ artifacts/{artifactType}/{artifactId}/processed.webp`;
 
 export default function ArtifactsPage() {
   return (
-    <div className="content contentNarrow">
+    <div className="docs-page">
+      <div className="docs-page-content">
       <PageHeader
         eyebrow="Concepts · Artifacts"
         title="Artifacts"
@@ -89,6 +90,7 @@ export default function ArtifactsPage() {
         Video, research, and knowledge artifacts have their own content shapes; those will be documented here as
         each class ships its public contract.
       </p>
+      </div>
     </div>
   );
 }

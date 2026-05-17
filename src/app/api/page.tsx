@@ -16,7 +16,8 @@ const exampleResponse = `{
 
 export default function ApiPage() {
   return (
-    <div className="content contentNarrow">
+    <div className="docs-page">
+      <div className="docs-page-content">
       <PageHeader
         eyebrow="Reference · API"
         title="API reference"
@@ -71,6 +72,7 @@ export default function ApiPage() {
         All endpoints are versioned under <code>/v1</code>. Breaking changes will land on a new path
         (<code>/v2</code>) and be tracked in the <a href="/changelog">changelog</a>.
       </Callout>
+      </div>
     </div>
   );
 }

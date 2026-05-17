@@ -13,7 +13,7 @@ const entries = [
     title: 'Public reference layer',
     items: [
       'Launched docs.esy.com with the Esy brand system aligned to esy.com and app.esy.com.',
-      'Added concept pages for Workflows, Runs, Artifacts, and Costs.',
+      'Added concept pages for Workflow templates, Runs, Artifacts, and Costs.',
       'Documented the generate-clip-art-asset workflow end-to-end with step-level telemetry.',
       'Introduced the provider cost ledger with estimated, provider-reported, and reconciled states.',
     ],
@@ -22,7 +22,8 @@ const entries = [
 
 export default function ChangelogPage() {
   return (
-    <div className="content contentNarrow">
+    <div className="docs-page">
+      <div className="docs-page-content">
       <PageHeader
         eyebrow="Reference · Changelog"
         title="Changelog"
@@ -51,6 +52,7 @@ export default function ChangelogPage() {
             </div>
           </article>
         ))}
+      </div>
       </div>
     </div>
   );

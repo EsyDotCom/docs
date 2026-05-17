@@ -32,7 +32,8 @@ function Arrow() {
 
 export default function GuidesIndexPage() {
   return (
-    <div className="content contentNarrow">
+    <div className="docs-page">
+      <div className="docs-page-content">
       <PageHeader
         eyebrow="Reference · Guides"
         title="Guides"
@@ -60,6 +61,7 @@ export default function GuidesIndexPage() {
             </span>
           </Link>
         ))}
+      </div>
       </div>
     </div>
   );

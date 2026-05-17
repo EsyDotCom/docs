@@ -1,29 +1,7 @@
 import Link from 'next/link';
 
-function BrandMark({ withSuffix = true }: { withSuffix?: boolean }) {
-  return (
-    <span className="brand" aria-label="Esy">
-      <span className="brandMark" aria-hidden="true">
-        <span>e</span>sy
-      </span>
-      {withSuffix && <span className="brandSuffix" aria-hidden="true">Docs</span>}
-    </span>
-  );
-}
-
-function ExternalIcon() {
-  return (
-    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
-      <path
-        d="M4 2.5h5.5V8M9.5 2.5L4 8m-1.5-5v6.5h6.5"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+import { Sidebar } from '@/components/Sidebar';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 type FooterLink = {
   href: string;
@@ -45,6 +23,49 @@ function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) 
   );
 }
 
+function BrandMark() {
+  return (
+    <span
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 10,
+      }}
+      aria-label="Esy docs"
+    >
+      <span
+        aria-hidden="true"
+        style={{
+          fontFamily: 'var(--font-black-ops-one), Impact, sans-serif',
+          fontSize: '1.35rem',
+          letterSpacing: '0.03em',
+          lineHeight: 1,
+          color: 'var(--color-text)',
+        }}
+      >
+        <span style={{ color: 'var(--color-accent)' }}>e</span>sy
+      </span>
+      <span
+        aria-hidden="true"
+        style={{
+          padding: '4px 8px',
+          border: '1px solid var(--color-border)',
+          borderRadius: 'var(--radius-control)',
+          background: 'var(--color-bg-elevated)',
+          color: 'var(--color-text-muted)',
+          fontSize: 10,
+          fontWeight: 700,
+          letterSpacing: '0.16em',
+          textTransform: 'uppercase',
+          lineHeight: 1,
+        }}
+      >
+        Docs
+      </span>
+    </span>
+  );
+}
+
 function SubstackIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -63,94 +84,84 @@ function YouTubeIcon() {
 
 export function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="shell">
-      <div className="atmosphere" aria-hidden="true" />
+    <div className="docs-shell">
+      <div className="docs-shell-inner">
+        <Sidebar />
 
-      <header className="topbar">
-        <Link href="/" aria-label="Esy docs home" style={{ display: 'inline-flex' }}>
-          <BrandMark />
-        </Link>
-        <nav className="topnav" aria-label="Primary documentation navigation">
-          <Link href="/concepts/workflows">Concepts</Link>
-          <Link href="/api">API</Link>
-          <Link href="/guides">Guides</Link>
-          <Link href="/changelog">Changelog</Link>
-          <span className="topnavExternal">
-            <a href="https://app.esy.com" rel="noopener noreferrer" aria-label="Open the Esy app">
-              App <ExternalIcon />
-            </a>
-          </span>
-        </nav>
-      </header>
+        <main className="docs-main">
+          {children}
 
-      <main>{children}</main>
+          <footer className="footer footer--light">
+            <div className="footer-content">
+              <div className="footer-brand">
+                <Link href="/" aria-label="Esy docs home" className="footer-logo">
+                  <BrandMark />
+                </Link>
+                <p className="footer-desc">
+                  Agentic workflow templates that automate research, verify citations, and deliver publishable
+                  artifacts.
+                  <br />
+                  <strong>Automate &amp; audit.</strong>
+                </p>
+                <div className="footer-socials">
+                  <a
+                    href="https://synthesize.esy.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-link"
+                    aria-label="Esy on Substack"
+                  >
+                    <SubstackIcon />
+                  </a>
+                  <a
+                    href="https://www.youtube.com/@EsyDotCom"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-link"
+                    aria-label="Esy on YouTube"
+                  >
+                    <YouTubeIcon />
+                  </a>
+                </div>
+              </div>
 
-      <footer className="footer footer--light">
-        <div className="footer-content">
-          <div className="footer-brand">
-            <Link href="/" aria-label="Esy docs home" className="footer-logo">
-              <BrandMark />
-            </Link>
-            <p className="footer-desc">
-              Agentic workflow templates that automate research, verify citations, and deliver publishable artifacts.
-              <br />
-              <strong>Automate &amp; audit.</strong>
-            </p>
-            <div className="footer-socials">
-              <a
-                href="https://synthesize.esy.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="Esy on Substack"
-              >
-                <SubstackIcon />
-              </a>
-              <a
-                href="https://www.youtube.com/@EsyDotCom"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="Esy on YouTube"
-              >
-                <YouTubeIcon />
-              </a>
+              <FooterColumn
+                title="Explore"
+                links={[
+                  { href: 'https://esy.com/templates/', text: 'Templates' },
+                  { href: 'https://esy.com/agents/', text: 'Agents' },
+                  { href: 'https://esy.com/glossary/', text: 'Glossary' },
+                ]}
+              />
+
+              <FooterColumn
+                title="Resources"
+                links={[
+                  { href: 'https://esy.com/research/', text: 'Research' },
+                  { href: 'https://esy.com/courses/', text: 'Courses' },
+                  { href: '/api', text: 'API' },
+                  { href: '/guides', text: 'Guides' },
+                ]}
+              />
+
+              <FooterColumn
+                title="Company"
+                links={[
+                  { href: 'https://esy.com/about/', text: 'About' },
+                  { href: 'https://esy.com/privacy/', text: 'Privacy' },
+                  { href: 'https://esy.com/terms/', text: 'Terms' },
+                ]}
+              />
             </div>
-          </div>
 
-          <FooterColumn
-            title="Explore"
-            links={[
-              { href: 'https://esy.com/templates/', text: 'Templates' },
-              { href: 'https://esy.com/agents/', text: 'Agents' },
-              { href: 'https://esy.com/glossary/', text: 'Glossary' },
-            ]}
-          />
+            <div className="footer-bottom">
+              <p>&copy; 2024-2026 ESY, LLC. All rights reserved.</p>
+            </div>
+          </footer>
+        </main>
+      </div>
 
-          <FooterColumn
-            title="Resources"
-            links={[
-              { href: 'https://esy.com/research/', text: 'Research' },
-              { href: 'https://esy.com/courses/', text: 'Courses' },
-              { href: '/api', text: 'API' },
-              { href: '/guides', text: 'Guides' },
-            ]}
-          />
-
-          <FooterColumn
-            title="Company"
-            links={[
-              { href: 'https://esy.com/about/', text: 'About' },
-              { href: 'https://esy.com/privacy/', text: 'Privacy' },
-              { href: 'https://esy.com/terms/', text: 'Terms' },
-            ]}
-          />
-        </div>
-
-        <div className="footer-bottom">
-          <p>&copy; 2024-2026 ESY, LLC. All rights reserved.</p>
-        </div>
-      </footer>
+      <ThemeToggle />
     </div>
   );
 }

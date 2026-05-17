@@ -26,7 +26,8 @@ const runExample = `{
 
 export default function RunsPage() {
   return (
-    <div className="content contentNarrow">
+    <div className="docs-page">
+      <div className="docs-page-content">
       <PageHeader
         eyebrow="Concepts · Runs"
         title="Runs"
@@ -112,6 +113,7 @@ export default function RunsPage() {
           [<code key="cv">image.convert_webp.*</code>, 'PNG to WebP conversion for raw and processed outputs.'],
         ]}
       />
+      </div>
     </div>
   );
 }

@@ -3,9 +3,9 @@ import { Eyebrow } from '@/components/Primitives';
 
 const atlas = [
   {
-    href: '/concepts/workflows',
+    href: '/concepts/workflow-templates',
     label: 'Concepts',
-    title: 'Workflows',
+    title: 'Workflow templates',
     desc: 'Reusable templates that define intake, runtime steps, providers, quality gates, and budget policy.',
   },
   {
@@ -88,7 +88,7 @@ export default function Home() {
             <Link className="buttonPrimary" href="/api">
               API reference <Arrow />
             </Link>
-            <Link className="buttonSecondary" href="/concepts/workflows">
+            <Link className="buttonSecondary" href="/concepts/workflow-templates">
               How Esy works
             </Link>
           </div>
