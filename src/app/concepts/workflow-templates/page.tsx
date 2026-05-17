@@ -1,3 +1,4 @@
+import { DocsPageShell } from '@/components/DocsPageShell';
 import { Callout, CodeBlock, PageHeader, Table } from '@/components/Primitives';
 
 export const metadata = {
@@ -30,8 +31,7 @@ const anatomy = `workflow template
 
 export default function WorkflowTemplatesPage() {
   return (
-    <div className="docs-page">
-      <div className="docs-page-content">
+    <DocsPageShell>
         <PageHeader
           eyebrow="Concepts · Workflow templates"
           title="Workflow templates"
@@ -86,7 +86,6 @@ export default function WorkflowTemplatesPage() {
           produce different runtime behavior across versions; runs must remain reproducible against the exact
           snapshot that produced them.
         </Callout>
-      </div>
-    </div>
+    </DocsPageShell>
   );
 }

@@ -1,3 +1,4 @@
+import { DocsPageShell } from '@/components/DocsPageShell';
 import { PageHeader } from '@/components/Primitives';
 
 export const metadata = {
@@ -22,8 +23,7 @@ const entries = [
 
 export default function ChangelogPage() {
   return (
-    <div className="docs-page">
-      <div className="docs-page-content">
+    <DocsPageShell>
       <PageHeader
         eyebrow="Reference · Changelog"
         title="Changelog"
@@ -53,7 +53,6 @@ export default function ChangelogPage() {
           </article>
         ))}
       </div>
-      </div>
-    </div>
+    </DocsPageShell>
   );
 }

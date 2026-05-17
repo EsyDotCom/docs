@@ -1,3 +1,4 @@
+import { DocsPageShell } from '@/components/DocsPageShell';
 import { CodeBlock, PageHeader, Table } from '@/components/Primitives';
 
 export const metadata = {
@@ -28,8 +29,7 @@ artifacts/{artifactType}/{artifactId}/processed.webp`;
 
 export default function ArtifactsPage() {
   return (
-    <div className="docs-page">
-      <div className="docs-page-content">
+    <DocsPageShell>
       <PageHeader
         eyebrow="Concepts · Artifacts"
         title="Artifacts"
@@ -90,7 +90,6 @@ export default function ArtifactsPage() {
         Video, research, and knowledge artifacts have their own content shapes; those will be documented here as
         each class ships its public contract.
       </p>
-      </div>
-    </div>
+    </DocsPageShell>
   );
 }

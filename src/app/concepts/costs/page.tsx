@@ -1,3 +1,4 @@
+import { DocsPageShell } from '@/components/DocsPageShell';
 import { Callout, CodeBlock, PageHeader, Table } from '@/components/Primitives';
 
 export const metadata = {
@@ -23,8 +24,7 @@ const costExample = `{
 
 export default function CostsPage() {
   return (
-    <div className="docs-page">
-      <div className="docs-page-content">
+    <DocsPageShell>
       <PageHeader
         eyebrow="Concepts · Costs"
         title="Costs"
@@ -94,7 +94,6 @@ export default function CostsPage() {
           ],
         ]}
       />
-      </div>
-    </div>
+    </DocsPageShell>
   );
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Sidebar } from '@/components/Sidebar';
+import { DocsShellClient } from '@/components/DocsShellClient';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 type FooterLink = {
@@ -86,7 +86,7 @@ export function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="docs-shell">
       <div className="docs-shell-inner">
-        <Sidebar />
+        <DocsShellClient />
 
         <main className="docs-main">
           {children}

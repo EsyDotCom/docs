@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { DocsPageShell } from '@/components/DocsPageShell';
 import { PageHeader } from '@/components/Primitives';
 
 export const metadata = {
@@ -32,8 +33,7 @@ function Arrow() {
 
 export default function GuidesIndexPage() {
   return (
-    <div className="docs-page">
-      <div className="docs-page-content">
+    <DocsPageShell>
       <PageHeader
         eyebrow="Reference · Guides"
         title="Guides"
@@ -62,7 +62,6 @@ export default function GuidesIndexPage() {
           </Link>
         ))}
       </div>
-      </div>
-    </div>
+    </DocsPageShell>
   );
 }

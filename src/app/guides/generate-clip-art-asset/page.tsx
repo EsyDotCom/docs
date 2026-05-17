@@ -1,3 +1,4 @@
+import { DocsPageShell } from '@/components/DocsPageShell';
 import { CodeBlock, PageHeader, StepList } from '@/components/Primitives';
 
 export const metadata = {
@@ -43,8 +44,7 @@ const pipeline = [
 
 export default function GenerateClipArtGuidePage() {
   return (
-    <div className="docs-page">
-      <div className="docs-page-content">
+    <DocsPageShell>
       <PageHeader
         eyebrow="Guide · clip-art"
         title="Generate a clip-art asset"
@@ -148,7 +148,6 @@ export default function GenerateClipArtGuidePage() {
         <code>GET /v1/runs/&#123;runId&#125;</code>. The same provider cost ledger is available scoped to the
         artifact via <code>GET /v1/artifacts/&#123;artifactId&#125;</code>.
       </p>
-      </div>
-    </div>
+    </DocsPageShell>
   );
 }
