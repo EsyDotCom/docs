@@ -332,6 +332,7 @@ button:focus-visible {
   max-width: var(--content-max);
   margin: 0 auto;
   padding: clamp(56px, 7vw, 96px) clamp(20px, 4vw, 40px) 96px;
+  overflow-x: clip;
 }
 
 .contentNarrow {
@@ -467,7 +468,7 @@ code {
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(440px, 540px);
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 540px);
   gap: clamp(40px, 5vw, 72px);
   align-items: center;
   padding: clamp(48px, 7vw, 80px) 0 clamp(64px, 7vw, 96px);
@@ -554,6 +555,8 @@ code {
   position: relative;
   display: flex;
   flex-direction: column;
+  width: min(100%, 540px);
+  min-width: 0;
   border-radius: 10px;
   background: var(--color-bg-inverse);
   box-shadow:
@@ -635,6 +638,7 @@ code {
   line-height: 1.75;
   white-space: pre;
   overflow-x: auto;
+  max-width: 100%;
 }
 
 .apiBody code {
@@ -657,6 +661,7 @@ code {
 .apiFooter {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   padding: 12px 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -908,6 +913,7 @@ code {
 .tableWrap {
   margin: 22px 0;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--color-border);
   border-radius: 8px;
   background: var(--color-bg-elevated);
@@ -915,6 +921,7 @@ code {
 
 .table {
   width: 100%;
+  min-width: 560px;
   border-collapse: collapse;
   font-size: 14.5px;
 }
@@ -1834,8 +1841,37 @@ body.docs-dark .docs-takeaways {
 }
 
 @media (max-width: 1279px) {
+  .content {
+    padding-top: clamp(40px, 6vw, 72px);
+  }
+
+  .heroSection {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: clamp(28px, 5vw, 48px);
+  }
+
+  .heroLeft h1 {
+    max-width: 720px;
+    font-size: clamp(44px, 8vw, 72px);
+  }
+
+  .heroLead {
+    max-width: 680px;
+  }
+
+  .apiPreview {
+    justify-self: stretch;
+    width: 100%;
+    max-width: 760px;
+  }
+
   .docs-page {
     padding: 2rem;
+  }
+
+  .docs-toc {
+    display: none;
   }
 }
 
@@ -1862,6 +1898,119 @@ body.docs-dark .docs-takeaways {
 }
 
 @media (max-width: 640px) {
+  .content {
+    padding: 36px 16px 72px;
+  }
+
+  h1 {
+    font-size: clamp(34px, 11vw, 44px);
+  }
+
+  .heroSection {
+    padding: 28px 0 56px;
+  }
+
+  .heroLeft h1 {
+    font-size: clamp(40px, 13vw, 54px);
+    line-height: 0.98;
+  }
+
+  .heroLead {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  .heroActions {
+    margin-top: 28px;
+  }
+
+  .buttonPrimary,
+  .buttonSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .apiHeader {
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .apiDots {
+    gap: 4px;
+  }
+
+  .apiDots span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .apiTitle {
+    min-width: 0;
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .apiMeta {
+    display: none;
+  }
+
+  .apiBody {
+    padding: 16px;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  .apiFooter {
+    padding: 10px 14px;
+    gap: 6px 8px;
+    font-size: 11px;
+  }
+
+  .apiFooter .sep {
+    display: none;
+  }
+
+  .atlasCard {
+    padding: 22px 20px;
+  }
+
+  .standardBand {
+    padding: 28px 20px;
+  }
+
+  .codeBlock {
+    border-radius: 8px;
+  }
+
+  .codeBlock pre {
+    padding: 16px;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px 14px;
+  }
+
+  .endpointRow {
+    padding: 14px;
+  }
+
+  .workflowMeta {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 8px 12px;
+  }
+
+  .workflowMeta dt::after {
+    display: none;
+  }
+
+  .workflowMeta dd + dt {
+    margin-left: 0;
+  }
+
   .docs-page {
     padding: 1.25rem 1rem;
   }
@@ -1901,15 +2050,6 @@ body.docs-dark .docs-takeaways {
    ────────────────────────────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
-  .heroSection {
-    grid-template-columns: 1fr;
-    align-items: stretch;
-  }
-
-  .heroLeft h1 {
-    font-size: clamp(44px, 9vw, 64px);
-  }
-
   .atlasGrid,
   .principleStrip {
     grid-template-columns: 1fr 1fr;
