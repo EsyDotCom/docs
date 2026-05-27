@@ -3,10 +3,22 @@ import { Eyebrow } from '@/components/Primitives';
 
 const atlas = [
   {
+    href: '/concepts/workflow-schemas',
+    label: 'Concepts · Workflow primitives',
+    title: 'Workflow schemas',
+    desc: 'The platform contract every Workflow Template must satisfy. Required fields, allowed types, gate-unlock grammar, validation rules.',
+  },
+  {
     href: '/concepts/workflow-templates',
-    label: 'Concepts',
+    label: 'Concepts · Workflow primitives',
     title: 'Workflow templates',
-    desc: 'Reusable templates that define intake, runtime steps, providers, quality gates, and budget policy.',
+    desc: 'Reusable templates that satisfy the Schema. Define intake, runtime steps, providers, quality gates, and budget policy.',
+  },
+  {
+    href: '/concepts/workflow-specifications',
+    label: 'Concepts · Workflow primitives',
+    title: 'Workflow specifications',
+    desc: 'Per-run populated instances of a Template. The deterministic blueprint production reads to build the artifact.',
   },
   {
     href: '/concepts/runs',
@@ -170,7 +182,10 @@ export default function Home() {
           <Eyebrow>Reference atlas</Eyebrow>
           <h2>The primitives that make Esy measurable.</h2>
           <p className="sectionLead">
-            Six entries define the surface area. Read these first; everything else is a specialization.
+            Workflows on Esy are defined at three levels — <strong>Schema</strong> declares the rules,{' '}
+            <strong>Template</strong> is a predesigned workflow, <strong>Specification</strong> is the per-run
+            populated instance. Eight entries define the surface area. Read these first; everything else is a
+            specialization.
           </p>
         </div>
 
