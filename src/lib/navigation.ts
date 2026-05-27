@@ -55,10 +55,24 @@ export const navigation: NavSection[] = [
     title: 'Concepts',
     items: [
       {
+        title: 'Workflow schemas',
+        href: '/concepts/workflow-schemas',
+        description: 'The platform contract every Workflow Template must satisfy.',
+        icon: 'layers',
+        isNew: true,
+      },
+      {
         title: 'Workflow templates',
         href: '/concepts/workflow-templates',
         description: 'Reusable, versioned blueprints that produce a class of artifacts.',
         icon: 'workflow',
+      },
+      {
+        title: 'Workflow specifications',
+        href: '/concepts/workflow-specifications',
+        description: 'Per-run populated instances of a Template. The deterministic blueprint production reads.',
+        icon: 'file-text',
+        isNew: true,
       },
       {
         title: 'Runs',
