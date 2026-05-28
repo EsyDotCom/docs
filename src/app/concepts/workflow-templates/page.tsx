@@ -29,7 +29,7 @@ const anatomy = `workflow template
    ├── provider policy
    ├── quality gates
    ├── budget policy
-   └── output shape`;
+   └── artifact schema`;
 
 const levelDiagram = `Workflow Schema  (rules)
        │
@@ -51,7 +51,7 @@ export default function WorkflowTemplatesPage() {
         lead={
           <>
             Workflow templates are reusable definitions for producing artifacts. They specify intake, runtime
-            steps, provider policy, output shape, quality gates, and budget policy. Templates sit between{' '}
+            steps, provider policy, artifact schema, quality gates, and budget policy. Templates sit between{' '}
             <Link href="/concepts/workflow-schemas">Workflow Schemas</Link> (the platform rules) and{' '}
             <Link href="/concepts/workflow-specifications">Workflow Specifications</Link> (per-run populated
             instances).
@@ -113,6 +113,13 @@ export default function WorkflowTemplatesPage() {
           [<code key="g">gates</code>, 'Quality, safety, approval, and budget checkpoints before execution continues.'],
           [<code key="p">providers</code>, 'Provider routing for each runtime step.'],
           [<code key="bp">budgetPolicy</code>, 'Constraints that keep execution predictable before a run launches.'],
+          [
+            <code key="as">artifactSchema</code>,
+            <>
+              The shape of the artifact this Template produces — its artifact type, files, and metadata. The
+              output end of the Template, parallel to <code>intakeSchema</code> at the input end.
+            </>,
+          ],
         ]}
       />
 
@@ -132,7 +139,7 @@ export default function WorkflowTemplatesPage() {
         <li>
           <strong>Workflow designers</strong> — Author new Templates that conform to the{' '}
           <Link href="/concepts/workflow-schemas">Workflow Schema</Link>. Decide what gates a Template has, what
-          providers route each step, what output shape it produces.
+          providers route each step, and what artifact schema it produces.
         </li>
         <li>
           <strong>Operators</strong> — Pick a Template from a library and supply intake to start a Run. Operators

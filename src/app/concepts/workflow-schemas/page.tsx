@@ -21,7 +21,7 @@ const schemaExample = `{
     "providers",
     "gates",
     "budgetPolicy",
-    "outputShape"
+    "artifactSchema"
   ],
   "artifactClass": {
     "type": "enum",
@@ -37,6 +37,13 @@ const schemaExample = `{
       "unlocks": "array<GateId>"
     }
   },
+  "artifactSchema": {
+    "fields": {
+      "artifactType": "ArtifactTypeRef (required, registered)",
+      "files": "array<FileSpec> (required)",
+      "metadata": "object (shape defined by the ArtifactType)"
+    }
+  },
   "subWorkflowRef": {
     "fields": {
       "templateId": "string (required)",
@@ -47,7 +54,7 @@ const schemaExample = `{
   "validation": [
     "Every gate id must be unique within the template",
     "Every unlocks reference must point to a gate in the same template",
-    "Every outputShape must be a registered ArtifactType",
+    "Every artifactSchema must reference a registered ArtifactType",
     "Every provider must be a registered ProviderRef",
     "Template version must be ISO-style date-tagged"
   ]
@@ -97,7 +104,7 @@ export default function WorkflowSchemasPage() {
         rows={[
           [
             <strong key="fields">Required fields</strong>,
-            'The set of fields a Workflow Template must contain to be publishable (id, name, artifactClass, version, cadence, intakeSchema, runtimeSteps, providers, gates, budgetPolicy, outputShape).',
+            'The set of fields a Workflow Template must contain to be publishable (id, name, artifactClass, version, cadence, intakeSchema, runtimeSteps, providers, gates, budgetPolicy, artifactSchema).',
           ],
           [
             <strong key="types">Allowed types and shapes</strong>,
@@ -106,6 +113,10 @@ export default function WorkflowSchemasPage() {
           [
             <strong key="gates">Gate grammar</strong>,
             'The structure of a gate: id, name, type, inputs (ArtifactTypeRefs), outputs (ArtifactTypeRefs), and unlocks (gate ids). Determines what flows between steps.',
+          ],
+          [
+            <strong key="artifact">Artifact schema</strong>,
+            'The shape of what the workflow produces — its artifactType, files, and metadata. Because the artifact is the workflow\u2019s output, declaring that output is part of declaring the workflow. It is an element of the Schema, parallel to the intake schema at the other end.',
           ],
           [
             <strong key="sub">Sub-workflow references</strong>,
