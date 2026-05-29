@@ -87,6 +87,13 @@ export const navigation: NavSection[] = [
         icon: 'image',
       },
       {
+        title: 'Sub-workflows',
+        href: '/concepts/sub-workflows',
+        description: 'How a workflow composes another workflow as a child run, with linked artifacts and rolled-up cost.',
+        icon: 'workflow',
+        isNew: true,
+      },
+      {
         title: 'Costs',
         href: '/concepts/costs',
         description: 'How cost is tracked across steps, runs, workflows, and projects.',
