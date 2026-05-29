@@ -1,0 +1,22 @@
+---
+description: Push and open PRs as the esy-agent GitHub App in EsyDotCom repos
+alwaysApply: true
+---
+
+# Push and open PRs as esy-agent
+
+In EsyDotCom repositories, agent-driven git pushes and GitHub PR actions go through
+the `esy-agent` GitHub App — not your personal `gh`/`git` auth. Use the local
+wrappers so branch pushes and PR actions attribute to `esy-agent[bot]`:
+
+- Push a branch: `esy-git-push origin HEAD` (not `git push`)
+- PRs / comments / reviews / API: `esy-gh pr create …`, `esy-gh pr comment …`, `esy-gh api …` (not `gh`)
+
+`git commit` is unchanged — the commit author stays your local git identity; only
+the push and PR actions become `esy-agent[bot]`.
+
+Canonical workflow: `client/app.esy.com/docs/DEPLOYMENT_WORKFLOW.md` ("GitHub App
+Identity For Agents"). Quick reference: `client/esy.com/docs/ESY_AGENT.md`.
+
+If `esy-gh` / `esy-git-push` returns 403, the app isn't installed on that repo —
+add it to the EsyDotCom org installation before retrying.
