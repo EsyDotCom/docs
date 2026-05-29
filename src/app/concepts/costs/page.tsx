@@ -15,11 +15,12 @@ const costExample = `{
   "unit": "request",
   "unitPriceUsd": 0.0003,
   "estimatedCostUsd": 0.0003,
-  "actualCostUsd": null,
-  "status": "estimated",
+  "actualCostUsd": 0.0003,
+  "status": "provider_reported",
   "pricingSource": "pricing_snapshot",
-  "pricingVersion": "2026.05.16",
-  "sourceUrl": "https://fal.ai/models/fal-ai/birefnet-light"
+  "pricingVersion": "2026-05-16",
+  "reconciledAt": "2026-05-16T22:14:43.902Z",
+  "sourceUrl": "https://fal.ai/models/fal-ai/birefnet/v2/api"
 }`;
 
 export default function CostsPage() {
@@ -76,6 +77,25 @@ export default function CostsPage() {
         {costExample}
       </CodeBlock>
 
+      <p>
+        Each ledger entry is immutable and freezes the price that was applied: its <code>unitPriceUsd</code> and{' '}
+        <code>pricingVersion</code> are snapshotted at write time. When a provider price changes later, existing
+        entries keep the price they were charged at — nothing recomputes them.
+      </p>
+
+      <h2>Pricing versions are effective dates</h2>
+      <p>
+        <code>pricingVersion</code> is an ISO date (<code>YYYY-MM-DD</code>), not an opaque label: it is the day a
+        price snapshot took effect. Because every ledger entry copies it, each entry answers &ldquo;what price was in
+        effect, and from when&rdquo; on its own — the entry&rsquo;s <code>createdAt</code> tells you when the cost was
+        incurred, and its <code>pricingVersion</code> tells you which price schedule applied.
+      </p>
+      <Callout title="Why this is enough">
+        For spend reporting and point-in-time price provenance, the per-entry snapshot plus its <code>createdAt</code>{' '}
+        is sufficient — no separate dated rate-card table is required. A standalone pricing history is only needed for
+        price-trend or drift analysis, which Esy adds when that need is real.
+      </Callout>
+
       <h2>Pricing sources</h2>
       <Table
         head={['Provider', 'Source of truth']}
@@ -90,7 +110,7 @@ export default function CostsPage() {
           ],
           [
             'storage (R2)',
-            'Per-operation pricing from Cloudflare; reconciled monthly via usage export.',
+            'Cloudflare published per-operation rate (Class A writes); reconciled at write time, with monthly usage export as a cross-check.',
           ],
         ]}
       />
