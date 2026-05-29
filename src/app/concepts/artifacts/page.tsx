@@ -27,6 +27,25 @@ const artifactExample = `{
 const namespace = `artifacts/{artifactType}/{artifactId}/raw.webp
 artifacts/{artifactType}/{artifactId}/processed.webp`;
 
+const researchExample = `{
+  "id": "artifact-7c4e91aa",
+  "runId": "run-9f8e7d6c",
+  "templateId": "generate-research-report",
+  "artifactClass": "research",
+  "status": "review",
+  "content": {
+    "type": "research-report",
+    "title": "The economics of desalination",
+    "summary": "A structured synthesis of cost drivers, energy intensity, and...",
+    "sections": [
+      { "heading": "Cost drivers", "body": "..." },
+      { "heading": "Energy intensity", "body": "..." }
+    ],
+    "sources": ["IEA 2025 desalination outlook", "..."]
+  },
+  "createdAt": "2026-05-29T15:02:11.004Z"
+}`;
+
 export default function ArtifactsPage() {
   return (
     <DocsPageShell>
@@ -86,9 +105,28 @@ export default function ArtifactsPage() {
         {namespace}
       </CodeBlock>
 
+      <h2>Research artifacts</h2>
+      <p>
+        A research artifact is structured text rather than a file. Its <code>content</code> carries a{' '}
+        <code>title</code>, a <code>summary</code>, an ordered list of <code>sections</code>{' '}
+        (<code>heading</code> + <code>body</code>), and a list of <code>sources</code>. Sourcing is
+        model-derived today; web-search-backed citations land in a later phase.
+      </p>
+
+      <CodeBlock title="GET /v1/artifacts/artifact-7c4e91aa" language="json">
+        {researchExample}
+      </CodeBlock>
+
+      <p>
+        Research artifacts are reusable on their own and as inputs to other workflows. When a workflow composes a
+        research report through a <a href="/concepts/sub-workflows">sub-workflow</a>, the produced artifact (for
+        example, an infographic) carries a <code>sourceReportArtifactId</code> back-reference to the report it was
+        built from.
+      </p>
+
       <p style={{ color: 'var(--color-text-faint)', fontSize: 14 }}>
-        Video, research, and knowledge artifacts have their own content shapes; those will be documented here as
-        each class ships its public contract.
+        Video and knowledge artifacts have their own content shapes; those will be documented here as each class
+        ships its public contract.
       </p>
     </DocsPageShell>
   );

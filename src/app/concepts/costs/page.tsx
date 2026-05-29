@@ -78,6 +78,12 @@ export default function CostsPage() {
       </CodeBlock>
 
       <p>
+        When a run composes a <a href="/concepts/sub-workflows">sub-workflow</a>, each child run keeps its own
+        ledger entries; the parent run&rsquo;s <code>totalCosts</code> includes the child run totals, so a composed
+        workflow reports the full cost of producing its artifact.
+      </p>
+
+      <p>
         Each ledger entry is immutable and freezes the price that was applied: its <code>unitPriceUsd</code> and{' '}
         <code>pricingVersion</code> are snapshotted at write time. When a provider price changes later, existing
         entries keep the price they were charged at — nothing recomputes them.
