@@ -92,6 +92,13 @@ export const navigation: NavSection[] = [
         description: 'How cost is tracked across steps, runs, workflows, and projects.',
         icon: 'wallet',
       },
+      {
+        title: 'Budgets',
+        href: '/concepts/budgets',
+        description: 'Spend limits at organization, project, or workflow scope, enforced before a run executes.',
+        icon: 'wallet',
+        isNew: true,
+      },
     ],
   },
   {
