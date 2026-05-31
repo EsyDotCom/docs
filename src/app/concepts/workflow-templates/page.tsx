@@ -161,6 +161,10 @@ export default function WorkflowTemplatesPage() {
           conform to.
         </li>
         <li>
+          <Link href="/concepts/workflow-versioning">Workflow versioning</Link> — how a Template&rsquo;s immutable
+          versions are published, selected, and pinned by runs.
+        </li>
+        <li>
           <Link href="/concepts/workflow-specifications">Workflow specifications</Link> — per-run populated
           instances of a Template.
         </li>
