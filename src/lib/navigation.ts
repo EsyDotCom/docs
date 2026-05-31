@@ -75,6 +75,13 @@ export const navigation: NavSection[] = [
         isNew: true,
       },
       {
+        title: 'Workflow versioning',
+        href: '/concepts/workflow-versioning',
+        description: 'Templates are immutable and versioned; runs pin the exact version they executed for reproducibility.',
+        icon: 'history',
+        isNew: true,
+      },
+      {
         title: 'Runs',
         href: '/concepts/runs',
         description: 'One execution of a workflow template, with cost and step telemetry.',
