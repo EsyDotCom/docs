@@ -9,7 +9,7 @@ export const metadata = {
 
 const fieldExample = `{
   "name": "sourceReport",
-  "type": "artifactRef",
+  "type": "artifactReference",
   "required": false,
   "description": "An existing research report to visualize",
   "artifactClass": "research",
@@ -63,7 +63,7 @@ export default function ComposeWithArtifactInputsGuidePage() {
         <dt>Input artifact</dt>
         <dd>research / research-report</dd>
         <dt>Mechanism</dt>
-        <dd>artifactRef intake field + satisfiedBy</dd>
+        <dd>artifactReference intake field + satisfiedBy</dd>
         <dt>Output</dt>
         <dd>visual / infographic</dd>
       </dl>
@@ -93,7 +93,7 @@ export default function ComposeWithArtifactInputsGuidePage() {
 
       <h2>1. Declare the input (author)</h2>
       <p>
-        Add an intake field of type <code>artifactRef</code>, constrained to the class and type the
+        Add an intake field of type <code>artifactReference</code>, constrained to the class and type the
         workflow knows how to read. Typing matters: it lets the run-time picker filter candidates and
         lets the platform validate what you pass.
       </p>

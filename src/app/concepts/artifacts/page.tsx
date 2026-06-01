@@ -29,7 +29,7 @@ artifacts/{artifactType}/{artifactId}/processed.webp`;
 
 const inputFieldExample = `{
   "name": "sourceReport",
-  "type": "artifactRef",
+  "type": "artifactReference",
   "required": false,
   "description": "An existing research report to visualize",
   "artifactClass": "research",
@@ -160,12 +160,12 @@ export default function ArtifactsPage() {
       <h2 id="artifact-inputs">Artifacts as inputs</h2>
       <p>
         A workflow template can declare that it accepts an existing artifact as input. The author adds
-        an intake field of type <code>artifactRef</code>, constrained to the artifact{' '}
+        an intake field of type <code>artifactReference</code>, constrained to the artifact{' '}
         <code>class</code> and <code>type</code> the workflow knows how to read — so the field has a
         defined consumer and the supplied value can be validated.
       </p>
 
-      <CodeBlock title="an artifactRef intake field" language="json">
+      <CodeBlock title="an artifactReference intake field" language="json">
         {inputFieldExample}
       </CodeBlock>
 
