@@ -147,6 +147,13 @@ export const navigation: NavSection[] = [
         description: 'Run the clip-art workflow end-to-end.',
         icon: 'image',
       },
+      {
+        title: 'Compose with artifact inputs',
+        href: '/guides/compose-with-artifact-inputs',
+        description: 'Let a workflow accept an existing artifact as input — supply one or generate it.',
+        icon: 'workflow',
+        isNew: true,
+      },
     ],
   },
   {

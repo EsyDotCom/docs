@@ -27,6 +27,24 @@ const artifactExample = `{
 const namespace = `artifacts/{artifactType}/{artifactId}/raw.webp
 artifacts/{artifactType}/{artifactId}/processed.webp`;
 
+const inputFieldExample = `{
+  "name": "sourceReport",
+  "type": "artifactRef",
+  "required": false,
+  "description": "An existing research report to visualize",
+  "artifactClass": "research",
+  "artifactType": "research-report"
+}`;
+
+const inputRequestExample = `{
+  "templateId": "generate-research-infographic",
+  "intake": {
+    "topic": "The history of dinosaurs",
+    "aspectRatio": "3:4",
+    "sourceReport": "artifact-7c4e91aa"
+  }
+}`;
+
 const researchExample = `{
   "id": "artifact-7c4e91aa",
   "runId": "run-9f8e7d6c",
@@ -59,6 +77,21 @@ export default function ArtifactsPage() {
           </>
         }
       />
+
+      <h2>Produced and consumed</h2>
+      <p>
+        An artifact is a first-class value: a run can both <strong>produce</strong> one and{' '}
+        <strong>consume</strong> one. A workflow is, in effect, a function over artifacts — it takes
+        zero or more artifacts (plus intake) and produces one.
+      </p>
+      <CodeBlock title="the shape of a workflow" language="text">
+        {`Workflow : Artifact* -> Artifact`}
+      </CodeBlock>
+      <p>
+        This is why composition works two ways. A workflow can obtain an input artifact by{' '}
+        <em>generating</em> it inline (a <a href="/concepts/sub-workflows">sub-workflow</a>) or by{' '}
+        <em>accepting</em> one you already have (an <a href="#artifact-inputs">artifact input</a>).
+      </p>
 
       <h2>Artifact classes</h2>
       <Table
@@ -122,6 +155,41 @@ export default function ArtifactsPage() {
         research report through a <a href="/concepts/sub-workflows">sub-workflow</a>, the produced artifact (for
         example, an infographic) carries a <code>sourceReportArtifactId</code> back-reference to the report it was
         built from.
+      </p>
+
+      <h2 id="artifact-inputs">Artifacts as inputs</h2>
+      <p>
+        A workflow template can declare that it accepts an existing artifact as input. The author adds
+        an intake field of type <code>artifactRef</code>, constrained to the artifact{' '}
+        <code>class</code> and <code>type</code> the workflow knows how to read — so the field has a
+        defined consumer and the supplied value can be validated.
+      </p>
+
+      <CodeBlock title="an artifactRef intake field" language="json">
+        {inputFieldExample}
+      </CodeBlock>
+
+      <p>
+        At run time you pass the chosen artifact&rsquo;s id in intake. The engine loads that artifact
+        and exposes its content at <code>inputs.&#123;field&#125;</code>, which steps reference like
+        any other context — for example <code>&#123;inputs.sourceReport.summary&#125;</code>.
+      </p>
+
+      <CodeBlock title="POST /v1/runs — supplying an artifact input" language="json">
+        {inputRequestExample}
+      </CodeBlock>
+
+      <h3>Generate or supply</h3>
+      <p>
+        A step can declare that a supplied artifact <em>satisfies</em> it. When the input is present,
+        the step is skipped and the supplied artifact fills its output slot; when it is absent, the
+        step runs normally — for example, generating the artifact through a sub-workflow. Downstream
+        steps read the same reference either way, so &ldquo;generate a fresh one&rdquo; and &ldquo;use
+        this existing one&rdquo; are interchangeable to the rest of the workflow.
+      </p>
+      <p>
+        See the <a href="/guides/compose-with-artifact-inputs">compose with artifact inputs</a> guide
+        for a worked example.
       </p>
 
       <p style={{ color: 'var(--color-text-faint)', fontSize: 14 }}>
