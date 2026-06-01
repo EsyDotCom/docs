@@ -15,6 +15,12 @@ const guides = [
     title: 'Generate a clip-art asset',
     desc: 'Run the generate-clip-art-asset workflow end-to-end and read back the artifact, step telemetry, and cost ledger.',
   },
+  {
+    href: '/guides/compose-with-artifact-inputs',
+    label: 'composition',
+    title: 'Compose with artifact inputs',
+    desc: 'Let a workflow accept an existing artifact as input — supply a report you already have, or let the workflow generate one.',
+  },
 ];
 
 function Arrow() {
