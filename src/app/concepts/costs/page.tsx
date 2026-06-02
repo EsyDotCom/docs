@@ -89,6 +89,28 @@ export default function CostsPage() {
         entries keep the price they were charged at — nothing recomputes them.
       </p>
 
+      <h2>Vendor vs. model: direct providers and gateways</h2>
+      <p>
+        Every ledger entry records two things that are easy to conflate: <code>provider</code> is the vendor that{' '}
+        <em>invoices</em> you, and <code>model</code> is what actually <em>ran</em>. For direct providers — OpenAI,
+        Anthropic — these coincide: you call them, they bill you. For a <strong>gateway</strong> like fal.ai they
+        diverge: fal.ai is an API that routes to many underlying models (today <code>birefnet-light</code> for
+        background removal; other hosted models later), so the vendor on the invoice is fal.ai while the model that
+        ran is something else.
+      </p>
+      <p>
+        Because both fields live on every entry, the two questions stay separate. Roll up spend by <strong>model</strong>{' '}
+        to see what ran — the honest answer to &ldquo;what am I paying for&rdquo;. Roll up by <strong>vendor</strong>{' '}
+        to reconcile against the invoices you actually receive. A gateway only ever shows up as a vendor; it is never
+        the answer to &ldquo;which capability did I use.&rdquo;
+      </p>
+      <Callout title="When a gateway routes third-party models">
+        If fal.ai later proxies a model such as Gemini, the same fields still carry the truth: <code>provider</code>{' '}
+        stays the billing vendor (fal.ai) and <code>model</code> names the real model. A dedicated route/gateway field
+        can annotate &ldquo;via fal.ai&rdquo; if that level of provenance becomes useful — the cost model does not have
+        to change to support it.
+      </Callout>
+
       <h2>Pricing versions are effective dates</h2>
       <p>
         <code>pricingVersion</code> is an ISO date (<code>YYYY-MM-DD</code>), not an opaque label: it is the day a
