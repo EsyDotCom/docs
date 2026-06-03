@@ -43,6 +43,77 @@ export default function CostsPage() {
         and reconciled costs are tracked separately. Final billing comes from provider truth, not Esy estimates.
       </Callout>
 
+      <h2>Cost vs. price</h2>
+      <p>
+        Two axes are easy to conflate, so Esy keeps them strictly separate. <strong>Cost</strong> is what it costs
+        Esy to <em>execute</em> a step — metered provider and resource spend. <strong>Price</strong> is what a
+        customer is <em>charged</em> for a template. Everything on this page is about cost; price is a separate
+        concern. A template can be priced at <code>$0</code> to a customer and still incur real cost to run, so cost
+        docs never describe a step as &ldquo;free&rdquo; — that word only ever describes price.
+      </p>
+
+      <h2>Metered and unmetered steps</h2>
+      <p>
+        Every runtime step is one of two kinds, on the cost axis:
+      </p>
+      <Table
+        head={['Step kind', 'Meaning']}
+        rows={[
+          [
+            <strong key="m">metered</strong>,
+            <>
+              Consumes a cost-bearing resource — an LLM call, image generation, a tool call, an agent loop, or a
+              sub-workflow. A metered step carries a <strong>rate</strong> (its per-unit cost).
+            </>,
+          ],
+          [
+            <strong key="u">unmetered</strong>,
+            <>
+              Consumes no cost-bearing resource — a local string transform, a passthrough, local computation. It
+              contributes nothing to run cost. This is <em>not</em> &ldquo;free&rdquo;; it simply incurs no cost
+              because there is no metered resource behind it.
+            </>,
+          ],
+        ]}
+      />
+      <p>
+        A metered step&rsquo;s <strong>rate</strong> is resolved from the registry. A rate is{' '}
+        <strong>resolved</strong> when the registry has a known per-unit cost for the step&rsquo;s model or tool —
+        and that known value may legitimately be <code>0</code>. A rate is <strong>unresolved</strong> when the
+        registry cannot price it, which is the case that silently reads as <code>$0</code> while real spend still
+        happens.
+      </p>
+
+      <h2>Estimability (the publish guard)</h2>
+      <p>
+        A template is <strong>estimable</strong> when every metered step resolves to a known rate. Estimability is
+        enforced at publish time: a template cannot become <code>active</code> if any metered step has an{' '}
+        <strong>unresolved</strong> rate. The invariant is about <em>knowing</em> the cost, not about the total
+        being non-zero.
+      </p>
+      <Table
+        head={['Case', 'Publish']}
+        rows={[
+          [
+            <>Unmetered step (no cost-bearing resource)</>,
+            <>Allowed — contributes nothing to cost.</>,
+          ],
+          [
+            <>Metered step with a <strong>resolved</strong> rate (even <code>0</code>)</>,
+            <>Allowed — the cost is known.</>,
+          ],
+          [
+            <>Metered step with an <strong>unresolved</strong> rate</>,
+            <>Blocked — the cost is unknown and would silently read as <code>$0</code>.</>,
+          ],
+        ]}
+      />
+      <Callout title="Known-zero is not the same as unknown">
+        A template made entirely of unmetered steps genuinely costs nothing and publishes fine. A template whose
+        metered step references a model or tool the registry can&rsquo;t price is blocked — not because it&rsquo;s
+        expensive, but because Esy refuses to publish a cost it cannot account for.
+      </Callout>
+
       <h2>Cost states</h2>
       <Table
         head={['State', 'Meaning']}

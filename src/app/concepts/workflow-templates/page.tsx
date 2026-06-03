@@ -131,6 +131,58 @@ export default function WorkflowTemplatesPage() {
         <Link href="/concepts/workflow-specifications">Workflow Specification</Link> for each Run.
       </Callout>
 
+      <h2>The definition is the program</h2>
+      <p>
+        A template is <strong>data-driven</strong>: its stored <code>runtimeSteps</code> are not documentation of
+        what some server code does — they <em>are</em> what executes. A single generic engine reads a
+        template&rsquo;s steps and runs them (LLM call, image generation, tool call, agent loop, sub-workflow). There
+        is no per-template, hand-written execution path: changing a template&rsquo;s behavior means editing the
+        template, not editing and redeploying server code. Two templates with different steps are the same engine
+        running different data.
+      </p>
+
+      <Callout title="One execution path">
+        Every template runs through the same engine from its stored definition. A capability a template needs — for
+        example a background-removal tool step — is added to the engine once as a step kind, after which any
+        template can use it. The platform direction is zero template-specific execution code.
+      </Callout>
+
+      <h2>The database is the single source of truth</h2>
+      <p>
+        A template&rsquo;s definition lives in the database and is authored, edited, and{' '}
+        <Link href="/concepts/workflow-versioning">versioned</Link> through the API (<code>POST</code> /{' '}
+        <code>PATCH /v1/workflows</code>) — the same path the Factory uses. The stored row is authoritative.
+        Seed scripts are bootstrap-only: they may create initial rows, but they are <strong>not</strong> the source
+        of truth and a row must never depend on re-running a script to stay correct. If a script and a row ever
+        disagree, the row is what runs.
+      </p>
+
+      <h2>Publish guards</h2>
+      <p>
+        Drafts may be saved incomplete, but a template can only become <code>active</code> if it passes
+        publish-time validation. Two guards keep an active template honest:
+      </p>
+      <Table
+        head={['Guard', 'Rule']}
+        rows={[
+          [
+            <strong key="x">Executability</strong>,
+            <>
+              An active template must have a runnable definition — steps the engine can actually execute — and all
+              references and sub-workflows must resolve. A decorative or empty definition cannot be published.
+            </>,
+          ],
+          [
+            <strong key="e">Estimability</strong>,
+            <>
+              Every metered step must resolve to a known rate. See{' '}
+              <Link href="/concepts/costs">Costs</Link> — a metered step with an unresolved rate is blocked so a
+              template can never silently estimate <code>$0</code> while incurring real spend.
+            </>,
+          ],
+        ]}
+      />
+
       <h2>Audience</h2>
       <p>
         Templates serve two audiences:
