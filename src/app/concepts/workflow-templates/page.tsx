@@ -31,6 +31,23 @@ const anatomy = `workflow template
    ├── budget policy
    └── artifact schema`;
 
+const lookupExample = `{
+  "id": "render",
+  "kind": "image",
+  "model": "openai/gpt-image-2",
+  "promptTemplate": "{intake.prompt}. Style: {lookup.styleDescriptor}, clip art, transparent background",
+  "lookups": {
+    "styleDescriptor": {
+      "from": "intake.style",
+      "map": {
+        "flat": "flat vector, bold outlines, clean shapes, solid colors",
+        "doodle": "hand-drawn doodle, sketchy lines, playful ink"
+      },
+      "default": "flat vector, bold outlines, clean shapes, solid colors"
+    }
+  }
+}`;
+
 const levelDiagram = `Workflow Schema  (rules)
        │
        ▼ a Template satisfies the Schema
@@ -146,6 +163,31 @@ export default function WorkflowTemplatesPage() {
         example a background-removal tool step — is added to the engine once as a step kind, after which any
         template can use it. The platform direction is zero template-specific execution code.
       </Callout>
+
+      <h2>Resolving intake into prompts</h2>
+      <p>
+        A central promise of Esy is that operators <strong>don&rsquo;t write prompts</strong> — they supply
+        structured intake and context, and the template composes the real provider prompt behind the scenes. A
+        step&rsquo;s <code>promptTemplate</code> interpolates intake values by path (<code>{'{intake.prompt}'}</code>),
+        so a short subject plus a few selections becomes the full engineered prompt the model actually sees. The
+        operator never writes — or sees — that expansion.
+      </p>
+      <p>
+        Some composition needs more than substitution: a selection like a style key has to become a rich descriptor
+        phrase. Templates express this declaratively with <strong>lookups</strong> — a named map from an intake
+        value to a fragment, with a default — exposed to the prompt as <code>{'{lookup.<name>}'}</code>. This keeps
+        the mapping as template <em>data</em>, not code, so authors can add or tune styles without touching the
+        engine.
+      </p>
+      <CodeBlock title="step with a declarative lookup" language="json">
+        {lookupExample}
+      </CodeBlock>
+      <p>
+        Here an operator submits <code>prompt: &ldquo;a fox&rdquo;</code> and <code>style: &ldquo;doodle&rdquo;</code>;
+        the engine resolves <code>{'{lookup.styleDescriptor}'}</code> to the doodle phrase and renders the complete
+        prompt. An unknown style falls back to the declared default. Lookups are a generic engine primitive — any
+        template can use them for any intake-to-prompt mapping, not just visual styles.
+      </p>
 
       <h2>The database is the single source of truth</h2>
       <p>
