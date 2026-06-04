@@ -9,6 +9,16 @@ export const metadata = {
 
 const entries = [
   {
+    date: '2026-06-04',
+    tag: 'platform',
+    title: 'Workflow publishing — visibility ladder + admin-gated authoring',
+    items: [
+      'Introduced template visibility (draft → internal → public) as the single control over where a template is listed, decoupled from lifecycle status.',
+      'Publish-time validation (executability + estimability) now runs when a template is promoted to a listed rung, not on a status flag.',
+      'Gated workflow create/update behind admin; admin-published templates are system-owned and the public catalog lists only public, system-owned templates.',
+    ],
+  },
+  {
     date: '2026-05-16',
     tag: 'docs',
     title: 'Public reference layer',

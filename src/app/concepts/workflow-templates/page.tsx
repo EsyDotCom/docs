@@ -127,6 +127,13 @@ export default function WorkflowTemplatesPage() {
             </>,
           ],
           [<code key="cd">cadence</code>, 'How the template is invoked: on demand, scheduled, continuous, per pack.'],
+          [
+            <code key="vis">visibility</code>,
+            <>
+              The publish ladder — <code>draft</code>, <code>internal</code>, or <code>public</code> — controlling
+              where the template is listed. See <a href="#publishing">Publishing &amp; visibility</a> below.
+            </>,
+          ],
           [<code key="g">gates</code>, 'Quality, safety, approval, and budget checkpoints before execution continues.'],
           [<code key="p">providers</code>, 'Provider routing for each runtime step.'],
           [<code key="bp">budgetPolicy</code>, 'Constraints that keep execution predictable before a run launches.'],
@@ -199,10 +206,43 @@ export default function WorkflowTemplatesPage() {
         disagree, the row is what runs.
       </p>
 
-      <h2>Publish guards</h2>
+      <h2 id="publishing">Publishing &amp; visibility</h2>
       <p>
-        Drafts may be saved incomplete, but a template can only become <code>active</code> if it passes
-        publish-time validation. Two guards keep an active template honest:
+        A template&rsquo;s <code>visibility</code> is the single control over <em>where it is listed</em> — a
+        three-rung ladder, independent of any lifecycle status. Publishing is a deliberate promotion up the ladder,
+        never a side effect of saving.
+      </p>
+      <Table
+        head={['Visibility', 'Listed', 'Validated on save?']}
+        rows={[
+          [
+            <code key="d">draft</code>,
+            'Nowhere — private work in progress',
+            'No — a draft may be saved incomplete or broken while it is authored',
+          ],
+          [
+            <code key="i">internal</code>,
+            'The operator app, runnable but not on the public site',
+            'Yes',
+          ],
+          [
+            <code key="p">public</code>,
+            'The operator app and the public workflow catalog',
+            'Yes',
+          ],
+        ]}
+      />
+      <p>
+        Because the rungs nest (anything public is also runnable in the app), demoting from <code>public</code> to{' '}
+        <code>internal</code> unlists a template from the public catalog while keeping it runnable; demoting to{' '}
+        <code>draft</code> pulls it everywhere. The public catalog shows only <code>public</code>, system-owned
+        templates.
+      </p>
+
+      <h3>Publish guards</h3>
+      <p>
+        Promoting a template to a listed rung (<code>internal</code> or <code>public</code>) runs publish-time
+        validation. Two guards keep a listed template honest:
       </p>
       <Table
         head={['Guard', 'Rule']}
@@ -210,8 +250,8 @@ export default function WorkflowTemplatesPage() {
           [
             <strong key="x">Executability</strong>,
             <>
-              An active template must have a runnable definition — steps the engine can actually execute — and all
-              references and sub-workflows must resolve. A decorative or empty definition cannot be published.
+              A listed template must have a runnable definition — steps the engine can actually execute — and all
+              references and sub-workflows must resolve. A decorative or empty definition cannot be listed.
             </>,
           ],
           [
@@ -233,7 +273,9 @@ export default function WorkflowTemplatesPage() {
         <li>
           <strong>Workflow designers</strong> — Author new Templates that conform to the{' '}
           <Link href="/concepts/workflow-schemas">Workflow Schema</Link>. Decide what gates a Template has, what
-          providers route each step, and what artifact schema it produces.
+          providers route each step, and what artifact schema it produces. Authoring is <strong>admin-only</strong>:
+          creating and editing templates is restricted to platform admins, and admin-published templates are
+          system-owned.
         </li>
         <li>
           <strong>Operators</strong> — Pick a Template from a library and supply intake to start a Run. Operators
