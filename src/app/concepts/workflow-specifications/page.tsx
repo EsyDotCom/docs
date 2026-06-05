@@ -94,6 +94,12 @@ export default function WorkflowSpecificationsPage() {
         {levelDiagram}
       </CodeBlock>
 
+      <Callout title="Template is the class; Specification is the instance">
+        A <Link href="/concepts/workflow-templates">Template</Link> is a class; a Specification is one instance of it
+        — <code>new Template(intake)</code> — created fresh for each run. That is why there are many Specifications
+        but one Template, and why a Specification is immutable once populated.
+      </Callout>
+
       <h2>What a Specification contains</h2>
       <Table
         head={['Field', 'Purpose']}
