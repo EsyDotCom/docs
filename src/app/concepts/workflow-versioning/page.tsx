@@ -61,6 +61,17 @@ export default function WorkflowVersioningPage() {
         keep opt-in alternates or operator-only shadow versions alongside its canonical one.
       </p>
 
+      <h2>Drafts and publishing</h2>
+      <p>
+        A template can be saved as a <strong>draft</strong> while it is still incomplete — a half-written prompt or a
+        reference that doesn&rsquo;t resolve yet is fine to keep around. <strong>Publishing</strong> it — promoting it
+        up the visibility ladder to <code>internal</code> or <code>public</code> (see{' '}
+        <Link href="/concepts/workflow-templates#publishing">Publishing &amp; visibility</Link>) — is the gate: the
+        definition is validated first, so a template with unresolved references, a forward reference to a later step,
+        or a missing sub-workflow cannot be published — and therefore cannot be run. Publishing a valid template is
+        what mints the immutable version described above.
+      </p>
+
       <h2>When to bump a version vs. spawn a sibling</h2>
       <p>
         Bump a version when it&rsquo;s the <em>same job</em> — same input and output contract, same intent — served
