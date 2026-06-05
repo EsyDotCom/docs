@@ -94,6 +94,15 @@ export default function WorkflowSpecificationsPage() {
         {levelDiagram}
       </CodeBlock>
 
+      <Callout title="One way to hold the three levels apart">
+        If the <Link href="/concepts/workflow-schemas">Schema</Link> is the legal code (what is allowed) and the{' '}
+        <Link href="/concepts/workflow-templates">Template</Link> is the blueprint (how to build it), the
+        Specification is the exact order form for a single house. Note the friction with everyday usage: elsewhere
+        &ldquo;spec&rdquo; often means the reusable contract (an OpenAPI <em>Specification</em> describes the whole
+        API, not one call), which sits at the Template level. On Esy a Specification is deliberately the{' '}
+        <em>per-run</em> instance — the GitHub Actions equivalent of a workflow <em>run</em>, not the workflow file.
+      </Callout>
+
       <h2>What a Specification contains</h2>
       <Table
         head={['Field', 'Purpose']}
