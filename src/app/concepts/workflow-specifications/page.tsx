@@ -94,13 +94,10 @@ export default function WorkflowSpecificationsPage() {
         {levelDiagram}
       </CodeBlock>
 
-      <Callout title="One way to hold the three levels apart">
-        If the <Link href="/concepts/workflow-schemas">Schema</Link> is the legal code (what is allowed) and the{' '}
-        <Link href="/concepts/workflow-templates">Template</Link> is the blueprint (how to build it), the
-        Specification is the exact order form for a single house. Note the friction with everyday usage: elsewhere
-        &ldquo;spec&rdquo; often means the reusable contract (an OpenAPI <em>Specification</em> describes the whole
-        API, not one call), which sits at the Template level. On Esy a Specification is deliberately the{' '}
-        <em>per-run</em> instance — the GitHub Actions equivalent of a workflow <em>run</em>, not the workflow file.
+      <Callout title="Template is the class; Specification is the instance">
+        A <Link href="/concepts/workflow-templates">Template</Link> is a class; a Specification is one instance of it
+        — <code>new Template(intake)</code> — created fresh for each run. That is why there are many Specifications
+        but one Template, and why a Specification is immutable once populated.
       </Callout>
 
       <h2>What a Specification contains</h2>
