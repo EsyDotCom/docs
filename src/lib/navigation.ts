@@ -76,6 +76,14 @@ export const navigation: NavSection[] = [
         isNew: true,
       },
       {
+        title: 'Prompts',
+        href: '/concepts/prompts',
+        description:
+          'Authored once and referenced, never copied: immutable versions, a movable live pointer, and the version a run executed.',
+        icon: 'book',
+        isNew: true,
+      },
+      {
         title: 'Classification',
         href: '/concepts/classification',
         description:
