@@ -46,6 +46,31 @@ classification.axes
    ├── subject    "car"                        ← chosen by the classifier
    └── audience   "small online shops packs"   ← the pin, unchanged`;
 
+// A workflow states the CONTRACT it needs; it does not state the list. The
+// list is per account, and the same workflow serves many.
+const contractDeclaration = `{
+  "classifiers": [
+    {
+      "axis": "subject",
+      "contract": "clipart-subject-v1",
+      "classifierRef": { "slug": "clipart-subjects", "alias": "live" }   // a default
+    }
+  ]
+}`;
+
+// A closed contract fixes the OUTCOMES a workflow routes on. An account may
+// rename the surface labels; it may not add an outcome with nowhere to route.
+const closedContract = `workflow declares
+   ├── axis              verdict
+   ├── contract          risk-verdict-v1
+   └── requiredOutcomes  clear · review · blocked
+
+a classifier satisfying it
+   └── labels
+        ├── { outcome: "clear",   label: "safe" }
+        ├── { outcome: "review",  label: "check first" }
+        └── { outcome: "blocked", label: "do not ship" }`;
+
 export default function ClassificationPage() {
   return (
     <DocsPageShell>
@@ -178,6 +203,97 @@ export default function ClassificationPage() {
         Whether an unmatched answer holds an artifact for review is declared by the template through{' '}
         <code>holdWhenUnmatched</code>. The label reports; the policy decides. An artifact can be honestly
         uncategorized and still publish.
+      </Callout>
+
+      <h2>Who owns the classifier</h2>
+      <p>
+        A template is often <strong>shared</strong> — platform templates are owned by no workspace and run by
+        every account. A vocabulary is not shared: two accounts running the same workflow will want different
+        lists. So the two cannot live in the same place.
+      </p>
+
+      <Table
+        head={['Owns', 'Declares', 'Scope']}
+        rows={[
+          [
+            <strong key="a">Workflow</strong>,
+            <>
+              Which axes exist, and the <em>contract</em> each requires. Optionally a default classifier.
+            </>,
+            'Shared — the same for every account running it',
+          ],
+          [
+            <strong key="b">Worker</strong>,
+            <>
+              Which classifier actually fills an axis, when the account wants its own. Falls back to the
+              workflow&rsquo;s default.
+            </>,
+            'Per account — the customer-specific operating context',
+          ],
+        ]}
+      />
+
+      <p>The classifier for an axis resolves in that order:</p>
+
+      <CodeBlock title="resolution" language="tree">
+        {`worker classifier   ← the account's own, when it has set one
+  → workflow default  ← what the template ships with
+  → axis unfilled     ← nothing is classified on this axis`}
+      </CodeBlock>
+
+      <Callout title="The workflow states what must be classified. The worker states how.">
+        A workflow declaring an axis is saying &ldquo;output on this axis is part of what I produce.&rdquo; It is
+        not saying which words to use — that is the account&rsquo;s taxonomy, and requiring every worker to pick
+        one before it can run would be configuration for its own sake.
+      </Callout>
+
+      <h2>Contracts, and why they are not label lists</h2>
+      <p>
+        An axis declares a <strong>contract</strong> — a named shape a classifier must satisfy. This is what stops
+        a subject taxonomy being attached where a moderation verdict is expected, which would otherwise fail
+        silently and only surface as artifacts labelled <code>mushroom</code> in a field something routes on.
+      </p>
+
+      <CodeBlock title="an axis with a contract and a default" language="json">
+        {contractDeclaration}
+      </CodeBlock>
+
+      <h3>Open and closed contracts</h3>
+      <p>
+        A contract may fix its <strong>outcomes</strong>, or fix nothing at all. That single distinction covers
+        both kinds of classification, and it is the reason a workflow must not simply list the labels it expects.
+      </p>
+
+      <Table
+        head={['', 'Open contract', 'Closed contract']}
+        rows={[
+          ['Example', <code key="a">clipart-subject-v1</code>, <code key="b">risk-verdict-v1</code>],
+          ['The label is', 'the meaning itself', 'the surface form of an outcome'],
+          ['Outcomes fixed?', 'None — any list satisfies it', 'Yes — the workflow routes on them'],
+          ['An account may', 'bring an entirely different taxonomy', 'rename the labels, not add an outcome'],
+        ]}
+      />
+
+      <p>
+        The closed case is the one that makes label lists the wrong contract. A workflow routing on a verdict
+        depends on the <em>outcome</em>, not the string — renaming <code>yes</code> to <code>s&iacute;</code> must
+        not break routing. So the workflow requires outcomes; the classifier supplies a label for each.
+      </p>
+
+      <CodeBlock title="a closed contract, and a classifier satisfying it" language="tree">
+        {closedContract}
+      </CodeBlock>
+
+      <p>
+        Downstream switches on the outcome; the artifact records both, so a catalogue can show{' '}
+        <code>safe</code> while the router still reads <code>clear</code>. It is the same separation as message
+        keys and their translations.
+      </p>
+
+      <Callout title="A contract is closed when a new outcome would have nowhere to go.">
+        That is the test. <code>clear</code>, <code>review</code> and <code>blocked</code> each have a routing
+        consequence — publish, hold, never publish — so a fourth is meaningless and the contract fixes three. A
+        subject taxonomy has no such consequence, so it fixes none and an account brings its own.
       </Callout>
 
       <h2>Authoring classifiers</h2>
