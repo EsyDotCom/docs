@@ -233,13 +233,51 @@ export default function ClassificationPage() {
         ]}
       />
 
-      <p>The classifier for an axis resolves in that order:</p>
+      <h3>How an axis is filled</h3>
+      <p>
+        An axis declares one of three modes. Three modes rather than a set of flags, because flags permit states
+        that cannot be satisfied — <em>no default, no override allowed, required</em> is expressible and
+        unbuildable, and you would only find out at run time.
+      </p>
 
-      <CodeBlock title="resolution" language="tree">
-        {`worker classifier   ← the account's own, when it has set one
-  → workflow default  ← what the template ships with
-  → axis unfilled     ← nothing is classified on this axis`}
-      </CodeBlock>
+      <Table
+        head={['Mode', 'Means', 'Use it when']}
+        rows={[
+          [
+            <code key="a">default_with_override</code>,
+            'The template ships a classifier; an account may swap it.',
+            'Most workflows. This is the default.',
+          ],
+          [
+            <code key="b">fixed</code>,
+            'The template’s classifier, locked. An override is refused.',
+            'The classification’s value depends on nobody changing it.',
+          ],
+          [
+            <code key="c">worker_required</code>,
+            'The account must supply one. Fails in preflight if it does not.',
+            'Workflows designed to be account-configured.',
+          ],
+        ]}
+      />
+
+      <p>
+        Naming a classifier without a mode means <code>default_with_override</code> — a workflow should run the
+        moment it is used, and customising it later is a choice rather than a setup step. Naming{' '}
+        <em>no</em> classifier means <code>worker_required</code>.
+      </p>
+
+      <Callout title="A missing classifier fails; it does not quietly classify nothing.">
+        An axis that resolves to nothing and shrugs is a workflow author&rsquo;s forgotten default shipping
+        unclassified output to every account, discovered from the catalogue weeks later. Classifying nothing is a
+        decision, so a workflow that needs one made says so — in preflight, before any spend.
+      </Callout>
+
+      <p>
+        <code>fixed</code> <strong>refuses</strong> an override rather than ignoring it. The operator set it
+        expecting it to take effect; dropping it silently would be the same defect in a new place. A compliance
+        verdict an account can swap its own classifier into is not a compliance verdict.
+      </p>
 
       <Callout title="The workflow states what must be classified. The worker states how.">
         A workflow declaring an axis is saying &ldquo;output on this axis is part of what I produce.&rdquo; It is
