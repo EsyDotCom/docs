@@ -27,6 +27,7 @@ import {
   Wallet,
   Workflow,
   X,
+  Tags,
 } from 'lucide-react';
 
 import { navigation, type NavIcon, type NavItem, type NavSection } from '@/lib/navigation';
@@ -49,6 +50,7 @@ const iconMap: Record<NavIcon, React.ReactNode> = {
   'app-window': <AppWindow size={14} />,
   globe: <Globe size={14} />,
   plug: <Plug size={14} />,
+  tags: <Tags size={14} />,
 };
 
 function normalizePath(p: string | null): string {
