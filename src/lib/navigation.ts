@@ -23,7 +23,8 @@ export type NavIcon =
   | 'palette'
   | 'app-window'
   | 'globe'
-  | 'plug';
+  | 'plug'
+  | 'tags';
 
 export interface NavItem {
   title: string;
@@ -72,6 +73,14 @@ export const navigation: NavSection[] = [
         href: '/concepts/workflow-specifications',
         description: 'Per-run populated instances of a Template. The deterministic blueprint production reads.',
         icon: 'file-text',
+        isNew: true,
+      },
+      {
+        title: 'Classification',
+        href: '/concepts/classification',
+        description:
+          'Artifacts are more than one thing at once: templates declare the axes they classify on, each with its own classifier.',
+        icon: 'tags',
         isNew: true,
       },
       {
