@@ -1,0 +1,393 @@
+{
+  "/": [
+    "Three pages, in this order.",
+    "{item.title}",
+    "The nouns everything else is built from.",
+    "How Esy thinks about producing output."
+  ],
+  "/api": [
+    "Base URL and versioning",
+    "Authentication",
+    "Casing",
+    "Identifiers",
+    "Pagination",
+    "Filtering",
+    "Idempotency",
+    "Errors",
+    "Rate limits",
+    "The endpoints you will use most",
+    "The full surface"
+  ],
+  "/api/api-keys": [
+    "How keys work",
+    "Workspace binding",
+    "Endpoints",
+    "Security best practices"
+  ],
+  "/api/artifacts": [
+    "GET /v1/artifacts",
+    "GET /v1/artifacts/{artifact_id}",
+    "GET /v1/artifacts/{artifact_id}/family",
+    "GET /v1/artifacts/counts",
+    "POST /v1/artifacts/{artifact_id}/comments",
+    "DELETE /v1/artifacts/{artifact_id}"
+  ],
+  "/api/costs": [
+    "GET /v1/costs",
+    "GET /v1/budgets",
+    "POST /v1/budgets",
+    "PATCH /v1/budgets/{budget_id}",
+    "GET /v1/budgets/{budget_id}/refusals"
+  ],
+  "/api/orders": [
+    "Lifecycle",
+    "POST /v1/orders",
+    "POST /v1/orders/{order_id}/start",
+    "GET /v1/orders/{order_id}",
+    "POST /v1/orders/{order_id}/retry-failed",
+    "POST /v1/orders/{order_id}/accept-gap"
+  ],
+  "/api/outlets": [
+    "Managing outlets",
+    "Publishing artifacts",
+    "The webhook"
+  ],
+  "/api/planning": [
+    "Goals",
+    "Tasks",
+    "Messages (the Inbox)"
+  ],
+  "/api/publications": [
+    "Base URL",
+    "Public reads — no auth",
+    "Authoring — bearer token",
+    "Create a publication",
+    "Categories",
+    "Delivery health"
+  ],
+  "/api/review-queue": [
+    "GET /v1/queue",
+    "POST /v1/queue/{run_id}/decision",
+    "POST /v1/queue/decisions"
+  ],
+  "/api/run-events": [
+    "Endpoints",
+    "The contract",
+    "Event names",
+    "Recommended client ladder"
+  ],
+  "/api/runs": [
+    "POST /v1/runs",
+    "GET /v1/runs",
+    "GET /v1/runs/{run_id}",
+    "POST /v1/runs/{run_id}/cancel",
+    "POST /v1/runs/{run_id}/archive",
+    "PATCH /v1/runs/{run_id}/project",
+    "POST /v1/runs/{run_id}/finalize"
+  ],
+  "/api/webhooks": [
+    "The headers",
+    "What is signed",
+    "Verifying in Node",
+    "Rules your receiver should follow",
+    "Rotating and testing a secret",
+    "Inbound webhooks"
+  ],
+  "/api/workers": [
+    "Workers",
+    "Shifts",
+    "Schedules"
+  ],
+  "/api/workflows": [
+    "GET /v1/catalog/workflows",
+    "GET /v1/catalog/workflows/{workflow_id}",
+    "GET /v1/workflows",
+    "GET /v1/workflows/{workflow_id}/versions",
+    "POST /v1/workflows/dry-run",
+    "POST /v1/workflows/estimate",
+    "GET /v1/models",
+    "GET /v1/tools"
+  ],
+  "/authentication": [
+    "The header",
+    "Creating a key",
+    "What a key can do",
+    "Checking which key you have",
+    "Sessions, for browsers",
+    "Keeping a key safe"
+  ],
+  "/changelog": [
+    "{entry.title}"
+  ],
+  "/concepts/artifacts": [
+    "Produced and consumed",
+    "Artifact classes",
+    "Provenance",
+    "Status values",
+    "Visual artifacts",
+    "Research artifacts",
+    "Artifacts as inputs",
+    "Generate or supply"
+  ],
+  "/concepts/assigned-work": [
+    "The two nouns",
+    "Measurable goals",
+    "Day directives",
+    "The feedback loop"
+  ],
+  "/concepts/costs": [
+    "Cost is not price",
+    "What one run costs",
+    "The three cost states",
+    "Reading spend",
+    "Budgets",
+    "Enforcement modes",
+    "What a refusal looks like",
+    "Estimating before you commit"
+  ],
+  "/concepts/experiments": [
+    "Why this exists",
+    "The six nouns",
+    "The rules, and why each one is there",
+    "Running one, start to finish",
+    "Designing one that answers something",
+    "Pick one primary metric",
+    "Choose the baseline deliberately",
+    "Cases, and the hold-out",
+    "Repeats, not seeds",
+    "Multiple arms",
+    "Reading the report",
+    "The scorers",
+    "When not to use an experiment",
+    "Anti-drift rules",
+    "API",
+    "What exists today"
+  ],
+  "/concepts/gates-and-review": [
+    "Steps do, gates judge",
+    "When an automatic gate rejects",
+    "The QA record",
+    "The review queue",
+    "What approval will refuse",
+    "Typed holds"
+  ],
+  "/concepts/intake": [
+    "Reading the schema",
+    "When it does not validate",
+    "Artifact inputs",
+    "The rule behind the schemas",
+    "Why it is built this way",
+    "Seeing what was actually used"
+  ],
+  "/concepts/library": [
+    "Three planes",
+    "The five kinds",
+    "The spine: version, promote, resolve",
+    "Deleting",
+    "Writing a standard",
+    "Writing a direction",
+    "What the compiler produces",
+    "Writing an axes set, and what the allocator does with it",
+    "The coverage ledger",
+    "Pointing work at the Library",
+    "Anti-drift rules",
+    "API"
+  ],
+  "/concepts/orders": [
+    "Two-phase by design",
+    "The order record",
+    "What each child carries",
+    "Budgets"
+  ],
+  "/concepts/outlets": [
+    "The outlet record",
+    "One site, many sections — many sites, one account",
+    "Outlet vs Publication",
+    "How your site follows",
+    "Workers publish to outlets — the framework",
+    "Syndication — one artifact, many outlets"
+  ],
+  "/concepts/publications": [
+    "Three orthogonal axes",
+    "What a publication holds",
+    "The public read contract",
+    "How a document reaches a reader"
+  ],
+  "/concepts/runs": [
+    "The lifecycle",
+    "What a run records",
+    "Step telemetry",
+    "How a step is defined",
+    "Roles, not models",
+    "Watching a run",
+    "Cancelling"
+  ],
+  "/concepts/source-policies": [
+    "Why two resources and not one list",
+    "A source",
+    "A source policy",
+    "The subject is the slug",
+    "What a run records",
+    "Editing the approved sources"
+  ],
+  "/concepts/sub-workflows": [
+    "Why composition",
+    "The subWorkflow step",
+    "Parent and child runs",
+    "Cost rollup",
+    "Related concepts"
+  ],
+  "/concepts/versioning": [
+    "Versions never change",
+    "The frozen spec",
+    "Listing versions",
+    "Bump, or make a sibling?",
+    "Reproducibility in practice"
+  ],
+  "/concepts/workers": [
+    "Vocabulary",
+    "The shift",
+    "The job",
+    "Every field a content type takes",
+    "Composite output: the publish leg",
+    "Teams, designations, and where work ships",
+    "Stop conditions",
+    "What a report must contain",
+    "Steering a worker"
+  ],
+  "/concepts/workflows": [
+    "The contract",
+    "Finding one to run",
+    "Naming",
+    "Visibility",
+    "Validating a published workflow",
+    "Validating a workflow you are writing"
+  ],
+  "/contracts/chunked-planning": [
+    "The contract",
+    "Why not just raise the caps?"
+  ],
+  "/contracts/element-types-and-render-modes": [
+    "The types",
+    "The category error",
+    "Transparency is a property, not a feature"
+  ],
+  "/contracts/quality-tiers": [
+    "Routing",
+    "Quality is added after acceptance"
+  ],
+  "/contracts/text-policies": [
+    "The three policies",
+    "Why freeform exists",
+    "Where it appears"
+  ],
+  "/errors": [
+    "The shape",
+    "Status codes",
+    "422 — the one you will hit most",
+    "402 — a budget said no",
+    "400 — the template moved on",
+    "A failed run is not an API error",
+    "Retrying"
+  ],
+  "/glossary": [
+    "Artifact",
+    "Artifact class",
+    "Artifact schema",
+    "Budget",
+    "Capability flag",
+    "Cost ledger",
+    "Cost state",
+    "Gate",
+    "Generation Order",
+    "Intake",
+    "Intake schema",
+    "Project",
+    "Provider",
+    "Provider binding",
+    "Provenance",
+    "Review queue",
+    "Role",
+    "Run",
+    "Spec",
+    "Step",
+    "Sub-workflow",
+    "Template",
+    "Typed hold",
+    "Workflow",
+    "Workflow version",
+    "Workspace"
+  ],
+  "/guides": [
+    "{guide.title}"
+  ],
+  "/guides/compose-with-artifact-inputs": [
+    "The idea",
+    "Generate",
+    "Supply",
+    "1. Declare the input (author)",
+    "2. Let the input satisfy the step (author)",
+    "3a. Run by supplying an artifact",
+    "3b. Or run by generating",
+    "What changes in the run"
+  ],
+  "/guides/connect-a-consumer-site": [
+    "Steps",
+    "What Esy sends",
+    "The signature",
+    "Verify it",
+    "One env var per publication",
+    "Confirm it works",
+    "Operating it"
+  ],
+  "/guides/generate-clip-art-asset": [
+    "How this workflow runs",
+    "What you provide",
+    "What you get",
+    "Send the request",
+    "Runtime steps",
+    "Read the response",
+    "Inspect telemetry"
+  ],
+  "/guides/publish-packs-with-a-worker-team": [
+    "What one shift does",
+    "Step 1 — Create the outlet",
+    "Step 2 — Create the team",
+    "Step 3 — Create the workers",
+    "Step 4 — Put it on a schedule",
+    "Step 5 — Receive the pack",
+    "Verifying a run",
+    "When nothing appears on your site"
+  ],
+  "/guides/send-articles-to-beehiiv": [
+    "Before you start",
+    "Steps",
+    "What the draft contains",
+    "Doing it over the API",
+    "Troubleshooting"
+  ],
+  "/how-esy-works": [
+    "The five nouns",
+    "What happens inside a run",
+    "The lifecycle you will actually see",
+    "Ask for outcomes, not mechanisms",
+    "Where the money is counted",
+    "What Esy is not"
+  ],
+  "/integrations/beehiiv": [
+    "The model",
+    "What Esy sends to Beehiiv",
+    "Security",
+    "Requirements",
+    "API surface"
+  ],
+  "/quickstart": [
+    "Before you start",
+    "Step 1 — Start a run",
+    "Step 2 — Wait for it",
+    "Step 3 — Read the artifact",
+    "What it cost",
+    "The whole thing as a script",
+    "Where to go next"
+  ]
+}

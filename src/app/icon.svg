@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Esy">
+  <!-- Transparent favicon: the real Black Ops One "e", near edge-to-edge. The mark
+       adapts to the tab's color scheme so it never disappears — mid teal on light
+       chrome, brighter teal on dark. App-icon contexts (apple-icon, PWA) keep the
+       navy tile instead; this transparent mark is for the browser tab + search. -->
+  <style>
+    .e { fill: #00A896; }
+    @media (prefers-color-scheme: dark) { .e { fill: #2BD8BB; } }
+  </style>
+  <g transform="translate(9 28) scale(0.43) translate(-95 1062) scale(1 -1)">
+    <path class="e" d="M360 0 95 265V797L360 1062H537V0ZM607 426V611H840V797H607V1062H982L1247 797V426ZM607 0V248H1201V133L1069 0Z"/>
+  </g>
+</svg>

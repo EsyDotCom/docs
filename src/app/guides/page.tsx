@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { DocsPageShell } from '@/components/DocsPageShell';
-import { PageHeader } from '@/components/Primitives';
+import { DocsPageShell } from '@/components/docs/DocsPageShell';
+import { PageHeader } from '@/components/docs/Primitives';
 
 export const metadata = {
   title: 'Guides',
@@ -20,6 +20,24 @@ const guides = [
     label: 'composition',
     title: 'Compose with artifact inputs',
     desc: 'Let a workflow accept an existing artifact as input — supply a report you already have, or let the workflow generate one.',
+  },
+  {
+    href: '/guides/publish-packs-with-a-worker-team',
+    label: 'workers',
+    title: 'Publish packs with a worker team',
+    desc: 'Build a crew that plans a themed pack every day, generates every asset, composes a cover, and publishes the finished pack to your own site.',
+  },
+  {
+    href: '/guides/connect-a-consumer-site',
+    label: 'publishing',
+    title: 'Connect a consumer site',
+    desc: 'Render a public publication on your own site and verify Esy’s revalidation webhooks with an HMAC signature.',
+  },
+  {
+    href: '/guides/send-articles-to-beehiiv',
+    label: 'newsletters',
+    title: 'Send articles to Beehiiv',
+    desc: 'Connect a publication to your Beehiiv newsletter and turn any article into a reviewed, email-safe draft — no auto-sending.',
   },
 ];
 
