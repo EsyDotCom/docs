@@ -1,47 +1,47 @@
 /**
- * The "esy DOCS" wordmark. One component, used by both the sidebar and the
- * page chrome — it was previously duplicated verbatim in each and had already
- * started to drift (one copy set userSelect, the other did not).
+ * The product lockup — wordmark · hairline · tag — matching the top of the
+ * os.esy.com side rail exactly, because these are the docs for that product.
+ * Source of truth: client/app.esy.com src/components/layout/side-rail.tsx.
+ *
+ * Colours come from theme tokens (accent, text, border-strong, text-subtle),
+ * so the lockup follows the docs' light and dark themes the same way the
+ * dashboard's follows its own. Used by the sidebar and the footer.
  */
 export function BrandMark() {
   return (
     <span
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 10,
-      }}
-      aria-label="Esy docs"
+      style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}
+      aria-label="Esy OS docs"
     >
       <span
         aria-hidden="true"
         style={{
-          fontFamily: 'var(--font-black-ops-one), Impact, sans-serif',
-          fontSize: '1.35rem',
+          fontFamily: 'var(--font-black-ops-one), sans-serif',
+          fontSize: '1.6rem',
           letterSpacing: '0.03em',
           lineHeight: 1,
-          color: 'var(--color-text)',
           userSelect: 'none',
         }}
       >
-        <span style={{ color: 'var(--color-accent)' }}>e</span>sy
+        <span style={{ color: 'var(--color-accent)' }}>e</span>
+        <span style={{ color: 'var(--color-text)' }}>sy</span>
       </span>
       <span
         aria-hidden="true"
+        style={{ width: 1, height: 16, background: 'var(--color-border-strong)' }}
+      />
+      <span
+        aria-hidden="true"
         style={{
-          padding: '4px 8px',
-          border: '1px solid var(--color-border)',
-          borderRadius: 'var(--radius-control)',
-          background: 'var(--color-bg-elevated)',
-          color: 'var(--color-text-muted)',
-          fontSize: 10,
-          fontWeight: 700,
-          letterSpacing: '0.16em',
+          fontSize: 11,
+          fontWeight: 500,
+          letterSpacing: '0.22em',
           textTransform: 'uppercase',
           lineHeight: 1,
+          color: 'var(--color-text-subtle)',
         }}
       >
-        Docs
+        OS
       </span>
     </span>
   );

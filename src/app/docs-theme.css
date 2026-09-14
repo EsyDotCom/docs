@@ -2451,3 +2451,15 @@ body.docs-dark .glossary dt a:hover { color: var(--color-accent-light); }
   line-height: 1.62;
   max-width: 68ch;
 }
+
+/* The footer is a light panel in both themes (see .footer--light above), but
+   the lockup inside it reads theme tokens — so in dark mode "sy", the hairline
+   and "OS" took their dark-theme values and vanished on the light panel. Pin
+   the tokens the lockup reads to their light values inside the footer. In
+   light mode these are the values it already had. */
+.footer--light .footer-logo {
+  --color-text: #0A2540;
+  --color-text-subtle: rgba(10, 37, 64, 0.5);
+  --color-accent: #00A896;
+  --color-border-strong: rgba(10, 37, 64, 0.12);
+}
