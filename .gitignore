@@ -1,8 +1,14 @@
-.next
-node_modules
-out
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+
 .env*
 !.env.example
 
-# TypeScript incremental build cache
-*.tsbuildinfo
+.netlify/
+.vercel/
+
+.DS_Store
+npm-debug.log*

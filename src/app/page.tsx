@@ -1,54 +1,111 @@
 import Link from 'next/link';
-import { Eyebrow } from '@/components/Primitives';
+
+import { Eyebrow } from '@/components/docs/Primitives';
+
+export const metadata = {
+  title: 'Esy API documentation',
+  description:
+    'Run declared workflows against api.esy.com and get durable artifacts back, with provenance, quality gates, and itemised cost.',
+};
+
+/**
+ * Three entry paths, in reading order. A reader arrives wanting to build
+ * something, understand something, or look something up — this hub is arranged
+ * by that intent rather than by how the system is structured internally.
+ */
+const paths = [
+  {
+    href: '/quickstart',
+    label: 'Start here',
+    title: 'Quickstart',
+    desc: 'Four curl commands from an empty shell to a finished image. Real requests, real responses.',
+  },
+  {
+    href: '/how-esy-works',
+    label: 'Start here',
+    title: 'How Esy works',
+    desc: 'The whole system on one page — the five nouns, what happens inside a run, and where cost is counted.',
+  },
+  {
+    href: '/api',
+    label: 'Start here',
+    title: 'API conventions',
+    desc: 'Base URL, auth, casing, ids, pagination, idempotency. Everything true of every endpoint.',
+  },
+];
 
 const atlas = [
   {
-    href: '/concepts/workflow-schemas',
-    label: 'Concepts · Workflow primitives',
-    title: 'Workflow schemas',
-    desc: 'The platform contract every Workflow Template must satisfy. Required fields, allowed types, gate-unlock grammar, validation rules.',
+    href: '/concepts/workflows',
+    label: 'Concepts',
+    title: 'Workflows',
+    desc: 'The versioned definition a run executes — intake, steps, bindings, gates, and declared output.',
   },
   {
-    href: '/concepts/workflow-templates',
-    label: 'Concepts · Workflow primitives',
-    title: 'Workflow templates',
-    desc: 'Reusable templates that satisfy the Schema. Define intake, runtime steps, providers, quality gates, and budget policy.',
-  },
-  {
-    href: '/concepts/workflow-specifications',
-    label: 'Concepts · Workflow primitives',
-    title: 'Workflow specifications',
-    desc: 'Per-run populated instances of a Template. The deterministic blueprint production reads to build the artifact.',
+    href: '/concepts/intake',
+    label: 'Concepts',
+    title: 'Intake',
+    desc: 'The inputs a workflow accepts, and why they ask for outcomes rather than mechanisms.',
   },
   {
     href: '/concepts/runs',
     label: 'Concepts',
-    title: 'Runs',
-    desc: 'Durable execution records with per-step telemetry, provider settings, costs, and outcomes.',
+    title: 'Runs and steps',
+    desc: 'Nine statuses, per-step telemetry, and how steps bind to models through roles.',
+  },
+  {
+    href: '/concepts/gates-and-review',
+    label: 'Concepts',
+    title: 'Gates and review',
+    desc: 'Quality gates, the escalation ladder, the human review queue, and typed holds.',
   },
   {
     href: '/concepts/artifacts',
     label: 'Concepts',
     title: 'Artifacts',
-    desc: 'Generated outputs — visual, video, research, or knowledge — with full provenance back to their run.',
+    desc: 'What a run produced, with its QA record, cost ledger, and provenance back to the run.',
   },
   {
     href: '/concepts/costs',
     label: 'Concepts',
-    title: 'Costs',
-    desc: 'Estimated, provider-reported, and reconciled cost states. Every number has a documented source.',
+    title: 'Costs and budgets',
+    desc: 'Three cost states, how spend rolls up, and how a budget refuses a run before it spends.',
   },
   {
-    href: '/api',
-    label: 'Reference',
-    title: 'API',
-    desc: 'Runtime endpoints for creating runs, listing persisted outputs, and inspecting telemetry.',
+    href: '/concepts/versioning',
+    label: 'Concepts',
+    title: 'Versioning',
+    desc: 'Immutable versions, a movable live pointer, and the frozen spec each run pins.',
   },
   {
-    href: '/guides',
+    href: '/concepts/orders',
+    label: 'Concepts',
+    title: 'Generation Orders',
+    desc: 'One workflow fanned into N child runs with variation, dedupe keys, and a budget cap.',
+  },
+  {
+    href: '/concepts/source-policies',
+    label: 'Concepts',
+    title: 'Source policies',
+    desc: 'Which approved sources a subject may be researched from, what each covers, and where it stops.',
+  },
+  {
+    href: '/errors',
     label: 'Reference',
-    title: 'Guides',
-    desc: 'Step-by-step walkthroughs for the workflow templates running in production today.',
+    title: 'Errors',
+    desc: 'Every status code with the real response body, what causes it, and how to fix it.',
+  },
+  {
+    href: '/api/run-events',
+    label: 'Reference',
+    title: 'Run events (SSE)',
+    desc: 'Stream a run instead of polling it — snapshot on connect, then every transition.',
+  },
+  {
+    href: '/glossary',
+    label: 'Reference',
+    title: 'Glossary',
+    desc: 'Every term in a sentence, including the names the code uses when they differ.',
   },
 ];
 
@@ -56,17 +113,17 @@ const principles = [
   {
     n: '01',
     title: 'Structure over prompting',
-    desc: 'Work begins with a workflow template — a structured intake designed for a specific artifact class. Not a chat box hoping for the right output.',
+    desc: 'You pick a workflow and fill in its declared intake. There is no prompt box hoping for the right output.',
   },
   {
     n: '02',
     title: 'Artifacts over conversations',
-    desc: 'Outputs are persisted with provenance, telemetry, and review state. A conversation can be the artifact; ephemeral chat history cannot.',
+    desc: 'Every output is persisted with its provenance, telemetry, and review state. Nothing that matters is ephemeral.',
   },
   {
     n: '03',
-    title: 'Ready-to-use over requires-editing',
-    desc: 'Finished work, not rough drafts. Artifacts pass quality gates before they reach review or delivery.',
+    title: 'Gated, not hopeful',
+    desc: 'Work is judged before it reaches you, and a check only counts if something actually measured it.',
   },
 ];
 
@@ -84,23 +141,24 @@ function Arrow() {
   );
 }
 
-export default function Home() {
+export default function DocsHome() {
   return (
     <div className="content">
       <section className="heroSection">
         <div className="heroGrid" aria-hidden="true" />
         <div className="heroGlow" aria-hidden="true" />
         <div className="heroLeft">
-          <h1>The reference for an artifact factory.</h1>
+          <h1>Run a workflow. Keep the receipt.</h1>
           <p className="heroLead">
-            Esy automates the production of high-quality, reviewable artifacts. The reference covers the API
-            contract, runtime semantics, cost accounting, and the workflow templates running in production today.
+            Esy executes declared workflows and returns durable artifacts — with the provenance, the
+            quality checks, and the itemised cost that produced them. These docs are written for someone
+            with an API key and a terminal.
           </p>
           <div className="heroActions">
-            <Link className="buttonPrimary" href="/api">
-              API reference <Arrow />
+            <Link className="buttonPrimary" href="/quickstart">
+              Quickstart <Arrow />
             </Link>
-            <Link className="buttonSecondary" href="/concepts/workflow-templates">
+            <Link className="buttonSecondary" href="/how-esy-works">
               How Esy works
             </Link>
           </div>
@@ -125,39 +183,28 @@ export default function Home() {
               {'\n  '}
               <span className="tokenKey">&quot;templateId&quot;</span>
               <span className="tokenPunct">:</span>{' '}
-              <span className="tokenStr">&quot;generate-clip-art-asset&quot;</span>
+              <span className="tokenStr">&quot;generate-illustration&quot;</span>
               <span className="tokenPunct">,</span>
               {'\n  '}
               <span className="tokenKey">&quot;intake&quot;</span>
               <span className="tokenPunct">:</span> <span className="tokenPunct">{'{'}</span>
               {'\n    '}
-              <span className="tokenKey">&quot;intent&quot;</span>
-              <span className="tokenPunct">:</span> <span className="tokenPunct">{'{'}</span>
-              {'\n      '}
               <span className="tokenKey">&quot;prompt&quot;</span>
               <span className="tokenPunct">:</span>{' '}
-              <span className="tokenStr">&quot;a chipmunk family in a nest&quot;</span>
+              <span className="tokenStr">&quot;a lighthouse at dusk, storm rolling in&quot;</span>
               <span className="tokenPunct">,</span>
-              {'\n      '}
+              {'\n    '}
               <span className="tokenKey">&quot;style&quot;</span>
-              <span className="tokenPunct">:</span>{' '}
-              <span className="tokenStr">&quot;cartoon&quot;</span>
+              <span className="tokenPunct">:</span> <span className="tokenStr">&quot;flat&quot;</span>
               <span className="tokenPunct">,</span>
-              {'\n      '}
+              {'\n    '}
               <span className="tokenKey">&quot;aspectRatio&quot;</span>
-              <span className="tokenPunct">:</span>{' '}
-              <span className="tokenStr">&quot;1:1&quot;</span>
-              {'\n    '}
-              <span className="tokenPunct">{'}'}</span>
+              <span className="tokenPunct">:</span> <span className="tokenStr">&quot;4:3&quot;</span>
               <span className="tokenPunct">,</span>
               {'\n    '}
-              <span className="tokenKey">&quot;runtime&quot;</span>
-              <span className="tokenPunct">:</span> <span className="tokenPunct">{'{'}</span>
-              {'\n      '}
-              <span className="tokenKey">&quot;backgroundRemovalEnabled&quot;</span>
-              <span className="tokenPunct">:</span> <span className="tokenBool">true</span>
-              {'\n    '}
-              <span className="tokenPunct">{'}'}</span>
+              <span className="tokenKey">&quot;categories&quot;</span>
+              <span className="tokenPunct">:</span>{' '}
+              <span className="tokenStr">&quot;landscapes&quot;</span>
               {'\n  '}
               <span className="tokenPunct">{'}'}</span>
               {'\n'}
@@ -170,22 +217,50 @@ export default function Home() {
               201 created
             </strong>
             <span className="sep">·</span>
-            <span>42.1s runtime</span>
+            <span>16.1s runtime</span>
             <span className="sep">·</span>
-            <span>$0.053 estimated</span>
+            <span>$0.0077 actual</span>
           </div>
         </aside>
       </section>
 
       <section>
         <div className="sectionHead">
-          <Eyebrow>Reference atlas</Eyebrow>
-          <h2>The primitives that make Esy measurable.</h2>
+          <Eyebrow>New here</Eyebrow>
+          <h2>Three pages, in this order.</h2>
           <p className="sectionLead">
-            Workflows on Esy are defined at three levels — <strong>Schema</strong> declares the rules,{' '}
-            <strong>Template</strong> is a predesigned workflow, <strong>Specification</strong> is the per-run
-            populated instance. Eight entries define the surface area. Read these first; everything else is a
-            specialization.
+            Make something work first, then understand why it worked, then look up the details. About
+            five minutes each.
+          </p>
+        </div>
+
+        <div className="atlasGrid">
+          {paths.map((item, i) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="atlasCard"
+              data-index={String(i + 1).padStart(2, '0')}
+            >
+              <span className="atlasCardLabel">{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+              <span className="atlasArrow">
+                Read <Arrow />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <div className="sectionHead">
+          <Eyebrow>Reference atlas</Eyebrow>
+          <h2>The nouns everything else is built from.</h2>
+          <p className="sectionLead">
+            A <strong>workspace</strong> holds projects. A <strong>workflow</strong> is a versioned
+            definition. A <strong>run</strong> is one execution of it, and an <strong>artifact</strong>{' '}
+            is what it produced. Everything below is a detail of one of those.
           </p>
         </div>
 

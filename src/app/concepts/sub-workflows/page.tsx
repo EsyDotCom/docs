@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { DocsPageShell } from '@/components/DocsPageShell';
-import { Callout, CodeBlock, PageHeader, Table } from '@/components/Primitives';
+import { DocsPageShell } from '@/components/docs/DocsPageShell';
+import { Callout, CodeBlock, PageHeader, Table } from '@/components/docs/Primitives';
 
 export const metadata = {
   title: 'Sub-workflows',
@@ -44,10 +44,11 @@ export default function SubWorkflowsPage() {
       <PageHeader
         eyebrow="Concepts · Sub-workflows"
         title="Sub-workflows"
+        opener="subflow"
         lead={
           <>
             A sub-workflow is a workflow invoked by another workflow. A{' '}
-            <Link href="/concepts/workflow-templates">Workflow Template</Link> can declare a step that runs a
+            <Link href="/concepts/workflows">Workflow Template</Link> can declare a step that runs a
             second template as a child <Link href="/concepts/runs">Run</Link>, producing its own{' '}
             <Link href="/concepts/artifacts">Artifact</Link> and rolling its cost up into the parent. This is how
             Esy keeps artifacts reusable instead of re-deriving the same work inside every workflow.
@@ -126,7 +127,7 @@ export default function SubWorkflowsPage() {
       <p>
         Cost <Link href="/concepts/costs">estimation</Link> mirrors this at planning time: estimating a template
         that contains a <code>subWorkflow</code> step resolves the pinned child template and adds its estimate to
-        the parent&rsquo;s, so a <Link href="/concepts/budgets">budget</Link> pre-check sees the true per-run cost
+        the parent&rsquo;s, so a <Link href="/concepts/costs">budget</Link> pre-check sees the true per-run cost
         before launch.
       </p>
 
@@ -139,7 +140,7 @@ export default function SubWorkflowsPage() {
       <h2>Related concepts</h2>
       <ul>
         <li>
-          <Link href="/concepts/workflow-templates">Workflow templates</Link> — declare the{' '}
+          <Link href="/concepts/workflows">Workflow templates</Link> — declare the{' '}
           <code>subWorkflow</code> step.
         </li>
         <li>
@@ -149,7 +150,7 @@ export default function SubWorkflowsPage() {
           <Link href="/concepts/artifacts">Artifacts</Link> — composed artifacts back-reference their source.
         </li>
         <li>
-          <Link href="/concepts/costs">Costs</Link> and <Link href="/concepts/budgets">Budgets</Link> — child
+          <Link href="/concepts/costs">Costs</Link> and <Link href="/concepts/costs">Budgets</Link> — child
           cost rolls up into the parent and into pre-run estimates.
         </li>
       </ul>

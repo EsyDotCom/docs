@@ -1,5 +1,5 @@
-import { DocsPageShell } from '@/components/DocsPageShell';
-import { CodeBlock, PageHeader, StepList } from '@/components/Primitives';
+import { DocsPageShell } from '@/components/docs/DocsPageShell';
+import { CodeBlock, PageHeader, StepList } from '@/components/docs/Primitives';
 
 export const metadata = {
   title: 'Generate a clip-art asset',

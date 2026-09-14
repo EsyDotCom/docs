@@ -1,25 +1,29 @@
 {
-  "name": "docs",
-  "version": "0.1.0",
+  "name": "esy-docs",
+  "version": "1.0.0",
   "private": true,
+  "description": "docs.esy.com — documentation for the Esy platform (os.esy.com) and API (api.esy.com).",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/build-docs-search-index.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "check:docs-endpoints": "node scripts/check-docs-endpoints.mjs"
   },
   "dependencies": {
-    "lucide-react": "^1.16.0",
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "lucide-react": "^0.525.0",
+    "next": "15.2.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "typescript": "^5"
+    "eslint-config-next": "15.2.8",
+    "typescript": "^5.8.3"
   }
 }
