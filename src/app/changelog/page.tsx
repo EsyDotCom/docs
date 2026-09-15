@@ -14,6 +14,18 @@ export const metadata = {
  */
 const entries = [
   {
+    date: '2026-09-15',
+    tag: 'platform',
+    title: 'Film cuts: chosen takes joined into one video',
+    items: [
+      'A new in-house tool, esy/video-join, joins video clips into one MP4: each clip trimmed to the seconds you keep, fitted to one frame size and frame rate (letterboxed, never stretched), in the order given. It runs on the worker with its bundled ffmpeg, so there is no provider spend — the only cost is one storage write.',
+      'It runs through a new workflow, build-film-cut. The verb is build, not generate: nothing is invented — the clips are supplied, the join is deterministic, and the product has exact structure, a segment list saying where every shot sits in the film and which part of which clip it is.',
+      'The result is a video artifact of type film-cut, documented on the Artifacts page. Its checks are exact: every clip asked for is in the cut, and the encoded file — measured, not summed — runs as long as the kept seconds add up to. A film that comes out shorter is held for review rather than shipped.',
+      'Films are silent. Sound belongs to the whole film and is designed in a later step, never stitched from each clip’s own.',
+      'build-film-cut is internal for now; clip.art’s One-Minute Short is its first caller. Clip URLs must come from platform storage or a configured trusted origin, like every tool that fetches from intake.',
+    ],
+  },
+  {
     date: '2026-09-13',
     tag: 'docs',
     title: 'The docs, rewritten against the running API',
