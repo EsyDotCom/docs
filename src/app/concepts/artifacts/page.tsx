@@ -45,6 +45,32 @@ const inputRequestExample = `{
   }
 }`;
 
+const filmCutExample = `{
+  "id": "artifact-5b1f0c2e",
+  "runId": "run-3e9a7d10",
+  "templateId": "build-film-cut",
+  "artifactClass": "video",
+  "artifactType": "film-cut",
+  "status": "ready",
+  "content": {
+    "type": "video",
+    "url": "https://images.esy.com/artifacts/tool/run-3e9a7d10/step-1.mp4",
+    "storageKey": "artifacts/tool/run-3e9a7d10/step-1.mp4",
+    "mimeType": "video/mp4",
+    "durationSeconds": 60,
+    "measuredSeconds": 60.04,
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "aspectRatio": "16:9",
+    "generateAudio": false,
+    "segments": [
+      { "index": 0, "url": "https://images.clip.art/animations/…/take-1.mp4", "start": 0.0, "seconds": 5, "at": 0.0 },
+      { "index": 1, "url": "https://images.clip.art/animations/…/take-4.mp4", "start": 0.6, "seconds": 4, "at": 5.0 }
+    ]
+  }
+}`;
+
 const researchExample = `{
   "id": "artifact-7c4e91aa",
   "runId": "run-9f8e7d6c",
@@ -141,6 +167,42 @@ export default function ArtifactsPage() {
         {namespace}
       </CodeBlock>
 
+      <h2>Video artifacts</h2>
+      <p>
+        A video artifact is one MP4. Its <code>content</code> carries the public <code>url</code>, a
+        stable <code>storageKey</code>, the <code>mimeType</code>, and the length in{' '}
+        <code>durationSeconds</code>, alongside the frame size and shape. A generated clip also carries
+        the prompt and references it was rendered from.
+      </p>
+      <p>
+        A <strong>film cut</strong> (<code>artifactType: &quot;film-cut&quot;</code>, from{' '}
+        <code>build-film-cut</code>) is several clips joined into one film — think of an editor&rsquo;s
+        cut, not a new render. Nothing in it is invented: each clip is trimmed to the seconds you chose,
+        fitted to one frame size and frame rate (letterboxed, never stretched), and joined in order. So
+        it adds two things a single clip doesn&rsquo;t have:
+      </p>
+      <ul>
+        <li>
+          <code>segments</code> — where every shot sits in the film (<code>at</code>) and which part of
+          which clip it is (<code>url</code>, <code>start</code>, <code>seconds</code>). It is the edit
+          decision list, so you can map any moment of the film back to the take it came from.
+        </li>
+        <li>
+          <code>measuredSeconds</code> — how long the encoded file actually runs, read from the file
+          rather than added up. The artifact&rsquo;s length check compares it with the kept seconds; a
+          film that comes out short is held for review instead of shipped.
+        </li>
+      </ul>
+      <p>
+        Film cuts are silent (<code>generateAudio: false</code>). Sound belongs to the whole film, not
+        to each clip, so it is added in a later step rather than stitched together from clips that
+        each had their own.
+      </p>
+
+      <CodeBlock title="GET /v1/artifacts/artifact-5b1f0c2e" language="json">
+        {filmCutExample}
+      </CodeBlock>
+
       <h2>Research artifacts</h2>
       <p>
         A research artifact is structured text rather than a file. Its <code>content</code> carries a{' '}
@@ -196,8 +258,8 @@ export default function ArtifactsPage() {
       </p>
 
       <p style={{ color: 'var(--color-text-faint)', fontSize: 14 }}>
-        Video and knowledge artifacts have their own content shapes; those will be documented here as each class
-        ships its public contract.
+        Knowledge artifacts have their own content shape; it will be documented here when the class ships its
+        public contract.
       </p>
     </DocsPageShell>
   );
