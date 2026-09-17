@@ -5,7 +5,7 @@ import { Eyebrow } from '@/components/docs/Primitives';
 export const metadata = {
   title: 'Esy API documentation',
   description:
-    'Run declared workflows against api.esy.com and get durable artifacts back, with provenance, quality gates, and itemised cost.',
+    'Esy is an API for running multi-step AI workflows. POST a run and get back the finished file, plus a record of which models ran and what it cost.',
 };
 
 /**
@@ -148,11 +148,12 @@ export default function DocsHome() {
         <div className="heroGrid" aria-hidden="true" />
         <div className="heroGlow" aria-hidden="true" />
         <div className="heroLeft">
-          <h1>Run a workflow. Keep the receipt.</h1>
+          <h1>Esy is an API for running multi-step AI workflows.</h1>
           <p className="heroLead">
-            Esy executes declared workflows and returns durable artifacts — with the provenance, the
-            quality checks, and the itemised cost that produced them. These docs are written for someone
-            with an API key and a terminal.
+            You POST a workflow with your inputs. Esy runs each step, calls the models, checks the
+            output against your quality gates, and stores the result. You get back a link to the file
+            plus the full record: which models ran, what they were asked, and what it cost. These docs
+            are written for someone with an API key and a terminal.
           </p>
           <div className="heroActions">
             <Link className="buttonPrimary" href="/quickstart">
