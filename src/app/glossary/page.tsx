@@ -72,6 +72,17 @@ const TERMS: Term[] = [
     href: '/concepts/intake',
   },
   {
+    term: 'Collection',
+    also: 'collective artifact, pack',
+    def: (
+      <>
+        One named thing made of many artifacts — a clip art pack, a story book — whose members keep their ids
+        through every re-roll. Esy owns it; an order is one batch of work toward it, never the collection itself.
+      </>
+    ),
+    href: '/concepts/collections',
+  },
+  {
     term: 'Cost ledger',
     also: 'provider_cost_ledger',
     def: (

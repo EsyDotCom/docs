@@ -71,6 +71,14 @@ export default function OrdersPage() {
         workspace and project budgets. Enforcement happens pre-flight on estimates: a batch that would breach
         never starts.
       </p>
+
+      <h2>An order is not a pack</h2>
+      <p>
+        An order is one batch of work. A pack, or any thing made of many artifacts, usually outlives several
+        orders — the first fill, a re-roll, black-and-white copies — so it is modeled as a{' '}
+        <a href="/concepts/collections">collection</a> that files each order it places. Read the collection for
+        the whole; read the order for one batch.
+      </p>
     </DocsPageShell>
   );
 }

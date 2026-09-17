@@ -265,6 +265,11 @@ export default function LibraryPage() {
           [<code key="ar">axesRef</code>, 'Recorded on the plan artifact’s provenance', 'At planning time, and it is the family key the coverage ledger groups by'],
         ]}
       />
+      <p>
+        A <a href="/concepts/collections">collection</a> points at the Library the same way, and stores the version
+        each reference resolved to. Promoting a new version of a style changes the next render, never a pack that
+        was already made.
+      </p>
       <Callout title="What is wired today, honestly">
         <p>
           Prompts and classifiers resolve into live runs now. The direction compiler, the allocator and the coverage

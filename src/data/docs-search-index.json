@@ -128,13 +128,23 @@
     "Video artifacts",
     "Research artifacts",
     "Artifacts as inputs",
-    "Generate or supply"
+    "Generate or supply",
+    "Artifacts made of artifacts"
   ],
   "/concepts/assigned-work": [
     "The two nouns",
     "Measurable goals",
     "Day directives",
     "The feedback loop"
+  ],
+  "/concepts/collections": [
+    "Collection, order, or artifact?",
+    "What a collection holds",
+    "Lifecycle",
+    "Working on a collection",
+    "Knowing when something changed",
+    "What stays with your app",
+    "Kinds"
   ],
   "/concepts/costs": [
     "Cost is not price",
@@ -198,7 +208,8 @@
     "Two-phase by design",
     "The order record",
     "What each child carries",
-    "Budgets"
+    "Budgets",
+    "An order is not a pack"
   ],
   "/concepts/outlets": [
     "The outlet record",
@@ -297,6 +308,7 @@
     "Artifact schema",
     "Budget",
     "Capability flag",
+    "Collection",
     "Cost ledger",
     "Cost state",
     "Gate",
