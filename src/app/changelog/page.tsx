@@ -14,6 +14,16 @@ export const metadata = {
  */
 const entries = [
   {
+    date: '2026-09-17',
+    tag: 'docs',
+    title: 'Collections: artifacts made of artifacts',
+    items: [
+      'New concept page, Collections. A clip art pack or a story book is one named thing made of many artifacts; Esy owns that whole, its members keep their ids through every re-roll, and each piece of work lands on a member by id.',
+      'It describes the model being built now, packs first. Nothing changed in the API today: packs are still placed as Generation Orders, and the packs API reference will ship here with the endpoints.',
+      'Orders, Artifacts, Costs and the Library now say how they relate to collections, and the Glossary defines the term.',
+    ],
+  },
+  {
     date: '2026-09-15',
     tag: 'platform',
     title: 'Film cuts: chosen takes joined into one video',

@@ -183,6 +183,13 @@ export const navigation: NavSection[] = [
         opener: 'fanout',
       },
       {
+        title: 'Collections',
+        href: '/concepts/collections',
+        description: 'Artifacts made of artifacts — a pack, a story book. Members keep their ids; Esy owns the whole.',
+        icon: 'layers',
+        since: '2026-09-17',
+      },
+      {
         title: 'The Library',
         href: '/concepts/library',
         description:

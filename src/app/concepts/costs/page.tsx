@@ -163,6 +163,11 @@ export default function CostsPage() {
         <code>GET /v1/costs</code> aggregates across runs. Filter by workspace, project, workflow, or
         period to get the rollup you need rather than summing ledgers yourself.
       </p>
+      <p>
+        A <a href="/concepts/collections">collection</a> adds one more rollup: every attempt at every member carries
+        its own cost, so a pack reports what it cost across all the orders it placed, and a failed attempt can be
+        refunded by its id.
+      </p>
 
       <h2>Budgets</h2>
       <p>

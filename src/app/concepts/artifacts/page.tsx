@@ -257,6 +257,13 @@ export default function ArtifactsPage() {
         for a worked example.
       </p>
 
+      <h2>Artifacts made of artifacts</h2>
+      <p>
+        A clip art pack or a story book is one thing made of many artifacts. That whole is a{' '}
+        <a href="/concepts/collections">collection</a>: its members keep their ids through every re-roll, and its
+        cover, publishing and cost are read from all of its members together.
+      </p>
+
       <p style={{ color: 'var(--color-text-faint)', fontSize: 14 }}>
         Knowledge artifacts have their own content shape; it will be documented here when the class ships its
         public contract.
