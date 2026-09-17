@@ -44,7 +44,7 @@ const entries = [
       'New Get started path: Quickstart (real requests, real responses), How Esy works, Authentication, Errors, and a Glossary that maps every term to the name the code uses.',
       'Concepts reorganised into a reading order and merged where pages overlapped: Workflows (was Workflow schemas + Workflow templates + Template naming), Runs and steps (absorbs Runtime steps), Versioning (was Workflow versioning + Workflow specifications), Costs and budgets, and new Intake and Gates and review pages. Old URLs redirect.',
       'API reference pages for Runs, Artifacts, Workflows and catalog, Orders, Review queue, Costs and budgets, and Webhooks.',
-      'Corrections. The API says workspace, not organization. There are three cost states — estimated, provider_reported, reconciled — not four. There is no Workflow Specification resource; a run pins workflowVersion and specVersionHash. Runs have nine statuses, not five. Dry-run and estimate take a draft definition, not a templateId. Budgets have no scope field.',
+      'Corrections. The API says workspace, not organization. There are three cost states — estimated, provider_reported, reconciled — not four. There is no Workflow Specification resource; a run pins workflowVersion and specVersionHash. Runs have ten statuses, not five. Dry-run and estimate take a draft definition, not a templateId. Budgets have no scope field.',
       'Every endpoint the docs mention is now checked against api.esy.com/openapi.json (npm run check:docs-endpoints), and search matches section headings, not only page titles.',
     ],
   },
