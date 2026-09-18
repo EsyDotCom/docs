@@ -31,7 +31,7 @@ const schema = `{
       "type": "enum",
       "required": true,
       "default": "3:4",
-      "options": ["3:4", "1:1", "4:3"]
+      "options": ["1:1", "3:4", "4:3", "3:2", "2:3", "16:9", "9:16"]
     },
     {
       "name": "quality",
