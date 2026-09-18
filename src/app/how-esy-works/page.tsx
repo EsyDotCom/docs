@@ -56,7 +56,7 @@ const runCreated = `{
   "templateId": "generate-coloring-page",
   "templateName": "Generate Coloring Page",
   "currentStepIndex": 0,
-  "workflowVersion": "2026.09.10",
+  "workflowVersion": "2026.09.16",
   "specVersionHash": "sha256:eb3ced0c91a625e7ad47beaa28f5ff7b6db933ca5f6cac78fb93c1b030852fdb",
   "createdVia": "api_key",
   "queuedAt": "2026-09-16T14:22:08.317Z"
@@ -68,13 +68,15 @@ const templateShape = `{
   "id": "generate-coloring-page",
   "artifactClass": "visual",
   "schemaVersion": "workflow-schema-v1",
-  "version": "2026.09.10",
+  "version": "2026.09.16",
   "visibility": "public",
   "intakeSchema": {
     "fields": [
       { "name": "prompt", "type": "string", "required": true },
-      { "name": "aspectRatio", "type": "enum", "required": true,
-        "options": ["3:4", "1:1", "4:3"] },
+      { "name": "aspectRatio", "type": "enum", "required": true, "default": "3:4",
+        "options": ["1:1", "3:4", "4:3", "3:2", "2:3", "16:9", "9:16"] },
+      { "name": "size", "type": "string", "required": false, "default": "",
+        "description": "Exact WIDTHxHEIGHT. Empty means aspectRatio decides." },
       { "name": "detail", "type": "enum", "required": false, "default": "print",
         "options": ["print", "app"] }
     ]
@@ -825,7 +827,7 @@ export default function HowEsyWorksPage() {
           ],
           [
             <strong key="t2">2. Run created</strong>,
-            <>The run is persisted with an id and pinned to workflow version <code>2026.09.10</code>.</>,
+            <>The run is persisted with an id and pinned to workflow version <code>2026.09.16</code>.</>,
             <><code>run-7c41e9a2</code>, status <code>pending</code></>,
           ],
           [
