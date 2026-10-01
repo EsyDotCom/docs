@@ -89,7 +89,7 @@ export default function GenerateClipArtGuidePage() {
               Style: <code>cartoon</code>, <code>flat</code>, <code>realistic</code>, <code>watercolor</code>
             </li>
             <li>
-              Aspect ratio: <code>1:1</code>, <code>4:3</code>, <code>3:4</code>, <code>16:9</code>
+              Aspect ratio: <code>1:1</code>, <code>3:4</code>, <code>4:3</code>
             </li>
             <li>
               Background removal: <code>true</code> by default

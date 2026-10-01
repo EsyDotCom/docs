@@ -30,7 +30,7 @@ const catalogItem = `{
   "whatYouProvide": [ … ],
   "whatYouGet": [ … ],
   "qaChecks": [ … ],
-  "version": "2026.09.10"
+  "version": "2026.09.16"
 }`;
 
 const models = `curl -s "https://api.esy.com/v1/models?capability=image" \\

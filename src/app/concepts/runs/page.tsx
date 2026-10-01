@@ -16,7 +16,7 @@ import {
 export const metadata = {
   title: 'Runs and steps',
   description:
-    'One execution of a workflow: the nine statuses, per-step telemetry, how steps bind to models, and what a run records.',
+    'One execution of a workflow: the ten statuses, per-step telemetry, how steps bind to models, and what a run records.',
 };
 
 const runExample = `{
@@ -429,7 +429,7 @@ export default function RunsPage() {
       <Takeaways
         items={[
           <>
-            There are nine statuses. Break your polling loop on any terminal one, not on{' '}
+            There are ten statuses. Break your polling loop on any terminal one, not on{' '}
             <code>completed</code>.
           </>,
           <>

@@ -24,13 +24,13 @@ const contract = `{
   "outputType": "visual",
   "status": "active",
   "supersededById": null,
-  "version": "2026.09.10",
+  "version": "2026.09.16",
 
   "intakeSchema":  { "fields": [ … ] },
   "runtimeSteps":  [ … ],
   "gates":         [ … ],
   "providers":     { "imageGenerator": "…", "classifier": "…", "textGate": "…" },
-  "budgetPolicy":  { "perRunCapUsd": 0.35 },
+  "budgetPolicy":  { "perRunCapUsd": 0.30 },
   "artifactSchema": {
     "artifactClass": "visual",
     "artifactType": "coloring-page",

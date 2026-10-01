@@ -31,7 +31,7 @@ const schema = `{
       "type": "enum",
       "required": true,
       "default": "3:4",
-      "options": ["3:4", "1:1", "4:3"]
+      "options": ["1:1", "3:4", "4:3", "3:2", "2:3", "16:9", "9:16"]
     },
     {
       "name": "quality",
@@ -150,31 +150,31 @@ export default function IntakePage() {
         <Link href="/guides/compose-with-artifact-inputs">Compose with artifact inputs</Link>.
       </p>
 
-      <h2>The rule behind the schemas</h2>
+      <h2>How intake fields are scoped</h2>
       <p>
-        Once you have read a few intake schemas, you will notice something: they ask for results, not
-        methods. That is deliberate, and it is the design rule that explains most of what you will
-        otherwise find arbitrary.
+        An intake field asks for a result, not for the technique used to produce it. A workflow accepts
+        a request for a transparent background; it does not ask which removal algorithm to apply. The
+        engine resolves that from the model bound to the step.
       </p>
 
-      <p>Every run answers two questions, and they belong to different layers:</p>
+      <p>The two decisions are made in different places:</p>
 
       <Diagram
-        title="Intake speaks outcomes, bindings speak mechanisms"
+        title="Intake fields and model bindings"
         minWidth={880}
         caption={
           <>
-            Question one is yours. Question two is the engine&rsquo;s, answered from the bound
-            model&rsquo;s declared capabilities and recorded in provenance.
+            The intake carries the requested result. The engine selects the mechanism from the bound
+            model&rsquo;s capability flags and records which one it used.
           </>
         }
       >
         <svg viewBox="0 0 900 296" role="img" aria-label="The intake asks what you want; the engine decides how from model capability flags">
-          <text x="8" y="18" className="dg-hdr">1 · THE INTAKE ASKS</text>
-          <text x="478" y="18" className="dg-hdr">2 · THE ENGINE DECIDES</text>
+          <text x="8" y="18" className="dg-hdr">1 · INTAKE DECLARES</text>
+          <text x="478" y="18" className="dg-hdr">2 · ENGINE RESOLVES</text>
           <path d="M450 8 L450 250" className="dg-rule" strokeDasharray="3 4" />
 
-          <text x="8" y="48" className="dg-label">What do you want?</text>
+          <text x="8" y="48" className="dg-label">Requested result</text>
           <rect x="8" y="62" width="420" height="92" rx="7" className="dg-node" />
           <text x="26" y="88" className="dg-sub">prompt</text>
           <text x="410" y="88" className="dg-label-sm" textAnchor="end">&ldquo;a fox in a waistcoat&rdquo;</text>
@@ -182,9 +182,9 @@ export default function IntakePage() {
           <text x="410" y="114" className="dg-label-sm" textAnchor="end">&ldquo;see-through&rdquo;</text>
           <text x="26" y="140" className="dg-sub">aspectRatio</text>
           <text x="410" y="140" className="dg-label-sm" textAnchor="end">1:1</text>
-          <text x="8" y="180" className="dg-cap">a promise. still true in five years.</text>
+          <text x="8" y="180" className="dg-cap">no mechanism field — stays valid across model changes</text>
 
-          <text x="478" y="48" className="dg-label">How should we make it?</text>
+          <text x="478" y="48" className="dg-label">Selected mechanism</text>
           <rect x="478" y="62" width="414" height="48" rx="7" className="dg-node" />
           <text x="496" y="84" className="dg-sub">model registry</text>
           <text x="874" y="92" className="dg-label-sm" textAnchor="end">supports_native_transparency</text>
@@ -206,20 +206,21 @@ export default function IntakePage() {
           <text x="26" y="248" className="dg-label-sm">
             Both record <tspan className="dg-sub">transparencyMechanism</tspan> in provenance.
           </text>
-          <text x="26" y="264" className="dg-cap">QA judges the outcome, never the mechanism</text>
+          <text x="26" y="264" className="dg-cap">quality checks evaluate the resulting image, so either path is checked the same way</text>
         </svg>
       </Diagram>
 
       <p>
-        You ask for &ldquo;a picture with a see-through background&rdquo;. Whether the model renders
-        transparency directly or Esy renders normally and keys the background out afterwards is a
-        kitchen decision — it depends on which model is bound today and what that model can do.
+        The intake asks for a see-through background. Whether the model renders transparency directly
+        or Esy renders normally and removes the background afterwards depends on which model is bound
+        and what that model declares it can do.
       </p>
 
-      <h2>Why it is built this way</h2>
+      <h2>What a mechanism field would break</h2>
       <p>
-        A mechanism field fails twice over. First, it asks you a question already settled by the model
-        binding, so wrong combinations simply break runs. Second, and worse, it makes saved intakes rot.
+        A mechanism field creates two problems. It asks for a value already determined by the model
+        binding, so invalid combinations fail at run time. It also pins a saved intake to one
+        technique, which stops being correct when the bound model changes.
       </p>
 
       <Table
