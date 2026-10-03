@@ -16,6 +16,19 @@ export interface ChangelogEntry {
  */
 export const changelog: ChangelogEntry[] = [
   {
+    date: '2026-10-03',
+    tag: 'platform',
+    title: 'Clients and characters',
+    items: [
+      'Clients: the businesses a workspace works for. A client groups the projects that are its domains and carries the business: status (lead, active, paused, past), billing terms in integer cents, and contacts. A project with no client is one of your own brands. New Clients concept and API pages.',
+      'Projects take clientId, and the project list filters by it (clientId=none lists your own brands). A project can only belong to a client in its own workspace; the database enforces it.',
+      'Characters: avatars a project uses again and again, synthetic or depicting a real person. Their references are a collection; versions freeze them and never change; runs pin one. New Characters concept and API pages.',
+      'A real person’s permission is its own record, the likeness consent: face and/or voice, structured scope (uses, media, channels, territories, advertisers), a term of at most 10 years, and the evidence. Pending until activated, frozen once active, revoked for good. Erasing a person revokes and retires everything that depicts them while keeping the proof.',
+      'The gate: a run with intake.characterId is checked when it is made (a 422 naming why, before pricing) and again just before it starts, so a withdrawal while a run waits still stops it. Ask in advance with POST /v1/characters/{characterId}:check. Orders featuring a character run in standard mode only.',
+      'Creates on both take a requestId, and edits need the etag, as everywhere else.',
+    ],
+  },
+  {
     date: '2026-09-17',
     tag: 'docs',
     title: 'Collections: artifacts made of artifacts',
