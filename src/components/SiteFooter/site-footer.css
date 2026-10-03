@@ -1,0 +1,257 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * The site footer, esy.com's. The block between the COPIED markers is
+ * verbatim from esy.com src/app/globals.css (main at a26c26d1, 2026-10-03);
+ * re-copy it rather than editing it. Below it: the light theme's values
+ * that esy.com's footer component sets inline, and what the docs add.
+ * ───────────────────────────────────────────────────────────────────────── */
+
+/* ── COPIED from esy.com globals.css ── */
+/* Footer */
+.footer {
+  padding: 3rem 2rem;
+  background: linear-gradient(180deg, #18181b 0%, rgba(15, 15, 18, 0.98) 100%);
+  border-top: 1px solid rgba(63, 63, 70, 0.4);
+  position: relative;
+}
+
+.footer-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2.4fr 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.footer-desc {
+  color: #a1a1aa;
+  line-height: 1.6;
+  font-size: 0.938rem;
+  max-width: 450px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  transition: all 0.2s;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+}
+
+.social-link:hover svg {
+  color: #9f7aea !important;
+  transition: color 0.2s ease;
+}
+
+.footer-column h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #71717a;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-link {
+  color: #a1a1aa;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+}
+
+.footer-link:hover {
+  color: #fafafa;
+  transform: translateX(2px);
+}
+
+/* Extended footer row — full-width artifact catalog band below the columns.
+   Links reuse .footer-link so the light/navy-dark variants style them free. */
+.footer-extended {
+  max-width: 1440px;
+  margin: 2.5rem auto 0;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(63, 63, 70, 0.2);
+}
+
+.footer-extended h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #71717a;
+  margin-bottom: 0.875rem;
+}
+
+.footer-extended-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem 1.75rem;
+}
+
+/* From Esy: the businesses' own wordmarks, matched by measurement at 3x:
+   the same x-height (9.3 vs 9.7px) and the same baseline, SEOPage lifted
+   0.13em. A text wordmark and an SVG one don't line up by their boxes. */
+.footer-marks { align-items: center; gap: 1rem 2.25rem; }
+.footer-mark { display: inline-flex; align-items: center; color: #0A2540; opacity: 0.72; text-decoration: none; transition: opacity 0.2s ease, transform 0.2s ease; }
+.footer-mark:hover { opacity: 1; transform: translateY(-1px); }
+.footer--navy-dark .footer-mark { color: #fff; }
+.footer-mark-clipart { display: block; height: 22px; width: auto; }
+.footer-mark--seopage { font-size: 19.5px; position: relative; top: -0.13em; }
+.footer-mark--compose { font-size: 18px; }
+.footer-mark .seopage-wordmark { display: inline-flex; align-items: flex-start; font-weight: 600; line-height: 1; letter-spacing: -0.04em; }
+.footer-mark .seopage-wordmark-badge {
+  display: flex; align-items: center; justify-content: center; margin-left: 0.29em; margin-top: 0.07em;
+  height: 1.5em; min-width: 1.5em; border-radius: 0.43em; background: #3D6BFF; color: #fff; font-size: 0.28em; letter-spacing: 0;
+}
+
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(63, 63, 70, 0.2);
+  text-align: center;
+  color: #52525b;
+  font-size: 0.875rem;
+}
+
+/* Footer Light Mode - Violet Mist */
+.footer--light {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border-top-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+.footer--light .footer-column h4 {
+  color: #0f172a;
+}
+
+.footer--light .footer-link {
+  color: #64748b;
+}
+
+.footer--light .footer-link:hover {
+  color: #0f172a;
+}
+
+.footer--light .footer-bottom {
+  border-top-color: rgba(15, 23, 42, 0.08);
+  color: #64748b;
+}
+
+.footer--light .footer-extended {
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+.footer--light .footer-extended h4 {
+  color: #0f172a;
+}
+
+/* ─── Navy Dark theme overrides ─────────────────────────────
+   The default greys (#71717a / #a1a1aa) were tuned for a dark
+   charcoal footer. On the navy gradient (#0A2540 → #061527)
+   they read as muddy. Bright white labels with cleanly muted
+   links + a teal accent hover restore proper hierarchy.
+   ─────────────────────────────────────────────────────────── */
+.footer--navy-dark .footer-column h4 {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.footer--navy-dark .footer-link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer--navy-dark .footer-link:hover {
+  color: #00D4AA;
+}
+
+.footer--navy-dark .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.footer--navy-dark .footer-extended {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.footer--navy-dark .footer-extended h4 {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.footer--light .social-link {
+  color: #64748b;
+}
+
+.footer--light .social-link:hover {
+  color: #7c3aed;
+}
+/* ── end COPIED ── */
+
+/* esy.com's responsive rules for the footer (same file, its media queries). */
+@media (max-width: 1024px) {
+  .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-brand { text-align: center; align-items: center; }
+  .footer-desc { text-align: center; }
+  .footer-column { text-align: center; }
+}
+@media (max-width: 768px) {
+  .footer { padding: 2rem 1rem; }
+  .footer-content { gap: 1.5rem; }
+}
+
+/* What esy.com's footer component sets inline, in its light theme. */
+.footer--light { z-index: 10; }
+.footer--light .footer-overlay { position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(0, 168, 150, 0.2) 50%, transparent 100%); opacity: 0.5; }
+.footer--light .footer-desc { color: rgba(10, 37, 64, 0.7); }
+.footer--light .footer-desc strong { color: #0A2540; }
+.footer--light .footer-bottom { color: rgba(10, 37, 64, 0.4); }
+.footer-bottom p { margin: 0; }
+.footer-desc, .footer-column h4, .footer-extended h4 { margin-top: 0; }
+
+/* The docs: the lockup is esy | OS, a link, and its colours stay light in
+   the docs' dark theme too (the footer is a light card in both). */
+.footer-logo { width: fit-content; text-decoration: none; }
+.footer--light .footer-logo {
+  --color-text: #0A2540;
+  --color-text-subtle: rgba(10, 37, 64, 0.5);
+  --color-accent: #00A896;
+  --color-border-strong: rgba(10, 37, 64, 0.12);
+}
+
+/* From Esy's OS mark: Compose's stencil, so the same size as Compose. */
+.footer-mark--os { font-size: 18px; }
+
+/* The docs theme sets every h4 in its serif; the footer's labels are esy.com's Inter caps. */
+.footer-column h4, .footer-extended h4 { font-family: var(--font-inter), system-ui, sans-serif; line-height: 1.4; }

@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 
+import SiteFooter from '@/components/SiteFooter/SiteFooter';
+
 import { GUIDE, kindOf } from './data';
 import { QuietNumbers } from './desk-parts';
 import { RecentChanges } from './round3-parts';
-import { Arrow, DocsFooter, FindPalette, useFind } from './shared';
+import { Arrow, FindPalette, useFind } from './shared';
 import { StageTop } from './stage-top';
 import './round3.css';
 
@@ -65,7 +67,7 @@ export default function GuideHome() {
       </section>
 
       <RecentChanges />
-      <DocsFooter />
+      <SiteFooter />
       <FindPalette open={find.open} seed={find.seed} onClose={find.close} />
     </div>
   );
