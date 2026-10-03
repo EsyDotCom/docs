@@ -1,0 +1,52 @@
+/* Copied verbatim from esy.com, src/components/FooterWorld/FooterWorld.css (main at a26c26d1,
+   2026-10-03). Re-copy it rather than editing here. */
+
+/* The shared page ending: the factory world, with the site footer floating
+   over it as a card. Anywhere <FooterWorld /> renders, the layout's footer
+   picks up this treatment. */
+
+.fw {
+  display: flex;
+  justify-content: center;
+  background: #FFFFFF;
+  /* clip, not hidden: the plate is wider than the viewport on purpose, and
+     hidden would make the whole PAGE scroll sideways — which also throws the
+     footer card off centre, since margin:auto centres inside the scroll
+     width, not the viewport. */
+  overflow: clip;
+}
+.fw img, .fw video {
+  /* Sized to be read, not cropped: the scene runs from the brief desk on the
+     left to the trucks on the right, so it has to fit. Slight bleed only. */
+  width: min(1500px, 104vw);
+  max-width: none;
+  height: auto;
+  display: block;
+  flex: none;
+}
+
+/* The footer becomes a card lifted over the world. It is rendered by the
+   layout, so this reaches it from the page that opted in. */
+body:has(.fw) { background: #FFFFFF; }
+body:has(.fw) footer.footer {
+  position: relative;
+  z-index: 5;
+  max-width: 1240px;
+  width: calc(100% - 80px);
+  margin: -180px auto 40px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(10, 37, 64, 0.08),
+    0 40px 90px -30px rgba(10, 37, 64, 0.35);
+}
+
+@media (max-width: 900px) {
+  /* At phone width the whole diorama would shrink to a strip that is half
+     empty sky and mostly hidden behind the card, so it scales past the
+     viewport (the wrapper clips) with its sky pulled up. */
+  .fw img, .fw video { width: 210vw; margin-top: -20vw; }
+  /* auto, not a fixed inset: the width is already reduced, so a literal
+     margin would pin the card left and leave the remainder on the right. */
+  body:has(.fw) footer.footer { width: calc(100% - 32px); margin: -60px auto 24px; }
+}
