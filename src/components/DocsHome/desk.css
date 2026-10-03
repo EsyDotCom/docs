@@ -1,0 +1,124 @@
+/* A · Desk: the docs in os.esy.com/agency's app shell. Prefix dk-. */
+
+/* The bar: the find field takes the room the agency's "+ New job" did. */
+.folio.dk-app .fo-bar-in { gap: 32px; }
+.folio .dk-nav { gap: 24px; }
+.folio .dk-nav a { white-space: nowrap; }
+.folio.dk-app .fo-bar-end { gap: 16px; }
+.folio.dk-app .fo-bar-link { display: inline-flex; align-items: center; gap: 4px; flex: none; white-space: nowrap; }
+/* Get an API key already goes to os.esy.com, so the extra link goes first when the bar is tight. */
+@media (max-width: 1480px) { .folio.dk-app .dk-hide-sm { display: none; } }
+
+/* Rails sized for docs: the right one holds code-shaped facts, so it's wider than Folio's 320. */
+.folio .dk-body.has-left.has-right { grid-template-columns: 264px minmax(0, 1fr) 360px; }
+.folio .dk-left .fo-list { padding-bottom: 40px; }
+.folio .dk-left .fo-list-row { padding-top: 6px; padding-bottom: 6px; font-size: 0.88rem; }
+.folio .dk-left .fo-list-row .dh-arrow { color: var(--fo-ink-faint); }
+.folio .dk-left .fo-list-site { text-transform: uppercase; font-size: 0.66rem; letter-spacing: 0.14em; }
+.folio .dk-left .fo-list-foot .fo-textbtn { text-align: left; }
+
+/* The main pane: the footer sits inside it, after the reading. */
+.folio .dk-main .fo-display { text-wrap: balance; }
+.folio .dk-main { display: flex; flex-direction: column; }
+.folio .dk-main-in { flex: 1; padding-bottom: 64px; }
+.folio .dk-main .dh-foot { padding-bottom: 28px; }
+.folio .dk-main .fo-q-title a { color: inherit; text-decoration: none; }
+.folio .dk-main .fo-q-title a:hover { color: var(--fo-jade-deep); }
+.folio .dk-main .fo-q-meta .fo-code { font-size: 0.76rem; color: var(--fo-ink-faint); }
+.folio .dk-copytext { padding: 7px 0; border: 0; background: none; color: var(--fo-jade-deep); }
+.folio .dk-copytext.is-done { color: var(--fo-jade-deep); }
+
+/* What came back: the picture, then the run's steps as a log. */
+.folio .dk-reply { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; margin-top: 16px; padding: 16px; border-radius: var(--fo-r-pane); box-shadow: 0 0 0 1px var(--fo-hair); }
+.folio .dk-reply-shot { display: block; overflow: hidden; border-radius: 8px; aspect-ratio: 3 / 2; background: var(--fo-navy-deep); }
+.folio .dk-reply-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.folio .dk-reply-shot:hover img { transform: scale(1.03); }
+.folio .dk-reply-h { font-size: 0.9rem; color: var(--fo-ink-soft); }
+.folio .dk-reply-h b { color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.folio .dk-reply-h .fo-code { font-size: 0.82rem; }
+.folio .dk-log { margin-top: 6px; }
+.folio .dk-log > li { padding: 7px 0; }
+.folio .dk-log-entry { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: 0.88rem; }
+.folio .dk-log-entry b { font-weight: 600; color: var(--fo-navy); }
+.folio .dk-log-entry em { font-style: normal; font-weight: 600; color: var(--fo-jade-deep); }
+.folio .dk-log-entry small { width: 100%; font-size: 0.78rem; color: var(--fo-ink-faint); }
+
+/* The path: five square cells; the one you're on gets a jade top rule. */
+.folio .dk-path { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 8px; border-top: 1px solid var(--fo-hair); border-bottom: 1px solid var(--fo-hair); }
+.folio .dk-path li + li { border-left: 1px solid var(--fo-hair); }
+.folio .dk-path a { position: relative; display: flex; flex-direction: column; gap: 2px; height: 100%; padding: 14px 16px 16px; text-decoration: none; transition: background var(--fo-ease); }
+.folio .dk-path a:hover { background: var(--fo-hover); }
+.folio .dk-path a.is-on { box-shadow: inset 0 2px 0 var(--fo-jade); background: var(--fo-jade-wash); }
+.folio .dk-path small { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; color: var(--fo-ink-faint); }
+.folio .dk-path b { font-family: var(--fo-serif); font-size: 1.35rem; font-weight: 700; line-height: 1.15; color: var(--fo-navy); }
+.folio .dk-path span { font-size: 0.8rem; color: var(--fo-ink-soft); }
+.folio .dk-path a.is-on small { color: var(--fo-jade-deep); }
+/* An arrow between cells says it's a sequence, not a set. */
+.folio .dk-path li + li a::before { content: '→'; position: absolute; top: 50%; left: -9px; z-index: 1; display: grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: var(--fo-paper); font-size: 0.7rem; color: var(--fo-ink-faint); transform: translateY(-50%); }
+.folio .dk-path-note { margin-top: 12px; font-size: 0.92rem; color: var(--fo-ink-soft); }
+.folio .dk-path-note .fo-textbtn { white-space: nowrap; }
+.folio .dk-ledger { margin-top: 12px; font-size: 0.85rem; color: var(--fo-ink-faint); }
+
+/* Ways in: text tabs, then lines (stage · title · its line · open on hover). */
+.folio .dk-tabs { flex-wrap: wrap; gap: 4px 24px; margin-top: 4px; }
+.folio .dk-intent-line { margin: 14px 0 4px; font-size: 0.9rem; color: var(--fo-ink-soft); }
+.folio .dk-lines > li { grid-template-columns: 84px minmax(160px, 0.8fr) minmax(0, 1.4fr) auto; }
+.folio .dk-line-desc { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.85rem; color: var(--fo-ink-faint); }
+
+/* The navy rail: facts as label over value, the label linking to its page. */
+.folio .dk-right { padding-bottom: 24px; }
+.folio .dk-ess { display: flex; flex-direction: column; gap: 6px; }
+.folio .dk-ess-label { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.folio .dk-ess-label a { font-size: 0.78rem; font-weight: 600; color: var(--fo-on-navy-soft); text-decoration: none; }
+.folio .dk-ess-label a:hover { color: var(--fo-jade-bright); }
+.folio .dk-ess-label .dh-copy { padding: 2px 8px; font-size: 0.7rem; }
+.folio .dk-ess code { font-family: var(--fo-mono); font-size: 0.8rem; line-height: 1.5; color: #fff; word-break: break-word; }
+.folio .dk-date { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fo-on-navy-faint); }
+.folio .dk-right .fo-side-title:hover { color: var(--fo-jade-bright); }
+.folio .dk-right .fo-side-title .dh-arrow { color: var(--fo-on-navy-faint); }
+.folio .dk-side-more { padding-top: 10px; }
+.folio .dk-side-last .fo-side-row { font-size: 0.84rem; }
+
+/* The light rail (D, E): os.esy.com/agency's light right rail, for views whose one navy moment is elsewhere. */
+.folio .dk-right.is-light { padding-bottom: 24px; background: var(--fo-paper); }
+.folio .dk-right.is-light .fo-side:first-child { padding-top: 24px; }
+.folio .dk-right.is-light .fo-side-h { color: var(--fo-ink-faint); }
+.folio .dk-right.is-light .fo-side-row { border-top-color: var(--fo-hair); color: var(--fo-ink-soft); }
+.folio .dk-right.is-light .fo-side-title { color: var(--fo-navy); }
+.folio .dk-right.is-light .fo-side-title:hover, .folio .dk-right.is-light .dk-ess-label a:hover { color: var(--fo-jade-deep); }
+.folio .dk-right.is-light .fo-side-title .dh-arrow { color: var(--fo-ink-faint); }
+.folio .dk-right.is-light .dk-ess-label a { color: var(--fo-ink-soft); }
+.folio .dk-right.is-light .dk-ess code { color: var(--fo-navy); }
+.folio .dk-right.is-light .dk-date { color: var(--fo-ink-faint); }
+
+/* Narrower desktops: drop the left rail first (search finds every page). */
+@media (max-width: 1280px) {
+  .folio .dk-body.has-left.has-right { grid-template-columns: minmax(0, 1fr) 340px; }
+  .folio .dk-left { display: none; }
+  .folio.dk-app .dk-hide-sm { display: none; }
+}
+@media (max-width: 1100px) {
+  .folio .dk-nav { display: none; }
+}
+@media (max-width: 960px) {
+  .folio .dk-body.has-left.has-right { grid-template-columns: minmax(0, 1fr); }
+  .folio.dk-app .fo-bar-in { gap: 12px; height: 56px; }
+  .folio.dk-app .dh-findbtn { width: auto; flex: 1; }
+  .folio.dk-app .dh-findbtn kbd { display: none; }
+  .folio.dk-app .fo-bar-end { flex: 1; justify-content: flex-end; gap: 10px; }
+  .folio.dk-app .fo-bar-end .fo-btn { padding: 8px 12px; }
+  .folio .dk-reply { grid-template-columns: minmax(0, 1fr); }
+  .folio .dk-path { grid-template-columns: minmax(0, 1fr); }
+  .folio .dk-path li + li { border-left: 0; border-top: 1px solid var(--fo-hair); }
+  .folio .dk-path li + li a::before { display: none; }
+  .folio .dk-lines > li { grid-template-columns: minmax(0, 1fr); }
+  .folio .dk-line-desc { white-space: normal; }
+  .folio .dk-lines .fo-line-actions { display: none; }
+  .folio .dk-right { padding-bottom: 96px; }
+}
+@media (max-width: 560px) {
+  .folio.dk-app .dh-lockup-docs { display: none; }
+  .folio.dk-app .dh-findbtn span { display: none; }
+  .folio.dk-app .dh-findbtn { flex: none; width: 36px; justify-content: center; padding: 0; }
+  .folio.dk-app .fo-bar-end { flex: 1; }
+}

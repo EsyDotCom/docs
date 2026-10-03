@@ -1,0 +1,440 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * COPIED VERBATIM from os.esy.com, src/brands/folio/folio.css (Folio v1.0,
+ * main at 6b484d2, 2026-10-02). The brand's rules live beside it there, in
+ * src/brands/folio/BRAND.md. Don't edit this copy: docs-only additions go in
+ * the component's own stylesheet (src/components/DocsHome/docs-home.css), so
+ * this file can be re-copied when Folio changes.
+ * ───────────────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * Folio · v1.0 (2026-09-30)
+ *
+ * The brand extracted from compose.esy.com's redesign, for re-imagining
+ * os.esy.com. Kept apart from this repo's existing styles on purpose, so the
+ * two can be compared: everything here sits under `.folio`, tokens are
+ * `--fo-*`, classes are `fo-*`. Nothing outside `.folio` is touched.
+ *
+ * Read BRAND.md first. It explains when to use each piece; this file is the
+ * how. Order: tokens → base → type → controls → the app shell → lists and
+ * rails → navy surfaces → tabs → numbers → work (queue, lines, stages) →
+ * cards and rows → states → overlays → the editor → marketing pages.
+ * ───────────────────────────────────────────────────────────────────────── */
+
+/* ── 1 · Tokens ─────────────────────────────────────────────────────────── */
+.folio {
+  /* Ink and paper */
+  --fo-navy: #0A2540;          /* the brand colour: headings, primary buttons, rules */
+  --fo-navy-deep: #061527;     /* navy surfaces' darkest stop; the landing hero */
+  --fo-navy-2: #0F3460;        /* navy surfaces' lightest stop; button hover */
+  --fo-ink: #102033;           /* body text */
+  --fo-ink-soft: #4A5F75;      /* secondary text, ledes */
+  --fo-ink-faint: #8A97A6;     /* metadata, placeholders, labels */
+  --fo-paper: #FFFFFF;         /* panes, cards, the page */
+  --fo-canvas: #EDF1F5;        /* the grey the panes sit on */
+  --fo-tint: #F6F9FA;          /* a quiet alternate section */
+
+  /* Accent: jade means "yours to act on", and marks the current thing. */
+  --fo-jade: #00A896;
+  --fo-jade-deep: #007F72;     /* jade text on white (passes contrast) */
+  --fo-jade-bright: #00D4AA;   /* jade on navy */
+  --fo-jade-wash: rgba(0, 168, 150, 0.07);  /* a picked row, a tinted callout */
+
+  /* Status: gold means held or broken, never decoration. */
+  --fo-gold: #9A6B12;          /* held text */
+  --fo-gold-dot: #D9A441;      /* held dots, rules, outlines */
+  --fo-gold-on-navy: #E3B660;
+  --fo-danger: #B4423A;        /* destructive text only */
+
+  /* Lines: hairlines separate; a 2px navy rule opens a tier. */
+  --fo-hair: rgba(10, 37, 64, 0.10);
+  --fo-hair-strong: rgba(10, 37, 64, 0.22);
+  --fo-hover: rgba(10, 37, 64, 0.04);
+  --fo-on-navy-hair: rgba(255, 255, 255, 0.10);
+  --fo-on-navy-soft: rgba(255, 255, 255, 0.70);
+  --fo-on-navy-faint: rgba(255, 255, 255, 0.45);
+
+  /* Type */
+  --fo-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --fo-sans: var(--font-inter), Inter, system-ui, sans-serif;
+  --fo-mark: var(--font-black-ops-one), 'Black Ops One', sans-serif;
+  --fo-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Space: 4 8 12 16 24 32 48 64 96 */
+  --fo-1: 4px; --fo-2: 8px; --fo-3: 12px; --fo-4: 16px; --fo-6: 24px;
+  --fo-8: 32px; --fo-12: 48px; --fo-16: 64px; --fo-24: 96px;
+
+  /* Radii: controls 8, panes and cards 12, the device and footer 18–24.
+     Tabs and rail picks are square; pills are for chips only. */
+  --fo-r-control: 8px;
+  --fo-r-pane: 12px;
+  --fo-r-device: 18px;
+  --fo-r-pill: 999px;
+
+  /* Depth: a hairline ring for panes; lift only for things that float. */
+  --fo-ring: 0 0 0 1px rgba(10, 37, 64, 0.06);
+  --fo-bar-shadow: 0 1px 0 rgba(10, 37, 64, 0.06), 0 8px 24px -16px rgba(10, 37, 64, 0.35);
+  --fo-float: 0 0 0 1px var(--fo-hair), 0 18px 40px -18px rgba(10, 37, 64, 0.35);
+  --fo-drawer: 0 0 0 1px var(--fo-hair), 0 24px 64px rgba(10, 37, 64, 0.18);
+
+  /* The one navy surface: a quiet jade glow in the top corner. */
+  --fo-navy-surface: radial-gradient(90% 50% at 100% 0%, rgba(0, 212, 170, 0.14), transparent 60%),
+                     linear-gradient(170deg, var(--fo-navy-deep) 0%, var(--fo-navy) 55%, var(--fo-navy-2) 100%);
+
+  --fo-ease: 0.15s ease;
+}
+
+/* ── 2 · Base (scoped: nothing leaks out of .folio) ─────────────────────── */
+.folio {
+  color-scheme: light;
+  background: var(--fo-paper);
+  color: var(--fo-ink);
+  font-family: var(--fo-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  /* Lining figures everywhere: Cormorant's default old-style digits make
+     "118%" and "11" misread inside titles. */
+  font-variant-numeric: lining-nums;
+}
+.folio :where(*, *::before, *::after) { box-sizing: border-box; }
+.folio :where(h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote) { margin: 0; padding: 0; }
+.folio :where(ul, ol) { list-style: none; }
+.folio :where(a) { color: inherit; }
+.folio :where(button, input, textarea, select) { font: inherit; color: inherit; }
+.folio :where(button) { cursor: pointer; }
+.folio :where(button:disabled) { opacity: 0.55; cursor: default; }
+.folio :focus-visible { outline: 2px solid var(--fo-jade); outline-offset: 2px; border-radius: 4px; }
+.folio ::selection { background: rgba(0, 168, 150, 0.22); color: inherit; }
+
+/* ── 3 · Type ───────────────────────────────────────────────────────────── */
+/* The wordmark: Black Ops One, first letter in jade. */
+.fo-wordmark { font-family: var(--fo-mark); font-size: 1.45rem; color: var(--fo-navy); text-decoration: none; }
+.fo-wordmark::first-letter { color: var(--fo-jade); }
+.fo-product { font-size: 0.9rem; font-weight: 500; color: var(--fo-ink-soft); }
+/* The lockup: "esy | OS". */
+.fo-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+.fo-lockup-sep { width: 1px; height: 16px; background: rgba(10, 37, 64, 0.4); }
+.fo-lockup-name { font-size: 11px; font-weight: 500; line-height: 1; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(10, 37, 64, 0.5); }
+
+/* A label: small caps above a title. Jade when it's where you are. */
+.fo-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.fo-label--jade { color: var(--fo-jade-deep); }
+.fo-label--bright { color: var(--fo-jade-bright); }
+
+/* Page titles in Cormorant; numbers always in Inter (Cormorant's old-style
+   figures make "11" read as "II"). */
+.fo-display { margin-top: 8px; font-family: var(--fo-serif); font-weight: 700; font-size: clamp(2.6rem, 4.2vw, 3.6rem); line-height: 1; letter-spacing: -0.02em; color: var(--fo-navy); }
+.fo-title { font-family: var(--fo-serif); font-weight: 700; font-size: 1.45rem; line-height: 1.2; color: var(--fo-navy); }
+.fo-title-sm { font-family: var(--fo-serif); font-weight: 700; font-size: 1.15rem; line-height: 1.25; color: var(--fo-navy); }
+.fo-lede { margin-top: 10px; max-width: 60ch; font-size: 0.98rem; color: var(--fo-ink-soft); }
+.fo-muted { font-size: 0.85rem; color: var(--fo-ink-faint); }
+.fo-num { font-family: var(--fo-sans); font-variant-numeric: tabular-nums; }
+
+/* ── 4 · Controls ───────────────────────────────────────────────────────── */
+.fo-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 16px; border: 1px solid var(--fo-hair-strong); border-radius: var(--fo-r-control); background: var(--fo-paper); font-size: 0.88rem; font-weight: 600; color: var(--fo-navy); text-decoration: none; white-space: nowrap; transition: background var(--fo-ease), border-color var(--fo-ease); }
+.fo-btn:hover { border-color: var(--fo-navy); }
+/* One primary per view. */
+.fo-btn--primary { border-color: var(--fo-navy); background: var(--fo-navy); color: #fff; }
+.fo-btn--primary:hover { background: var(--fo-navy-2); }
+.fo-btn--light { border-color: #fff; background: #fff; color: var(--fo-navy); }
+.fo-btn--big { padding: 13px 24px; font-size: 1rem; }
+/* A text button: the quiet second action. */
+.fo-textbtn { padding: 0; border: 0; background: none; font-size: 0.85rem; font-weight: 600; color: var(--fo-jade-deep); text-decoration: none; }
+.fo-textbtn:hover { text-decoration: underline; }
+.fo-textbtn--light { color: var(--fo-jade-bright); }
+.fo-textbtn--danger { color: var(--fo-danger); }
+.fo-iconbtn { display: inline-grid; place-items: center; width: 26px; height: 26px; border: 1px solid var(--fo-hair-strong); border-radius: 6px; background: var(--fo-paper); font-size: 1rem; line-height: 1; color: var(--fo-navy); text-decoration: none; }
+.fo-iconbtn:hover { border-color: var(--fo-navy); }
+.fo-input { width: 100%; padding: 8px 12px; border: 1px solid var(--fo-hair-strong); border-radius: var(--fo-r-control); background: var(--fo-paper); font-size: 0.92rem; color: var(--fo-ink); }
+.fo-input:focus { outline: 2px solid rgba(0, 168, 150, 0.35); border-color: var(--fo-jade); }
+/* The find field: a line, not a box. */
+.fo-find { width: 100%; padding: 7px 10px; border: 1px solid var(--fo-hair); border-radius: var(--fo-r-control); background: var(--fo-paper); font-size: 0.88rem; color: var(--fo-ink); }
+.fo-find:focus { outline: none; border-color: var(--fo-jade); }
+
+/* ── 5 · The app shell ──────────────────────────────────────────────────────
+ * The window doesn't scroll as a page. A raised bar over a grey canvas, and
+ * cased panes (left rail, main, right rail) that each scroll on their own.
+ * Phones fall back to one scrolling page. */
+.fo-app { height: 100dvh; display: flex; flex-direction: column; overflow: hidden; background: var(--fo-canvas); }
+.fo-bar { position: relative; z-index: 10; flex: none; background: var(--fo-paper); box-shadow: var(--fo-bar-shadow); }
+.fo-bar-in { display: flex; align-items: center; gap: 40px; height: 60px; padding: 0 24px; }
+.fo-brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+/* Sections: text with a jade underline on the current one. */
+.fo-nav { display: flex; gap: 28px; height: 100%; }
+.fo-nav a { display: flex; align-items: center; margin-bottom: -1px; border-bottom: 2px solid transparent; font-size: 0.92rem; color: var(--fo-ink-soft); text-decoration: none; }
+.fo-nav a:hover { color: var(--fo-navy); }
+.fo-nav a.is-on { border-bottom-color: var(--fo-jade); font-weight: 600; color: var(--fo-navy); }
+/* Settings sits with the actions: it's visited, not worked in. */
+.fo-bar-end { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+.fo-bar-link { font-size: 0.9rem; font-weight: 500; color: var(--fo-ink-soft); text-decoration: none; }
+.fo-bar-link:hover, .fo-bar-link.is-on { color: var(--fo-navy); }
+.fo-newlink { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--fo-hair-strong); border-radius: var(--fo-r-control); background: var(--fo-paper); font-size: 0.88rem; font-weight: 600; color: var(--fo-navy); }
+.fo-newlink:hover { border-color: var(--fo-navy); }
+.fo-newlink > span { font-size: 1.05rem; line-height: 1; color: var(--fo-jade); }
+.fo-avatar { width: 32px; height: 32px; border: 0; border-radius: 50%; background: rgba(0, 168, 150, 0.12); font-size: 0.85rem; font-weight: 700; color: var(--fo-jade-deep); }
+
+.fo-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 12px; }
+.fo-body.has-left { grid-template-columns: 272px minmax(0, 1fr); }
+.fo-body.has-right { grid-template-columns: minmax(0, 1fr) 320px; }
+.fo-body.has-left.has-right { grid-template-columns: 272px minmax(0, 1fr) 320px; }
+.fo-pane { min-height: 0; overflow-y: auto; overscroll-behavior: contain; border-radius: var(--fo-r-pane); background: var(--fo-paper); box-shadow: var(--fo-ring); scrollbar-width: thin; }
+/* The main pane's content: left-aligned, never centred. */
+.fo-main-in { max-width: 960px; padding: 40px 48px 96px; }
+.fo-main-in--wide { max-width: 1120px; }
+
+/* ── 6 · Lists and rails ────────────────────────────────────────────────────
+ * The left rail: plain text rows. The pick gets a jade left rule and a jade
+ * wash, square-cornered. No pill tabs in a rail. */
+.fo-list { padding: 20px 0 24px 16px; }
+.fo-list-head { display: flex; justify-content: space-between; align-items: center; margin: 0 16px 12px 0; }
+.fo-list .fo-find { width: calc(100% - 16px); margin-bottom: 4px; }
+.fo-list-group { margin-top: 20px; }
+.fo-list-site { margin: 0 16px 4px 12px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; color: var(--fo-ink-faint); }
+.fo-list-row { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 16px 8px 12px; border: 0; border-left: 2px solid transparent; background: none; text-align: left; font-size: 0.92rem; color: var(--fo-ink-soft); text-decoration: none; }
+.fo-list-row:hover { color: var(--fo-navy); background: var(--fo-hover); }
+.fo-list-row.is-on { border-left-color: var(--fo-jade); background: var(--fo-jade-wash); font-weight: 600; color: var(--fo-navy); }
+.fo-list-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fo-list-count { font-size: 0.78rem; font-weight: 700; color: var(--fo-jade-deep); font-variant-numeric: tabular-nums; }
+.fo-list-count--muted { font-weight: 500; color: var(--fo-ink-faint); }
+.fo-list-foot { margin: 20px 16px 0 0; font-size: 0.78rem; line-height: 1.5; color: var(--fo-ink-faint); }
+.fo-swatch { flex: none; width: 8px; height: 8px; border-radius: 2px; }
+
+/* ── 7 · Navy surfaces ──────────────────────────────────────────────────────
+ * At most one per view: Home's right rail, a publication's slim band, a team's
+ * path rail, the landing hero. Never a coloured-in left rail. */
+.fo-rail--navy { background: var(--fo-navy-surface); color: #fff; box-shadow: 0 10px 30px -18px rgba(6, 21, 39, 0.7); scrollbar-color: rgba(255, 255, 255, 0.25) transparent; }
+.fo-side { padding: 0 24px; }
+.fo-side + .fo-side { margin-top: 28px; }
+.fo-rail--navy .fo-side:first-child { padding-top: 28px; }
+.fo-side-h { margin-bottom: 8px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-on-navy-faint); }
+.fo-side-row { padding: 12px 0; border-top: 1px solid var(--fo-on-navy-hair); font-size: 0.88rem; line-height: 1.45; color: var(--fo-on-navy-soft); }
+.fo-side-row b { display: block; color: #fff; }
+.fo-side-title { display: block; margin-top: 2px; font-family: var(--fo-serif); font-size: 1.1rem; font-weight: 700; line-height: 1.25; color: #fff; text-decoration: none; }
+.fo-side-empty { font-size: 0.85rem; color: var(--fo-on-navy-faint); }
+/* The navy rail's pick: bright jade rule on a jade wash. */
+.fo-rail--navy .fo-list-row { color: rgba(255, 255, 255, 0.78); }
+.fo-rail--navy .fo-list-row:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
+.fo-rail--navy .fo-list-row.is-on { border-left-color: var(--fo-jade-bright); background: rgba(0, 212, 170, 0.12); color: #fff; }
+
+/* The slim band: a publication's header, navy, no heavy rules inside it. */
+.fo-band { background: var(--fo-navy-surface); color: #fff; }
+.fo-band-in { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; max-width: 960px; padding: 24px 48px 22px; }
+.fo-band-name { margin-top: 6px; font-family: var(--fo-serif); font-weight: 700; font-size: 1.9rem; line-height: 1.05; color: #fff; }
+.fo-band-right { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+.fo-band .fo-quiet { margin-top: 0; color: var(--fo-on-navy-soft); }
+.fo-band .fo-quiet b { color: #fff; }
+
+/* ── 8 · Tabs ───────────────────────────────────────────────────────────────
+ * Text tabs with a jade underline. Counts sit beside the label, faint. */
+.fo-tabs { display: flex; gap: 28px; border-bottom: 1px solid var(--fo-hair); }
+.fo-tabs button, .fo-tabs a { display: inline-flex; align-items: baseline; gap: 8px; margin-bottom: -1px; padding: 10px 0; border: 0; border-bottom: 2px solid transparent; background: none; font-size: 0.95rem; font-weight: 600; color: var(--fo-ink-faint); text-decoration: none; }
+.fo-tabs button:hover, .fo-tabs a:hover { color: var(--fo-navy); }
+.fo-tabs .is-on { border-bottom-color: var(--fo-jade); color: var(--fo-navy); }
+.fo-tabs span { font-size: 0.78rem; font-weight: 500; color: var(--fo-ink-faint); font-variant-numeric: tabular-nums; }
+
+/* ── 9 · Numbers ────────────────────────────────────────────────────────── */
+/* Quiet numbers: a line under a title. What needs you is jade. */
+.fo-quiet { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 14px; font-size: 0.92rem; color: var(--fo-ink-soft); }
+.fo-quiet b { font-weight: 600; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.fo-quiet .is-you b { color: var(--fo-jade-deep); }
+/* A stat strip: big figures, small labels. */
+.fo-stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-top: 1px solid var(--fo-hair); border-bottom: 1px solid var(--fo-hair); }
+.fo-stats > div { padding: 14px 16px; border-left: 1px solid var(--fo-hair); }
+.fo-stats > div:first-child { border-left: 0; padding-left: 0; }
+.fo-stats dd { font-size: 1.6rem; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.fo-stats dt { margin-top: 4px; font-size: 0.74rem; color: var(--fo-ink-faint); }
+.fo-stats .is-you { box-shadow: inset 0 2px 0 var(--fo-jade); }
+.fo-stats .is-you dd { color: var(--fo-jade-deep); }
+/* A meter: a 3px line. */
+.fo-meter { display: block; height: 3px; border-radius: 2px; background: var(--fo-hair); overflow: hidden; }
+.fo-meter > span { display: block; height: 100%; background: var(--fo-jade); }
+.fo-rail--navy .fo-meter { background: rgba(255, 255, 255, 0.14); }
+.fo-rail--navy .fo-meter > span { background: var(--fo-jade-bright); }
+
+/* ── 10 · Work: tiers, the queue, lines, stages ─────────────────────────── */
+/* A tier opens with a 2px navy rule, a small-caps name, a faint note. */
+.fo-tier { margin-top: 48px; }
+.fo-tier-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; padding-top: 10px; border-top: 2px solid var(--fo-navy); }
+.fo-tier-head b { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fo-navy); }
+.fo-tier-head span { font-size: 0.8rem; color: var(--fo-ink-faint); }
+/* A lighter section head: 1px navy rule. */
+.fo-section { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 40px 0 8px; padding-top: 12px; border-top: 1px solid var(--fo-navy); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-navy); }
+.fo-sub-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+.fo-sub-head h3 { font-family: var(--fo-serif); font-weight: 700; font-size: 1.35rem; line-height: 1.2; color: var(--fo-navy); }
+
+/* The queue: each row's actions in their own column, a hairline to their left,
+   buttons stacked full width so every row lines up. */
+.fo-queue > li { display: grid; grid-template-columns: minmax(0, 1fr) 176px; padding: 20px 0; border-bottom: 1px solid var(--fo-hair); }
+.fo-q-body { padding-right: 24px; }
+.fo-q-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: 0.8rem; color: var(--fo-ink-faint); }
+.fo-q-title { margin-top: 6px; font-family: var(--fo-serif); font-weight: 700; font-size: 1.45rem; line-height: 1.2; color: var(--fo-navy); }
+.fo-q-note { margin-top: 4px; font-size: 0.92rem; color: var(--fo-ink-soft); }
+.fo-q-foot { display: flex; gap: 16px; margin-top: 8px; font-size: 0.8rem; color: var(--fo-ink-faint); }
+.fo-q-actions { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding-left: 24px; border-left: 1px solid var(--fo-hair); }
+.fo-q-actions > * { width: 100%; text-align: center; }
+.fo-q-actions .fo-textbtn { padding: 7px 0; border-radius: var(--fo-r-control); }
+.fo-q-actions .fo-textbtn:hover { background: var(--fo-jade-wash); text-decoration: none; }
+
+/* A kind: a dot and small caps. Jade for "yours", gold for "held". */
+.fo-kind { display: inline-flex; align-items: center; gap: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.fo-kind::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--fo-ink-faint); }
+.fo-kind.is-you { color: var(--fo-jade-deep); }
+.fo-kind.is-you::before { background: var(--fo-jade); }
+.fo-kind.is-held { color: var(--fo-gold); }
+.fo-kind.is-held::before { background: var(--fo-gold-dot); }
+/* A stage: text only. */
+.fo-stage { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: var(--fo-ink-faint); }
+.fo-stage.is-you { color: var(--fo-jade-deep); }
+.fo-stage.is-held { color: var(--fo-gold); }
+
+/* Lines: a stage, a serif title, metadata, quiet actions on hover. */
+.fo-lines > li { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto auto; gap: 16px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--fo-hair); }
+.fo-lines > li:last-child { border-bottom: 0; }
+.fo-line-title { font-family: var(--fo-serif); font-weight: 700; font-size: 1.1rem; line-height: 1.25; color: var(--fo-navy); text-decoration: none; }
+.fo-line-title:hover { color: var(--fo-jade-deep); }
+.fo-line-actions { display: flex; gap: 14px; opacity: 0; transition: opacity var(--fo-ease); }
+.fo-lines > li:hover .fo-line-actions, .fo-lines > li:focus-within .fo-line-actions { opacity: 1; }
+/* A foldable group head. */
+.fo-group-head { display: flex; align-items: baseline; gap: 10px; width: 100%; padding: 14px 0 6px; border: 0; background: none; text-align: left; }
+.fo-group-head h3 { font-family: var(--fo-serif); font-weight: 700; font-size: 1.3rem; color: var(--fo-navy); }
+
+/* A log: time, a dot on a thin line, then the entry. */
+.fo-log > li { position: relative; display: grid; grid-template-columns: 64px 14px minmax(0, 1fr); gap: 12px; padding: 12px 0; }
+.fo-log > li::before { content: ''; position: absolute; left: 82px; top: 0; bottom: 0; width: 1px; background: var(--fo-hair); }
+.fo-log-time { padding-top: 2px; text-align: right; font-size: 0.8rem; color: var(--fo-ink-faint); font-variant-numeric: tabular-nums; }
+.fo-log-dot { position: relative; z-index: 1; width: 9px; height: 9px; margin: 6px 0 0 3px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 2px var(--fo-ink-faint); }
+.fo-log-dot.is-you { box-shadow: inset 0 0 0 2px var(--fo-jade); }
+.fo-log-dot.is-held { box-shadow: inset 0 0 0 2px var(--fo-gold-dot); }
+
+/* A live dot: pulses while something is working. */
+.fo-live { display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: var(--fo-jade-bright); animation: fo-pulse 2s ease-in-out infinite; }
+.fo-live.is-idle { background: var(--fo-ink-faint); animation: none; }
+@keyframes fo-pulse { 50% { opacity: 0.35; } }
+
+/* ── 11 · Cards, rows and marks ─────────────────────────────────────────── */
+.fo-card { display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px; border: 0; border-radius: var(--fo-r-pane); background: var(--fo-paper); box-shadow: 0 0 0 1px var(--fo-hair); text-align: left; transition: box-shadow var(--fo-ease); }
+.fo-card:hover { box-shadow: 0 0 0 1px var(--fo-hair-strong), 0 8px 20px -14px rgba(10, 37, 64, 0.35); }
+.fo-card.is-warn { box-shadow: 0 0 0 1px rgba(217, 164, 65, 0.6); }
+.fo-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+/* A row: a mark, a name with its state, one action on the right. */
+.fo-rows > li { border-bottom: 1px solid var(--fo-hair); }
+.fo-rows > li:last-child { border-bottom: 0; }
+.fo-row { display: flex; align-items: center; gap: 14px; padding: 14px 0; }
+.fo-row-body { flex: 1; min-width: 0; }
+.fo-row-body b { display: block; font-size: 0.98rem; font-weight: 600; color: var(--fo-navy); }
+/* A mark: a letter on its colour, for things without a logo. */
+.fo-mark { flex: none; display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: var(--fo-r-control); font-weight: 700; font-size: 14px; line-height: 1; color: #fff; background: var(--fo-navy); }
+.fo-state { font-size: 0.84rem; color: var(--fo-ink-soft); }
+.fo-state.is-warn { color: var(--fo-gold); font-weight: 600; }
+.fo-state.is-off { color: var(--fo-ink-faint); }
+.fo-dl > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--fo-hair); font-size: 0.92rem; }
+.fo-dl dt { font-weight: 600; color: var(--fo-navy); }
+.fo-dl dd { color: var(--fo-ink-soft); }
+.fo-code { font-family: var(--fo-mono); font-size: 0.82rem; color: var(--fo-navy); }
+
+/* ── 12 · States ────────────────────────────────────────────────────────── */
+/* A callout: jade rule on a jade wash. "Now", "Why it matters". */
+.fo-callout { padding: 14px 18px; border-left: 2px solid var(--fo-jade); background: rgba(0, 168, 150, 0.05); }
+.fo-callout > b:first-child { display: block; margin-bottom: 4px; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-jade-deep); }
+/* Health in a sentence: the one thing to look at, gold when there is one. */
+.fo-health { margin-top: 24px; padding: 16px 20px; border-left: 2px solid var(--fo-jade); background: rgba(0, 168, 150, 0.05); }
+.fo-health.is-warn { border-left-color: var(--fo-gold-dot); background: rgba(217, 164, 65, 0.08); }
+.fo-health small { display: block; margin-top: 6px; font-size: 0.8rem; color: var(--fo-ink-faint); }
+.fo-notice { padding: 10px 14px; border-radius: var(--fo-r-control); font-size: 0.9rem; }
+.fo-notice.is-ok { background: rgba(0, 168, 150, 0.08); color: var(--fo-jade-deep); }
+.fo-notice.is-error { background: rgba(180, 66, 58, 0.08); color: var(--fo-danger); }
+.fo-empty { padding: 32px; border: 1px dashed var(--fo-hair-strong); border-radius: var(--fo-r-pane); text-align: center; color: var(--fo-ink-soft); }
+/* The honest footnote: say what's a sample. */
+.fo-sample { margin-top: 48px; font-size: 0.78rem; color: var(--fo-ink-faint); }
+
+/* ── 13 · Overlays: menus, drawers ──────────────────────────────────────── */
+.fo-menu { position: absolute; top: calc(100% + 8px); z-index: 30; min-width: 260px; padding: 6px; border-radius: var(--fo-r-pane); background: var(--fo-paper); box-shadow: var(--fo-float); }
+.fo-menu > button, .fo-menu > a { display: block; width: 100%; padding: 9px 12px; border: 0; border-radius: var(--fo-r-control); background: none; text-align: left; font-size: 0.9rem; color: var(--fo-navy); text-decoration: none; }
+.fo-menu > button:hover, .fo-menu > a:hover { background: rgba(10, 37, 64, 0.05); }
+.fo-menu small { display: block; margin-top: 2px; font-size: 0.78rem; color: var(--fo-ink-faint); }
+.fo-scrim { position: fixed; inset: 0; z-index: 40; background: rgba(10, 37, 64, 0.16); animation: fo-fade 0.18s ease; }
+.fo-drawer { position: fixed; top: 72px; right: 12px; bottom: 12px; z-index: 41; width: min(620px, calc(100vw - 24px)); overflow-y: auto; border-radius: var(--fo-r-pane); background: var(--fo-paper); box-shadow: var(--fo-drawer); animation: fo-slide 0.22s ease; }
+.fo-drawer-bar { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--fo-hair); background: rgba(255, 255, 255, 0.96); }
+@keyframes fo-fade { from { opacity: 0; } }
+@keyframes fo-slide { from { transform: translateX(24px); opacity: 0; } }
+
+/* ── 14 · The editor ────────────────────────────────────────────────────────
+ * In edit mode the app's section bar goes; the editor has its own. The page
+ * and the dock are cased panes on the canvas. */
+.fo-edbar { flex: none; display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 20px; background: var(--fo-paper); box-shadow: var(--fo-bar-shadow); font-size: 0.86rem; }
+.fo-edbar-back { font-size: 1.05rem; color: var(--fo-ink-soft); text-decoration: none; }
+.fo-edbar-sep { width: 1px; height: 18px; background: var(--fo-hair-strong); }
+.fo-edbar-where { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--fo-ink-soft); }
+.fo-edbar-where b { font-weight: 600; color: var(--fo-navy); }
+.fo-edbar-saved { margin-left: auto; font-size: 0.8rem; color: var(--fo-ink-faint); }
+.fo-tool { padding: 5px 10px; border: 0; border-radius: 6px; background: none; font-size: 0.8rem; font-weight: 600; color: var(--fo-ink-soft); }
+.fo-tool:hover { background: var(--fo-hover); color: var(--fo-navy); }
+.fo-tool.is-on { background: rgba(0, 168, 150, 0.08); color: var(--fo-jade-deep); }
+.fo-page { max-width: 680px; margin: 0 auto; padding: 48px 32px; font-size: 1.05rem; line-height: 1.7; }
+.fo-page-title { font-family: var(--fo-serif); font-weight: 700; font-size: clamp(2.2rem, 3.4vw, 2.9rem); line-height: 1.08; letter-spacing: -0.015em; color: var(--fo-navy); }
+.fo-page-dek { margin-top: 16px; font-size: 1.15rem; line-height: 1.55; color: var(--fo-ink-soft); }
+/* A checked claim: underlined in jade; a flagged one in gold. */
+.fo-claim { background: rgba(0, 168, 150, 0.1); box-shadow: inset 0 -1px 0 var(--fo-jade); color: inherit; }
+.fo-claim.is-held { background: rgba(217, 164, 65, 0.14); box-shadow: inset 0 -1px 0 var(--fo-gold-dot); }
+/* The selection menu: navy, above the words. */
+.fo-bubble { position: absolute; z-index: 20; display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 10px; background: var(--fo-navy); box-shadow: 0 12px 28px -12px rgba(6, 21, 39, 0.6); transform: translate(-50%, calc(-100% - 10px)); white-space: nowrap; }
+.fo-bubble button { padding: 6px 10px; border: 0; border-radius: 6px; background: none; font-size: 0.82rem; font-weight: 600; color: #fff; }
+.fo-bubble button:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* ── 15 · Marketing pages ───────────────────────────────────────────────────
+ * The product is the hero: a replay of the real app in a glass device. */
+.fo-site { min-height: 100dvh; background: var(--fo-paper); }
+.fo-site-in { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+.fo-site-nav { display: flex; align-items: center; gap: 32px; max-width: 1160px; margin: 0 auto; padding: 22px 32px; }
+.fo-site-nav nav { display: flex; gap: 26px; margin-left: 12px; }
+.fo-site-nav nav a { font-size: 0.92rem; color: var(--fo-ink-soft); text-decoration: none; }
+.fo-hero { background: var(--fo-navy-deep); color: #fff; padding-bottom: 64px; }
+.fo-hero .fo-site-nav nav a, .fo-hero .fo-product { color: rgba(255, 255, 255, 0.7); }
+.fo-hero .fo-wordmark { color: #fff; }
+/* The hero line: big serif, the second line italic jade. */
+.fo-h1 { margin-top: 56px; font-family: var(--fo-serif); font-weight: 700; font-size: clamp(3rem, 6.4vw, 6rem); line-height: 0.94; letter-spacing: -0.03em; }
+.fo-h1 em { font-style: italic; font-weight: 600; color: var(--fo-jade-bright); }
+.fo-h2 { margin-top: 12px; max-width: 20ch; font-family: var(--fo-serif); font-weight: 700; font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.04; letter-spacing: -0.018em; color: var(--fo-navy); }
+.fo-hero-lede { margin-top: 18px; max-width: 58ch; font-size: 1.1rem; color: rgba(255, 255, 255, 0.75); }
+.fo-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fo-jade-deep); }
+/* Chapters: numbered, with an underline that fills as the replay plays. */
+.fo-chapters { display: flex; align-items: center; gap: 6px; }
+.fo-chapters button { display: flex; align-items: baseline; gap: 8px; padding: 8px 14px 10px; border: 0; border-bottom: 2px solid rgba(255, 255, 255, 0.14); background: none; font-size: 0.92rem; font-weight: 600; color: rgba(255, 255, 255, 0.5); }
+.fo-chapters button.is-done { color: rgba(255, 255, 255, 0.75); border-bottom-color: rgba(0, 212, 170, 0.4); }
+.fo-chapters button.is-on { color: #fff; border-bottom-color: var(--fo-jade-bright); }
+.fo-beat-line { margin: 18px 0 20px; font-family: var(--fo-serif); font-size: 1.45rem; color: #fff; }
+/* The device: glass casing, a jade edge, a window bar whose address follows. */
+.fo-device { position: relative; padding: 0 10px 10px; border-radius: var(--fo-r-device); background: linear-gradient(165deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025) 60%); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 40px 120px -40px rgba(0, 0, 0, 0.8), 0 0 140px -30px rgba(0, 212, 170, 0.22); }
+.fo-device::before { content: ''; position: absolute; inset: -1px; border-radius: calc(var(--fo-r-device) + 1px); padding: 1px; background: linear-gradient(135deg, rgba(0, 212, 170, 0.55), rgba(0, 212, 170, 0) 35%, rgba(255, 255, 255, 0) 65%, rgba(0, 212, 170, 0.3)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+.fo-device-bar { display: flex; align-items: center; gap: 14px; height: 40px; padding: 0 6px; }
+.fo-device-url { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 4px 14px; border-radius: var(--fo-r-pill); background: rgba(255, 255, 255, 0.06); text-align: center; font-family: var(--fo-mono); font-size: 0.74rem; color: rgba(255, 255, 255, 0.6); }
+.fo-device-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-jade-bright); }
+.fo-device-screen { overflow: hidden; border-radius: 10px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35); }
+/* Promises: three, one line each, under a navy rule. */
+.fo-promises { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+.fo-promises > li { padding-top: 16px; border-top: 2px solid var(--fo-navy); }
+.fo-promises b { display: block; font-family: var(--fo-serif); font-size: 1.6rem; line-height: 1.15; color: var(--fo-navy); }
+.fo-promises p { margin-top: 10px; font-size: 0.98rem; color: var(--fo-ink-soft); }
+.fo-close { padding: 112px 0 96px; text-align: center; background: radial-gradient(60% 80% at 50% 0%, rgba(0, 212, 170, 0.14), transparent 60%), var(--fo-navy-deep); color: #fff; }
+
+/* ── 16 · Narrow screens ────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .fo-app { height: auto; min-height: 100dvh; overflow: visible; }
+  .fo-body, .fo-body.has-left, .fo-body.has-right, .fo-body.has-left.has-right { grid-template-columns: minmax(0, 1fr); }
+  .fo-pane { overflow: visible; }
+  .fo-main-in { padding: 28px 20px 64px; }
+  .fo-bar-in { gap: 20px; padding: 0 16px; }
+  .fo-nav { gap: 16px; }
+  .fo-queue > li { grid-template-columns: minmax(0, 1fr); }
+  .fo-q-body { padding-right: 0; }
+  .fo-q-actions { flex-direction: row; padding: 12px 0 0; border-left: 0; }
+  .fo-lines > li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .fo-cards, .fo-promises { grid-template-columns: minmax(0, 1fr); }
+  .fo-band-in { flex-direction: column; align-items: flex-start; padding: 20px; }
+  .fo-band-right { align-items: flex-start; }
+  .fo-site-in, .fo-site-nav { padding-left: 16px; padding-right: 16px; }
+  .fo-site-nav nav { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .folio *, .folio *::before, .folio *::after { animation: none !important; transition: none !important; }
+}

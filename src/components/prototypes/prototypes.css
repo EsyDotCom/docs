@@ -1,0 +1,288 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * Copied from esy.com, src/components/prototypes/prototypes.css (2026-10-03),
+ * so docs.esy.com/prototypes works like esy.com/prototypes: the same index
+ * cards and the same floating switcher. One change: the serif is Cormorant
+ * (loaded for Folio in the prototypes layout) where esy.com uses Newsreader.
+ * ───────────────────────────────────────────────────────────────────────── */
+
+/* /prototypes: the showcase index (shared publicly, e.g. from LinkedIn) and
+ * the floating switcher that lets variants be compared in place. Every card
+ * carries a screenshot and one obvious action. See docs/prototypes/README.md. */
+
+.proto {
+  --p-ink: #0a2540;
+  --p-ink-2: #41566d;
+  --p-muted: #5f7185;
+  --p-line: #e6eaee;
+  --p-jade: #00a896;
+  --p-jade-ink: #007f72;
+  --p-jade-soft: #e3f4f1;
+  --p-serif: var(--font-cormorant), Georgia, serif;
+  --p-sans: var(--font-inter), var(--font-geist-sans), system-ui, sans-serif;
+  min-height: 100vh;
+  background: #f8f9fa;
+  color: var(--p-ink);
+  font-family: var(--p-sans);
+}
+.proto h1, .proto h2, .proto h3 { font-family: var(--p-serif); font-weight: 400; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.proto p { margin: 0; }
+
+.pi-wrap { max-width: 1160px; margin: 0 auto; padding-inline: 24px; }
+
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+.pi-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.pi-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: 10px;
+  font: 600 15px var(--p-sans);
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.pi-btn--primary { background: var(--p-ink); color: #fff; box-shadow: 0 8px 20px -10px rgba(10, 37, 64, 0.6); }
+.pi-btn--primary:hover { background: #0d2f52; transform: translateY(-1px); }
+.pi-btn--ghost { background: #fff; color: var(--p-ink); border: 1px solid var(--p-line); }
+.pi-btn--ghost:hover { border-color: #cfd7df; }
+.pi-btn--light { background: #fff; color: var(--p-ink); flex: 0 0 auto; }
+.pi-btn--light:hover { transform: translateY(-1px); }
+.pi-inline { color: var(--p-jade-ink); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.pi-hero { position: relative; overflow: hidden; padding: 72px 0 40px; }
+.pi-hero::before {
+  content: '';
+  position: absolute;
+  inset: -30% -10% auto 40%;
+  height: 120%;
+  background: radial-gradient(closest-side, rgba(0, 168, 150, 0.12), transparent);
+  pointer-events: none;
+}
+.pi-hero .pi-wrap { position: relative; }
+.pi-kicker { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--p-jade-ink); }
+.pi-hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.05; margin-top: 14px; max-width: 16ch; }
+.pi-intro { margin-top: 18px !important; max-width: 40em; font-size: clamp(1.05rem, 1.4vw, 1.2rem); line-height: 1.55; color: var(--p-ink-2); }
+.pi-hero .pi-actions { margin-top: 28px; }
+
+/* The process, as three connected steps. */
+.pi-steps { list-style: none; margin: 44px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.pi-steps li {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--p-line);
+}
+.pi-steps li:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -11px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  background: #f8f9fa;
+  color: var(--p-muted);
+}
+.pi-steps .n {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f0f3f6;
+  color: var(--p-ink-2);
+}
+.pi-steps b { display: block; font-size: 15px; font-weight: 600; }
+.pi-steps small { display: block; margin-top: 2px; font-size: 13.5px; color: var(--p-muted); }
+.pi-steps .is-live { border-color: var(--p-jade); background: var(--p-jade-soft); }
+.pi-steps .is-live .n { background: var(--p-jade); color: #fff; }
+
+/* ── Tags ─────────────────────────────────────────────────────────────── */
+.pi-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px 3px 8px;
+  border-radius: 999px;
+  background: var(--p-jade-soft);
+  color: var(--p-jade-ink);
+}
+.pi-live::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--p-jade); box-shadow: 0 0 0 3px rgba(0, 168, 150, 0.18); }
+.pi-key { font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--p-jade-ink); }
+.pi-key em { font-style: normal; color: var(--p-muted); letter-spacing: 0.04em; }
+
+/* ── Screenshots: a picture you can click, with a hint on hover ─────── */
+.pi-shot, .pi-card-shot {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--p-line);
+  background: #fff;
+  aspect-ratio: 16 / 10;
+}
+.pi-shot img, .pi-card-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.4s ease; }
+.pi-shot:hover img, .pi-card:hover .pi-card-shot img { transform: scale(1.025); }
+.pi-shot-cta {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--p-ink);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px -8px rgba(10, 37, 64, 0.6);
+}
+
+/* ── The shipped version, featured ───────────────────────────────────── */
+.pi-featured-wrap { padding-block: 16px 24px; }
+.pi-featured {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid var(--p-line);
+  box-shadow: 0 1px 2px rgba(10, 37, 64, 0.05), 0 30px 60px -40px rgba(10, 37, 64, 0.35);
+}
+.pi-featured-body { display: flex; flex-direction: column; gap: 12px; padding-right: 12px; }
+.pi-featured-body h2 { font-size: clamp(1.8rem, 2.8vw, 2.4rem); line-height: 1.1; }
+.pi-featured-body p { color: var(--p-ink-2); font-size: 16px; line-height: 1.55; }
+.pi-featured-body .pi-actions { margin-top: 6px; }
+
+/* ── Rounds and cards ─────────────────────────────────────────────────── */
+.pi-rounds { padding-top: 40px; }
+.pi-proto-name { font-size: 2rem; margin-bottom: 8px !important; }
+.pi-round { margin-top: 40px; }
+.pi-round-head { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 14px; row-gap: 4px; align-items: baseline; margin-bottom: 18px; }
+.pi-round-n {
+  grid-row: span 2;
+  align-self: start;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eef1f4;
+  color: var(--p-ink-2);
+  white-space: nowrap;
+}
+.pi-round-head h3 { font-size: 1.7rem; line-height: 1.15; }
+.pi-round-head p { color: var(--p-muted); font-size: 15px; line-height: 1.5; max-width: 52em; }
+
+.pi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+.pi-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 12px 12px 18px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--p-line);
+  color: var(--p-ink);
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.pi-card:hover { border-color: var(--p-jade); transform: translateY(-3px); box-shadow: 0 20px 40px -28px rgba(10, 37, 64, 0.45); }
+.pi-card.is-live { border-color: rgba(0, 168, 150, 0.45); }
+.pi-card-shot .pi-live { position: absolute; top: 10px; left: 10px; background: rgba(255, 255, 255, 0.95); }
+.pi-card-body { display: flex; flex-direction: column; gap: 6px; padding-inline: 6px; flex: 1; }
+.pi-card-title { font-family: var(--p-serif); font-size: 1.35rem; line-height: 1.2; letter-spacing: -0.01em; }
+.pi-card-blurb { font-size: 14.5px; line-height: 1.5; color: var(--p-muted); }
+.pi-card-cta { margin-top: auto; padding-top: 8px; display: inline-flex; align-items: center; gap: 6px; font-size: 14.5px; font-weight: 600; color: var(--p-jade-ink); }
+.pi-card:hover .pi-card-cta svg { transform: translateX(3px); }
+.pi-card-cta svg { transition: transform 0.15s ease; }
+
+/* ── Closing band ─────────────────────────────────────────────────────── */
+.pi-close {
+  margin: 72px 0 96px;
+  padding: 36px 40px;
+  border-radius: 20px;
+  background: var(--p-ink);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.pi-close h2 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); line-height: 1.15; color: #fff; }
+.pi-close p { margin-top: 8px !important; color: rgba(255, 255, 255, 0.75); font-size: 16px; max-width: 40em; }
+
+@media (max-width: 900px) {
+  .pi-steps { grid-template-columns: minmax(0, 1fr); }
+  .pi-steps li:not(:last-child)::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -11px; transform: translateX(-50%); }
+  .pi-featured { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 14px; }
+  .pi-featured-body { padding: 0 6px 8px; }
+  .pi-close { padding: 28px 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proto * { transition: none !important; }
+}
+
+/* ── Floating switcher on variant pages ───────────────────────────────── */
+.proto-bar {
+  position: fixed;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: calc(100vw - 32px);
+  overflow-x: auto;
+  padding: 5px;
+  border-radius: 12px;
+  background: rgba(10, 37, 64, 0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 30px -10px rgba(10, 37, 64, 0.5);
+  font: 500 13px var(--font-inter), system-ui, sans-serif;
+}
+.proto-bar span { padding: 0 10px 0 8px; color: rgba(255, 255, 255, 0.55); font-size: 12px; white-space: nowrap; }
+.proto-bar a { padding: 7px 12px; border-radius: 8px; color: rgba(255, 255, 255, 0.8); text-decoration: none; white-space: nowrap; }
+.proto-bar a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+.proto-bar a[aria-current='page'] { background: #fff; color: #0a2540; }
+
+/* Poster for a variant with no screenshot yet: its colours and its headline,
+ * in the same 1200×750 slot a picture would fill. */
+.pi-poster {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  aspect-ratio: 1200 / 750;
+  padding: 26px;
+  text-align: left;
+}
+.pi-poster-key { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.72; }
+.pi-poster-title { font-family: var(--font-cormorant), Georgia, serif; font-size: clamp(1.1rem, 2.1vw, 1.7rem); line-height: 1.15; }

@@ -1,0 +1,175 @@
+/* C · Replay: Folio's marketing page for the docs. The flat deep-navy hero is
+   the view's one navy moment (the close band echoes it); the device, the
+   chapters and the beat line are Folio's own (fo-device, fo-chapters,
+   fo-beat-line). Prefix rp-. */
+
+.folio.rp-app { background: var(--fo-paper); }
+.folio .rp-wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+/* ── Hero ── */
+.folio .rp-hero { position: relative; overflow: hidden; padding-bottom: 72px; background: var(--fo-navy-deep); color: #fff; }
+.folio .rp-glow { position: absolute; inset: -20% -10% auto 45%; height: 90%; background: radial-gradient(closest-side, rgba(0, 212, 170, 0.16), transparent); pointer-events: none; }
+.folio .rp-nav { position: relative; display: flex; align-items: center; gap: 36px; max-width: 1200px; margin: 0 auto; padding: 20px 32px; }
+.folio .rp-nav-links { display: flex; gap: 26px; }
+.folio .rp-nav-links a { font-size: 0.92rem; color: var(--fo-on-navy-soft); text-decoration: none; white-space: nowrap; }
+.folio .rp-nav-links a:hover { color: #fff; }
+.folio .rp-nav-end { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.folio .rp-nav-end .dh-findbtn { width: 200px; }
+.folio .rp-hero-in { position: relative; display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: end; column-gap: 56px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.folio .rp-find-label { margin-bottom: 10px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-on-navy-faint); }
+.folio .rp-hero-find { padding-bottom: 4px; }
+.folio .rp-eyebrow { margin-top: 36px; color: var(--fo-jade-bright); }
+.folio .rp-h1 { margin-top: 14px; font-size: clamp(2.6rem, 4.9vw, 4.4rem); }
+.folio .rp-hero .fo-hero-lede { max-width: 56ch; }
+
+/* The hero's search: a big field on navy that opens the palette. */
+.folio .rp-search { display: flex; align-items: center; gap: 12px; width: 100%; height: 56px; margin-top: 0; padding: 0 12px 0 20px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: var(--fo-r-pane); background: rgba(255, 255, 255, 0.06); font-size: 1rem; color: var(--fo-on-navy-soft); text-align: left; transition: border-color var(--fo-ease), background var(--fo-ease); }
+.folio .rp-search span { flex: 1; }
+.folio .rp-search:hover { border-color: var(--fo-jade-bright); background: rgba(255, 255, 255, 0.09); color: #fff; }
+.folio .rp-search kbd { padding: 2px 7px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; font-size: 0.72rem; font-weight: 600; color: var(--fo-on-navy-soft); }
+.folio .rp-try { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 12px; }
+.folio .rp-try span { margin-right: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-on-navy-faint); }
+.folio .rp-try button { padding: 3px 10px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: var(--fo-r-pill); background: none; font-size: 0.8rem; color: var(--fo-on-navy-soft); }
+.folio .rp-try button:hover { border-color: var(--fo-jade-bright); color: #fff; }
+
+/* ── The replay ── */
+.folio .rp-stage { position: relative; max-width: 1200px; margin: 48px auto 0; padding: 0 32px; }
+.folio .rp-stage-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.folio .rp-chapters { flex-wrap: wrap; }
+/* Each chapter's underline fills as it plays (--fill, 0 to 1). */
+.folio .rp-chapters button { position: relative; color: var(--fo-on-navy-faint); }
+.folio .rp-chapters button.is-on { border-bottom-color: rgba(255, 255, 255, 0.14); }
+.folio .rp-chapters button::after { content: ''; position: absolute; left: 0; bottom: -2px; height: 2px; width: calc(var(--fill, 0) * 100%); background: var(--fo-jade-bright); }
+.folio .rp-chapters button.is-done::after { background: rgba(0, 212, 170, 0.45); }
+.folio .rp-chapters small { font-size: 0.72rem; font-variant-numeric: tabular-nums; opacity: 0.6; }
+.folio .rp-play { flex: none; padding: 6px 12px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: var(--fo-r-control); background: none; font-size: 0.8rem; font-weight: 600; color: var(--fo-on-navy-soft); }
+.folio .rp-play:hover { border-color: #fff; color: #fff; }
+.folio .rp-beat { min-height: 1.5em; margin: 14px 0 16px; }
+
+.folio .rp-dots { display: flex; gap: 6px; padding-left: 4px; }
+.folio .rp-dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.16); }
+.folio .rp-screen { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); height: 470px; background: #0B1B2E; }
+
+/* Left: the call and its reply, on night. */
+.folio .rp-term { display: flex; flex-direction: column; min-height: 0; overflow: hidden; background: #0B1B2E; }
+.folio .rp-term-bar { padding: 10px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-family: var(--fo-mono); font-size: 0.76rem; color: #fff; }
+.folio .rp-term .dh-code { padding: 12px 16px; font-size: 0.72rem; line-height: 1.6; }
+.folio .rp-term-req { flex: none; }
+.folio .rp-term-reply { flex: 1; min-height: 0; overflow: auto; border-top: 1px solid rgba(255, 255, 255, 0.08); scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.2) transparent; }
+.folio .rp-term-status { display: flex; align-items: center; gap: 6px; padding: 10px 16px 0; font-size: 0.74rem; font-weight: 700; color: var(--fo-jade-bright); }
+.folio .rp-term-status i { width: 6px; height: 6px; border-radius: 50%; background: var(--fo-jade-bright); }
+.folio .rp-term-wait { display: flex; align-items: center; padding: 14px 16px; font-family: var(--fo-mono); font-size: 0.76rem; color: var(--fo-on-navy-soft); }
+
+/* Right: the run, as the dashboard would show it. */
+.folio .rp-run { display: flex; flex-direction: column; min-height: 0; overflow: auto; padding: 20px 22px; background: var(--fo-paper); color: var(--fo-ink); }
+.folio .rp-run-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.folio .rp-run-id { margin-top: 4px; font-family: var(--fo-mono); font-size: 0.84rem; font-weight: 600; color: var(--fo-navy); }
+.folio .rp-pill { padding: 4px 10px; border-radius: var(--fo-r-pill); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--fo-hover); color: var(--fo-ink-faint); }
+.folio .rp-pill.is-pending { background: rgba(10, 37, 64, 0.06); color: var(--fo-ink-soft); }
+.folio .rp-pill.is-running { background: rgba(0, 168, 150, 0.14); color: var(--fo-jade-deep); }
+.folio .rp-pill.is-completed { background: var(--fo-jade); color: #fff; }
+.folio .rp-run-intake { margin: 14px 0 10px; font-family: var(--fo-serif); font-size: 1.25rem; font-style: italic; font-weight: 600; color: var(--fo-navy); }
+.folio .rp-steps li { display: grid; grid-template-columns: 14px minmax(0, 1fr) 48px 60px; align-items: baseline; gap: 10px; padding: 10px 0; border-top: 1px solid var(--fo-hair); }
+.folio .rp-step-dot { width: 9px; height: 9px; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--fo-hair-strong); transform: translateY(1px); }
+.folio .rp-steps .is-live .rp-step-dot { background: var(--fo-jade-bright); box-shadow: none; animation: fo-pulse 1.2s ease-in-out infinite; }
+.folio .rp-steps .is-done .rp-step-dot { background: var(--fo-jade); box-shadow: none; }
+.folio .rp-step-main b { display: block; font-size: 0.88rem; font-weight: 600; color: var(--fo-navy); }
+.folio .rp-step-main em { font-style: normal; color: var(--fo-jade-deep); }
+.folio .rp-step-main small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.74rem; color: var(--fo-ink-faint); }
+.folio .rp-steps .is-wait b { color: var(--fo-ink-faint); }
+.folio .rp-step-num { font-size: 0.8rem; text-align: right; color: var(--fo-ink-soft); font-variant-numeric: tabular-nums; }
+.folio .rp-run-totals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: auto; padding-top: 12px; border-top: 1px solid var(--fo-hair-strong); }
+.folio .rp-run-totals dt { font-size: 0.72rem; color: var(--fo-ink-faint); }
+.folio .rp-run-totals dd { margin: 0; font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; color: var(--fo-navy); font-variant-numeric: tabular-nums; }
+.folio .rp-run-totals .is-you dd { color: var(--fo-jade-deep); }
+.folio .rp-run-totals .rp-small { padding-top: 6px; font-family: var(--fo-mono); font-size: 0.76rem; font-weight: 500; letter-spacing: 0; }
+
+/* Right, at the end: the file. */
+.folio .rp-file { display: flex; flex-direction: column; min-height: 0; overflow: hidden; background: var(--fo-navy-deep); }
+.folio .rp-file img { flex: 1; min-height: 0; width: 100%; object-fit: cover; opacity: var(--in, 1); transform: scale(calc(1.05 - 0.05 * var(--in, 1))); }
+.folio .rp-file-meta { display: flex; flex-direction: column; gap: 2px; padding: 12px 16px 14px; background: var(--fo-paper); }
+.folio .rp-file-meta b { font-family: var(--fo-serif); font-size: 1.15rem; color: var(--fo-navy); }
+.folio .rp-file-meta span { font-family: var(--fo-mono); font-size: 0.7rem; color: var(--fo-ink-faint); }
+.folio .rp-caption { margin-top: 14px; font-size: 0.8rem; color: var(--fo-on-navy-faint); }
+.folio .rp-caption code { color: var(--fo-on-navy-soft); }
+
+/* ── Bands under the hero ── */
+.folio .rp-band { padding: 88px 0; }
+.folio .rp-band .fo-h2 { max-width: none; }
+.folio .rp-band--tint { background: var(--fo-tint); }
+.folio .rp-start { margin-top: 36px; }
+.folio .rp-start-n { display: block; margin-bottom: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; color: var(--fo-jade-deep); }
+.folio .rp-start b a { color: inherit; text-decoration: none; }
+.folio .rp-start b a:hover { color: var(--fo-jade-deep); }
+.folio .rp-start-go { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; }
+
+/* The map: every section, in columns, each opened by a navy rule and its art. */
+.folio .rp-atlas-band { border-top: 1px solid var(--fo-hair); }
+.folio .rp-atlas-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 40px; }
+.folio .rp-atlas-head .fo-textbtn { display: inline-flex; align-items: center; gap: 8px; }
+.folio .rp-atlas-head kbd { padding: 1px 6px; border: 1px solid var(--fo-hair); border-radius: 5px; background: var(--fo-tint); font-size: 0.7rem; color: var(--fo-ink-soft); }
+.folio .rp-atlas { column-count: 3; column-gap: 48px; }
+.folio .rp-atlas-group { break-inside: avoid; margin-bottom: 40px; }
+.folio .rp-atlas-gh { display: flex; align-items: flex-end; gap: 8px; padding-bottom: 8px; border-bottom: 2px solid var(--fo-navy); }
+.folio .rp-atlas-gh b { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fo-navy); }
+.folio .rp-atlas-gh span { font-size: 0.78rem; color: var(--fo-ink-faint); }
+.folio .rp-atlas-gh img { width: 72px; height: 48px; margin: -12px 0 -4px auto; object-fit: contain; }
+.folio .rp-atlas li { padding: 8px 0; border-bottom: 1px solid var(--fo-hair); }
+.folio .rp-atlas li a { display: inline-flex; align-items: center; gap: 4px; font-size: 0.94rem; font-weight: 600; color: var(--fo-navy); text-decoration: none; }
+.folio .rp-atlas li a:hover { color: var(--fo-jade-deep); }
+.folio .rp-atlas li small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.8rem; color: var(--fo-ink-faint); }
+
+/* Principles beside the changelog. */
+.folio .rp-two { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 72px; }
+.folio .rp-principles { margin-top: 12px; }
+.folio .rp-principles li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 12px; padding: 18px 0; border-top: 1px solid var(--fo-hair); }
+.folio .rp-principles li > span { font-family: var(--fo-serif); font-size: 1.6rem; font-style: italic; font-weight: 600; line-height: 1; color: var(--fo-jade-deep); }
+.folio .rp-principles b { font-family: var(--fo-serif); font-size: 1.4rem; font-weight: 700; line-height: 1.2; color: var(--fo-navy); }
+.folio .rp-principles p { margin-top: 4px; font-size: 0.95rem; color: var(--fo-ink-soft); }
+.folio .rp-log { margin: 12px 0 16px; }
+.folio .rp-log-title { font-size: 0.94rem; font-weight: 600; color: var(--fo-navy); text-decoration: none; }
+.folio .rp-log-title:hover { color: var(--fo-jade-deep); }
+.folio .rp-log small { display: block; margin-top: 2px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fo-ink-faint); }
+
+/* The close: Folio's, centred as Folio draws it. */
+.folio .rp-close-h { font-family: var(--fo-serif); font-size: clamp(2.4rem, 4.6vw, 4rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #fff; }
+.folio .rp-close-h em { font-style: italic; font-weight: 600; color: var(--fo-jade-bright); }
+.folio .rp-close p { max-width: 52ch; margin: 16px auto 0; font-size: 1.05rem; color: var(--fo-on-navy-soft); }
+.folio .rp-close-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px; margin-top: 32px; }
+.folio .rp-close-actions .fo-btn, .folio .rp-close-actions .fo-textbtn { display: inline-flex; align-items: center; gap: 8px; }
+
+@media (max-width: 1100px) {
+  .folio .rp-nav-links { display: none; }
+  .folio .rp-atlas { column-count: 2; }
+}
+@media (max-width: 1000px) {
+  .folio .rp-hero-in { grid-template-columns: minmax(0, 1fr); }
+  .folio .rp-hero-find { margin-top: 28px; max-width: 580px; }
+}
+@media (max-width: 900px) {
+  .folio .rp-screen { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .folio .rp-term { max-height: 360px; }
+  .folio .rp-run, .folio .rp-file { min-height: 380px; }
+  .folio .rp-two { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+}
+@media (max-width: 760px) {
+  .folio .rp-wrap, .folio .rp-hero-in, .folio .rp-stage { padding: 0 16px; }
+  .folio .rp-nav { gap: 12px; padding: 16px; }
+  .folio .rp-nav-end .dh-findbtn { width: 40px; padding: 0; justify-content: center; }
+  .folio .rp-nav-end .dh-findbtn span, .folio .rp-nav-end .dh-findbtn kbd, .folio .rp-search kbd { display: none; }
+  .folio .rp-nav-end .fo-btn { padding: 8px 12px; }
+  .folio .rp-hero .dh-lockup-docs { display: none; }
+  .folio .rp-eyebrow { margin-top: 28px; }
+  .folio .rp-stage-top { flex-direction: column; align-items: flex-start; }
+  .folio .rp-stage-top { align-items: stretch; }
+  .folio .rp-chapters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .folio .rp-chapters button { flex: none; padding: 8px 10px 10px; font-size: 0.84rem; white-space: nowrap; }
+  .folio .rp-play { align-self: flex-start; }
+  .folio .rp-beat { font-size: 1.15rem; }
+  .folio .rp-band { padding: 56px 0; }
+  .folio .rp-atlas { column-count: 1; }
+  .folio .rp-atlas-head { flex-direction: column; align-items: flex-start; }
+  .folio .rp-steps li { grid-template-columns: 14px minmax(0, 1fr) 44px; }
+  .folio .rp-steps li .rp-step-num:last-child { display: none; }
+  .folio .rp-close { padding: 80px 0 72px; }
+}

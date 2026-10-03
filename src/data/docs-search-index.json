@@ -1,10 +1,4 @@
 {
-  "/": [
-    "Three pages, in this order.",
-    "{item.title}",
-    "The nouns everything else is built from.",
-    "How Esy thinks about producing output."
-  ],
   "/api": [
     "Base URL and versioning",
     "Authentication",
@@ -152,6 +146,7 @@
     "The feedback loop"
   ],
   "/concepts/characters": [
+    "Two kinds",
     "The parts",
     "Versions keep the face the same",
     "Consent is its own record",

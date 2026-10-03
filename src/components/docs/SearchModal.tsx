@@ -4,27 +4,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight, BookOpen, Search } from 'lucide-react';
 
-import headingIndex from '@/data/docs-search-index.json';
-import { allNavItems, navigation, type NavItem } from '@/lib/docs-navigation';
-
-/**
- * `headings` comes from src/data/docs-search-index.json, generated in prebuild
- * from every page's section headings. `match` is set when the query hit a
- * heading rather than the page title, so the row can say which section.
- */
-type Indexed = NavItem & { section: string; headings: string[]; match?: string };
-
-const HEADINGS = headingIndex as Record<string, string[]>;
-
-function buildIndex(): Indexed[] {
-  return navigation.flatMap((section) =>
-    section.items.map((item) => ({
-      ...item,
-      section: section.title,
-      headings: HEADINGS[item.href] ?? [],
-    })),
-  );
-}
+import { allNavItems } from '@/lib/docs-navigation';
+import { buildIndex, searchDocs, type Indexed } from '@/lib/docs-search';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -43,27 +24,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     [index],
   );
 
-  const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return [];
-    // Page-level hits first, then pages that only matched on a section heading.
-    const pageHits: Indexed[] = [];
-    const headingHits: Indexed[] = [];
-    for (const item of index) {
-      const pageMatch =
-        item.title.toLowerCase().includes(q) ||
-        (item.description ?? '').toLowerCase().includes(q) ||
-        item.section.toLowerCase().includes(q) ||
-        item.href.toLowerCase().includes(q);
-      if (pageMatch) {
-        pageHits.push(item);
-        continue;
-      }
-      const heading = item.headings.find((h) => h.toLowerCase().includes(q));
-      if (heading) headingHits.push({ ...item, match: heading });
-    }
-    return [...pageHits, ...headingHits];
-  }, [query, index]);
+  const results = useMemo(() => searchDocs(index, query), [query, index]);
 
   const display = query ? results : popular;
 
