@@ -1,0 +1,129 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * The docs homepage in Folio: what the three directions share. Folio itself
+ * (src/brands/folio/folio.css) is a verbatim copy from os.esy.com; everything
+ * the docs add sits here, scoped under .folio, prefixed dh-. Each direction
+ * has its own file (desk.css, edition.css, replay.css).
+ * ───────────────────────────────────────────────────────────────────────── */
+
+/* The docs theme styles bare h1–h4 and code site-wide (it was written as the
+   whole site). Inside Folio, put them back to plain: `html :where(.folio) h1`
+   (0,0,2) outranks the theme's `h1` (0,0,1) and still loses to any Folio
+   class (0,1,0), so .fo-display and friends keep their type. */
+html :where(.folio) :is(h1, h2, h3, h4) { margin: 0; font: inherit; letter-spacing: inherit; color: inherit; }
+html :where(.folio) code { padding: 0; border: 0; border-radius: 0; background: none; color: inherit; font-family: var(--fo-mono); font-size: inherit; white-space: inherit; }
+html :where(.folio) kbd { font-family: var(--fo-sans); }
+html :where(.folio) img { display: block; max-width: 100%; }
+.folio { min-height: 100dvh; }
+
+/* ── The lockup: esy | OS, then "Docs" ─────────────────────────────────── */
+.dh-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+.dh-lockup .fo-wordmark { font-size: 1.5rem; line-height: 1; }
+.dh-lockup-docs { margin-left: 2px; padding-left: 12px; border-left: 1px solid var(--fo-hair); font-size: 0.92rem; font-weight: 600; color: var(--fo-navy); }
+.dh-lockup.is-light .fo-wordmark { color: #fff; }
+.dh-lockup.is-light .fo-lockup-sep { background: rgba(255, 255, 255, 0.4); }
+.dh-lockup.is-light .fo-lockup-name { color: rgba(255, 255, 255, 0.6); }
+.dh-lockup.is-light .dh-lockup-docs { border-left-color: var(--fo-on-navy-hair); color: #fff; }
+
+/* ── A find field that opens the palette ───────────────────────────────── */
+.dh-findbtn { display: inline-flex; align-items: center; gap: 10px; width: 260px; height: 36px; padding: 0 8px 0 12px; border: 1px solid var(--fo-hair-strong); border-radius: var(--fo-r-control); background: var(--fo-paper); font-size: 0.88rem; color: var(--fo-ink-faint); text-align: left; cursor: pointer; transition: border-color var(--fo-ease); }
+.dh-findbtn:hover { border-color: var(--fo-jade); }
+.dh-findbtn span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dh-findbtn kbd, .dh-find kbd { padding: 2px 6px; border: 1px solid var(--fo-hair); border-radius: 5px; background: var(--fo-tint); font-size: 0.7rem; font-weight: 600; color: var(--fo-ink-soft); }
+.dh-findbtn.is-navy { border-color: rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.06); color: var(--fo-on-navy-soft); }
+.dh-findbtn.is-navy:hover { border-color: var(--fo-jade-bright); }
+.dh-findbtn.is-navy kbd { border-color: rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.08); color: var(--fo-on-navy-soft); }
+.dh-search-icon { flex: none; }
+
+/* ── The palette ───────────────────────────────────────────────────────────
+ * Folio's overlay manners: a scrim, a floating paper pane, Escape closes. The
+ * picked row is Folio's: a jade left rule on a jade wash, square. */
+.dh-find-scrim { display: flex; justify-content: center; align-items: flex-start; padding: 12vh 16px 16px; z-index: 70; }
+.dh-find { display: flex; flex-direction: column; width: min(640px, 100%); max-height: 72vh; overflow: hidden; border-radius: var(--fo-r-pane); background: var(--fo-paper); box-shadow: var(--fo-drawer); animation: dh-rise 0.18s ease; }
+@keyframes dh-rise { from { transform: translateY(8px); opacity: 0; } }
+.dh-find-bar { display: flex; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid var(--fo-hair); color: var(--fo-ink-faint); }
+.dh-find-bar input { flex: 1; min-width: 0; height: 56px; border: 0; background: none; font-size: 1.05rem; color: var(--fo-ink); }
+.dh-find-bar input:focus { outline: none; }
+.dh-find-bar input::placeholder { color: var(--fo-ink-faint); }
+.dh-find-bar kbd { cursor: pointer; }
+.dh-find-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 12px 16px 4px; }
+.dh-find-chips span { margin-right: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.dh-find-chips button { padding: 4px 10px; border: 1px solid var(--fo-hair-strong); border-radius: var(--fo-r-pill); background: var(--fo-paper); font-size: 0.8rem; color: var(--fo-ink-soft); }
+.dh-find-chips button:hover { border-color: var(--fo-jade); color: var(--fo-jade-deep); }
+.dh-find-list { flex: 1; min-height: 0; overflow-y: auto; padding: 6px 0 8px; scrollbar-width: thin; }
+.dh-find-group { padding: 10px 16px 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.dh-find-row { display: grid; grid-template-columns: 120px minmax(0, 1fr) 16px; align-items: baseline; gap: 14px; padding: 9px 16px 9px 14px; border-left: 2px solid transparent; text-decoration: none; }
+.dh-find-row.is-on { border-left-color: var(--fo-jade); background: var(--fo-jade-wash); }
+.dh-find-sec { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: var(--fo-ink-faint); }
+.dh-find-main { display: flex; flex-direction: column; min-width: 0; }
+.dh-find-main b { font-size: 0.95rem; font-weight: 600; color: var(--fo-navy); }
+.dh-find-main small, .dh-find-main em { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.82rem; font-style: normal; color: var(--fo-ink-soft); }
+.dh-find-main em { color: var(--fo-jade-deep); }
+.dh-find-main mark { background: rgba(0, 168, 150, 0.16); color: inherit; border-radius: 2px; }
+.dh-find-go { font-size: 0.8rem; color: var(--fo-jade-deep); opacity: 0; }
+.dh-find-row.is-on .dh-find-go { opacity: 1; }
+.dh-find-none { padding: 28px 16px; font-size: 0.92rem; color: var(--fo-ink-soft); }
+.dh-find-foot { display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px; border-top: 1px solid var(--fo-hair); background: var(--fo-tint); font-size: 0.76rem; color: var(--fo-ink-faint); }
+.dh-find-foot kbd { margin: 0 2px; padding: 1px 5px; }
+
+/* ── Code ──────────────────────────────────────────────────────────────── */
+.dh-code { margin: 0; padding: 16px 18px; overflow-x: auto; font-family: var(--fo-mono); font-size: 0.8rem; line-height: 1.65; color: var(--fo-ink); white-space: pre; scrollbar-width: thin; }
+.dh-t-com { color: var(--fo-ink-faint); font-style: italic; }
+.dh-t-key { color: var(--fo-navy); font-weight: 600; }
+.dh-t-str { color: var(--fo-jade-deep); }
+.dh-t-flag, .dh-t-kw { color: #6A4FB0; }
+.dh-t-num { color: var(--fo-gold); }
+
+/* Code with tabs: a cased pane, a bar with text tabs (jade underline) and Copy. */
+.dh-codetabs { overflow: hidden; border-radius: var(--fo-r-pane); background: var(--fo-tint); box-shadow: 0 0 0 1px var(--fo-hair); }
+.dh-codetabs-bar { display: flex; align-items: center; gap: 18px; height: 42px; padding: 0 10px 0 16px; border-bottom: 1px solid var(--fo-hair); background: var(--fo-paper); }
+.dh-codetabs-title { font-family: var(--fo-mono); font-size: 0.76rem; font-weight: 600; color: var(--fo-navy); }
+.dh-codetabs-tabs { display: flex; gap: 18px; height: 100%; }
+.dh-codetabs-tabs button { margin-bottom: -1px; padding: 0; border: 0; border-bottom: 2px solid transparent; background: none; font-size: 0.82rem; font-weight: 600; color: var(--fo-ink-faint); }
+.dh-codetabs-tabs button:hover { color: var(--fo-navy); }
+.dh-codetabs-tabs button.is-on { border-bottom-color: var(--fo-jade); color: var(--fo-navy); }
+.dh-codetabs .dh-copy { margin-left: auto; }
+.dh-copy { padding: 5px 10px; border: 1px solid var(--fo-hair-strong); border-radius: 6px; background: var(--fo-paper); font-size: 0.76rem; font-weight: 600; color: var(--fo-navy); transition: border-color var(--fo-ease), color var(--fo-ease); }
+.dh-copy:hover { border-color: var(--fo-navy); }
+.dh-copy.is-done { border-color: var(--fo-jade); color: var(--fo-jade-deep); }
+
+/* Night code: for navy surfaces (the replay's device, a terminal). */
+.dh-codetabs.is-night { background: #0B1B2E; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08); }
+.dh-codetabs.is-night .dh-codetabs-bar { border-bottom-color: rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); }
+.dh-codetabs.is-night .dh-codetabs-tabs button { color: var(--fo-on-navy-faint); }
+.dh-codetabs.is-night .dh-codetabs-tabs button:hover, .dh-codetabs.is-night .dh-codetabs-tabs button.is-on { color: #fff; }
+.dh-codetabs.is-night .dh-codetabs-tabs button.is-on { border-bottom-color: var(--fo-jade-bright); }
+.dh-codetabs.is-night .dh-codetabs-title { color: #fff; }
+.is-night .dh-code, .dh-code.is-night { color: #D6E2EE; }
+.is-night .dh-t-com { color: rgba(214, 226, 238, 0.45); }
+.is-night .dh-t-key { color: #fff; }
+.is-night .dh-t-str { color: var(--fo-jade-bright); }
+.is-night .dh-t-flag, .is-night .dh-t-kw { color: #B9A6F2; }
+.is-night .dh-t-num { color: var(--fo-gold-on-navy); }
+.is-night .dh-copy { border-color: rgba(255, 255, 255, 0.18); background: transparent; color: #fff; }
+.is-night .dh-copy:hover { border-color: #fff; }
+.is-night .dh-copy.is-done { border-color: var(--fo-jade-bright); color: var(--fo-jade-bright); }
+
+/* ── Small things ──────────────────────────────────────────────────────── */
+.dh-arrow { display: inline-block; vertical-align: -1px; transition: transform var(--fo-ease); }
+a:hover > .dh-arrow, button:hover > .dh-arrow { transform: translateX(2px); }
+.dh-new { display: inline-block; width: 6px; height: 6px; margin-left: 6px; border-radius: 50%; background: var(--fo-jade); vertical-align: 2px; }
+.dh-ext { margin-left: 4px; font-size: 0.8em; color: var(--fo-ink-faint); }
+
+/* ── The footer ────────────────────────────────────────────────────────── */
+.dh-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding: 28px 32px 96px; border-top: 1px solid var(--fo-hair); background: var(--fo-paper); }
+.dh-foot.is-canvas { background: transparent; border-top: 0; }
+.dh-foot nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.dh-foot nav a { font-size: 0.86rem; color: var(--fo-ink-soft); text-decoration: none; }
+.dh-foot nav a:hover { color: var(--fo-navy); }
+.dh-foot small { margin-left: auto; font-size: 0.8rem; color: var(--fo-ink-faint); }
+
+@media (max-width: 760px) {
+  .dh-find-scrim { padding-top: 8vh; }
+  .dh-find-row { grid-template-columns: minmax(0, 1fr) 16px; gap: 2px 12px; }
+  .dh-find-sec { grid-column: 1; }
+  .dh-find-main { grid-column: 1; }
+  .dh-find-go { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  .dh-find-foot span:first-child { display: none; }
+  .dh-foot { padding: 24px 16px 96px; }
+  .dh-foot small { margin-left: 0; }
+}

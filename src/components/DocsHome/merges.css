@@ -1,0 +1,85 @@
+/* Round 2, the A + C merges. D · Desk Replay (prefix dr-) seats C's replay at
+   the top of A's main pane; E · Stage Desk (prefix sd-) puts C's hero above
+   A's panes. Both reuse desk.css and replay.css; this file only seats them. */
+
+/* ── D · Desk Replay ──────────────────────────────────────────────────── */
+.folio .dr-main { overflow-x: hidden; }
+/* The stage: flush to the top of the pane, deep navy, a jade glow in the corner. */
+.folio .dr-stage { position: relative; padding: 32px 32px 28px; background: radial-gradient(70% 60% at 100% 0%, rgba(0, 212, 170, 0.14), transparent 60%), var(--fo-navy-deep); color: #fff; }
+.folio .dr-eyebrow { color: var(--fo-jade-bright); }
+.folio .dr-h1 { margin-top: 10px; font-family: var(--fo-serif); font-size: clamp(2.3rem, 3.4vw, 3.3rem); font-weight: 700; line-height: 1; letter-spacing: -0.025em; color: #fff; }
+.folio .dr-h1 em { font-style: italic; font-weight: 600; color: var(--fo-jade-bright); }
+.folio .dr-lede { margin-top: 14px; max-width: 62ch; font-size: 0.98rem; line-height: 1.6; color: var(--fo-on-navy-soft); }
+.folio .dr-replay { max-width: none; margin: 22px 0 0; padding: 0; }
+/* Side by side only where the pane is wide enough; narrower, replay.css stacks it. */
+@media (min-width: 1100px) {
+  .folio .dr-replay .rp-screen { height: 440px; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); }
+}
+@media (max-width: 1099px) {
+  .folio .dr-replay .rp-screen { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .folio .dr-replay .rp-term { max-height: 340px; }
+  .folio .dr-replay .rp-run, .folio .dr-replay .rp-file { min-height: 360px; }
+}
+.folio .dr-replay .rp-term .dh-code { font-size: 0.7rem; }
+.folio .dr-main-in { padding-top: 28px; }
+.folio .dr-main-in > .fo-quiet { margin-top: 0; }
+.folio .dr-main-in > .fo-tier:first-of-type { margin-top: 32px; }
+
+@media (max-width: 760px) {
+  .folio .dr-stage { padding: 24px 16px 20px; }
+  .folio .dr-replay .rp-stage-top { flex-direction: column; align-items: stretch; }
+}
+
+/* ── E · Stage Desk ───────────────────────────────────────────────────── */
+/* One frame for bar, hero and desk, so their left edges line up. */
+.folio .sd-frame, .folio .sd-bar-in, .folio .sd-hero .rp-hero-in, .folio .sd-hero .rp-stage { max-width: 1376px; margin-left: auto; margin-right: auto; padding-left: 32px; padding-right: 32px; }
+
+/* The bar: navy over the hero, Folio's raised paper bar after it. */
+.folio .sd-bar { position: sticky; top: 0; z-index: 30; background: var(--fo-navy-deep); transition: background 0.2s ease, box-shadow 0.2s ease; }
+.folio .sd-bar.is-solid { background: var(--fo-paper); box-shadow: var(--fo-bar-shadow); }
+.folio .sd-bar-in { display: flex; align-items: center; gap: 36px; height: 64px; }
+.folio .sd-nav { display: flex; gap: 26px; }
+.folio .sd-nav a { font-size: 0.92rem; color: var(--fo-on-navy-soft); text-decoration: none; white-space: nowrap; }
+.folio .sd-nav a:hover { color: #fff; }
+.folio .sd-bar.is-solid .sd-nav a { color: var(--fo-ink-soft); }
+.folio .sd-bar.is-solid .sd-nav a:hover { color: var(--fo-navy); }
+.folio .sd-bar-end { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.folio .sd-bar-end .dh-findbtn { width: 220px; }
+
+.folio .sd-hero .rp-eyebrow { margin-top: 28px; }
+.folio .sd-hero .rp-stage { margin-top: 44px; }
+
+/* The desk: A's panes on the canvas; the rails stick while the middle scrolls. */
+.folio .sd-desk { padding: 56px 0 12px; background: var(--fo-canvas); }
+.folio .sd-desk-head { margin-bottom: 24px; }
+.folio .sd-desk-title { margin-top: 8px; font-family: var(--fo-serif); font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: var(--fo-navy); }
+.folio .sd-grid { display: grid; grid-template-columns: 248px minmax(0, 1fr) 320px; align-items: start; gap: 12px; }
+.folio .sd-grid > .dk-left, .folio .sd-grid > .dk-right { position: sticky; top: 76px; max-height: calc(100dvh - 88px); }
+.folio .sd-main { overflow: visible; }
+.folio .sd-main .fo-main-in { max-width: none; padding: 8px 40px 56px; }
+.folio .sd-main .fo-main-in > .fo-tier:first-child { margin-top: 28px; }
+.folio .sd-desk + .dh-foot { padding-top: 32px; }
+
+@media (max-width: 1180px) {
+  .folio .sd-grid { grid-template-columns: minmax(0, 1fr) 300px; }
+  .folio .sd-grid > .dk-left { display: none; }
+}
+@media (max-width: 1000px) {
+  .folio .sd-nav { display: none; }
+}
+@media (max-width: 860px) {
+  .folio .sd-grid { grid-template-columns: minmax(0, 1fr); }
+  .folio .sd-grid > .dk-right { position: static; max-height: none; }
+}
+@media (max-width: 760px) {
+  .folio .sd-frame, .folio .sd-bar-in, .folio .sd-hero .rp-hero-in, .folio .sd-hero .rp-stage { padding-left: 16px; padding-right: 16px; }
+  .folio .sd-bar-in { gap: 12px; height: 56px; }
+  .folio .sd-bar-end .dh-findbtn { width: 40px; padding: 0; justify-content: center; }
+  .folio .sd-bar-end .dh-findbtn span, .folio .sd-bar-end .dh-findbtn kbd { display: none; }
+  .folio .sd-bar-end .fo-btn { padding: 8px 12px; }
+  .folio .sd-desk { padding-top: 40px; }
+  .folio .sd-main .fo-main-in { padding: 4px 18px 40px; }
+}
+@media (max-width: 560px) {
+  .folio .sd-bar .dh-lockup-docs { display: none; }
+}

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import { BrandMark } from '@/components/docs/BrandMark';
+import { DocsFrame } from '@/components/docs/DocsFrame';
 import { DocsShellClient } from '@/components/docs/DocsShellClient';
 import { ThemeToggle } from '@/components/docs/ThemeToggle';
 
@@ -43,84 +44,80 @@ function YouTubeIcon() {
 
 export function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="docs-shell">
-      <div className="docs-shell-inner">
-        <DocsShellClient />
-
-        <main className="docs-main">
-          {children}
-
-          <footer className="footer footer--light">
-            <div className="footer-content">
-              <div className="footer-brand">
-                <Link href="/" aria-label="Esy docs home" className="footer-logo">
-                  <BrandMark />
-                </Link>
-                <p className="footer-desc">
-                  Agentic workflow templates for the agentic engineer — research, campaigns, and deliverables that grow
-                  your business.
-                  <br />
-                  <strong>Automate &amp; audit.</strong>
-                </p>
-                <div className="footer-socials">
-                  <a
-                    href="https://synthesize.esy.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-link"
-                    aria-label="Esy on Substack"
-                  >
-                    <SubstackIcon />
-                  </a>
-                  <a
-                    href="https://www.youtube.com/@EsyDotCom"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-link"
-                    aria-label="Esy on YouTube"
-                  >
-                    <YouTubeIcon />
-                  </a>
-                </div>
+    <DocsFrame
+      chrome={<DocsShellClient />}
+      themeToggle={<ThemeToggle />}
+      footer={
+        <footer className="footer footer--light">
+          <div className="footer-content">
+            <div className="footer-brand">
+              <Link href="/" aria-label="Esy docs home" className="footer-logo">
+                <BrandMark />
+              </Link>
+              <p className="footer-desc">
+                Agentic workflow templates for the agentic engineer — research, campaigns, and deliverables that grow
+                your business.
+                <br />
+                <strong>Automate &amp; audit.</strong>
+              </p>
+              <div className="footer-socials">
+                <a
+                  href="https://synthesize.esy.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label="Esy on Substack"
+                >
+                  <SubstackIcon />
+                </a>
+                <a
+                  href="https://www.youtube.com/@EsyDotCom"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label="Esy on YouTube"
+                >
+                  <YouTubeIcon />
+                </a>
               </div>
-
-              <FooterColumn
-                title="Explore"
-                links={[
-                  { href: 'https://esy.com/templates/', text: 'Templates' },
-                  { href: 'https://esy.com/ai-agents/', text: 'AI Agents' },
-                  { href: 'https://esy.com/glossary/', text: 'Glossary' },
-                ]}
-              />
-
-              <FooterColumn
-                title="Resources"
-                links={[
-                  { href: 'https://esy.com/agentic/', text: 'The Agentic Engineer' },
-                  { href: 'https://esy.com/courses/', text: 'AI Courses' },
-                  { href: '/api', text: 'API' },
-                  { href: '/guides', text: 'Guides' },
-                ]}
-              />
-
-              <FooterColumn
-                title="Company"
-                links={[
-                  { href: 'https://esy.com/about/', text: 'About' },
-                  { href: 'https://esy.com/privacy/', text: 'Privacy' },
-                  { href: 'https://esy.com/terms/', text: 'Terms' },
-                ]}
-              />
             </div>
 
-            <div className="footer-bottom">
-              <p>&copy; 2024-2026 ESY, LLC. All rights reserved.</p>
-            </div>
-          </footer>
-        </main>
-      </div>
+            <FooterColumn
+              title="Explore"
+              links={[
+                { href: 'https://esy.com/templates/', text: 'Templates' },
+                { href: 'https://esy.com/ai-agents/', text: 'AI Agents' },
+                { href: 'https://esy.com/glossary/', text: 'Glossary' },
+              ]}
+            />
 
-      <ThemeToggle />
-    </div>
+            <FooterColumn
+              title="Resources"
+              links={[
+                { href: 'https://esy.com/agentic/', text: 'The Agentic Engineer' },
+                { href: 'https://esy.com/courses/', text: 'AI Courses' },
+                { href: '/api', text: 'API' },
+                { href: '/guides', text: 'Guides' },
+              ]}
+            />
+
+            <FooterColumn
+              title="Company"
+              links={[
+                { href: 'https://esy.com/about/', text: 'About' },
+                { href: 'https://esy.com/privacy/', text: 'Privacy' },
+                { href: 'https://esy.com/terms/', text: 'Terms' },
+              ]}
+            />
+          </div>
+
+          <div className="footer-bottom">
+            <p>&copy; 2024-2026 ESY, LLC. All rights reserved.</p>
+          </div>
+        </footer>
+      }
+    >
+      {children}
+    </DocsFrame>
   );
 }

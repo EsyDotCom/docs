@@ -48,6 +48,8 @@ function walk(dir) {
   const out = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
+    // Prototypes are noindex design directions, not docs: keep them out of search.
+    if (entry.isDirectory() && full === path.join(DOCS_DIR, 'prototypes')) continue;
     if (entry.isDirectory()) out.push(...walk(full));
     else if (entry.name === 'page.tsx') out.push(full);
   }

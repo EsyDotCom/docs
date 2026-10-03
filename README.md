@@ -20,6 +20,8 @@ npm run dev          # http://localhost:3000
 | `src/components/docs/Primitives.tsx` | The building blocks pages are written in: `PropertyTable`, `Endpoint`, `Diagram`, `Callout`, and so on. |
 | `src/app/docs-theme.css` | The design system. Both themes come from one set of tokens. |
 | `public/brand/docs/` | Section art: transparent cutouts generated through Esy's own clip-art workflow. |
+| `src/components/DocsHome/` | The homepage, in Folio (os.esy.com's look; `src/brands/folio/folio.css` is a verbatim copy). It brings its own chrome, so the sidebar is off on `/`. |
+| `src/app/prototypes/` | Clickable design directions, as on esy.com/prototypes: a registry, a floating switcher, an index. Noindex, and kept out of search and the sitemap. |
 
 A page belongs in the sidebar. If you add one, add it to `docs-navigation.ts` too — an unlisted page is unreachable.
 

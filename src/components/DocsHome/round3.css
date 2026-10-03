@@ -1,0 +1,94 @@
+/* Round 3: E's top stays put (stage-top.tsx, merges.css); these are the three
+   ways to fill what's below the fold, F · Guide (gd-), G · Jobs (jb-) and
+   H · Reference (rf-), with what they share (r3-). No three-pane desk: each
+   is one reading column on paper. */
+
+/* ── Shared ── */
+.folio.r3-app { background: var(--fo-paper); }
+.folio .r3-sec { padding: 88px 0 72px; }
+.folio .r3-sec--tint { padding: 64px 0; background: var(--fo-tint); }
+.folio .r3-col > *, .folio .r3-wide > * { max-width: 960px; }
+.folio .r3-wide > .jb-band { max-width: 1160px; }
+.folio .r3-h2 { max-width: none; }
+.folio .r3-sec .fo-quiet { margin-top: 12px; }
+.folio .gd-rest { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--fo-hair); font-size: 0.92rem; color: var(--fo-ink-soft); }
+.folio .gd-rest .fo-textbtn { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; font-size: 0.92rem; }
+.folio .gd-rest kbd { padding: 1px 6px; border: 1px solid var(--fo-hair); border-radius: 5px; background: var(--fo-tint); font-size: 0.7rem; color: var(--fo-ink-soft); }
+.folio .r3-log { margin: 12px 0 16px; }
+.folio .r3-log-title { font-size: 0.98rem; font-weight: 600; color: var(--fo-navy); text-decoration: none; }
+.folio .r3-log-title:hover { color: var(--fo-jade-deep); }
+.folio .r3-log small { display: block; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.82rem; color: var(--fo-ink-faint); }
+
+/* ── F · Guide: chapters with their number in the margin ── */
+.folio .gd-chapters { margin-top: 40px; }
+.folio .gd-ch { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px; padding: 28px 0 32px; border-top: 2px solid var(--fo-navy); }
+.folio .gd-n { font-family: var(--fo-serif); font-size: 2.6rem; font-style: italic; font-weight: 600; line-height: 1; color: var(--fo-jade-deep); }
+.folio .gd-title { font-family: var(--fo-serif); font-size: 1.9rem; font-weight: 700; line-height: 1.1; color: var(--fo-navy); }
+.folio .gd-line { margin-top: 6px; font-size: 1rem; color: var(--fo-ink-soft); }
+.folio .gd-pages { margin-top: 16px; }
+.folio .gd-pages li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-top: 1px solid var(--fo-hair); }
+.folio .gd-pages a { display: flex; align-items: baseline; gap: 14px; min-width: 0; padding: 11px 0; text-decoration: none; }
+.folio .gd-pages b { flex: none; font-family: var(--fo-serif); font-size: 1.18rem; font-weight: 700; color: var(--fo-navy); }
+.folio .gd-pages a span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.88rem; color: var(--fo-ink-faint); }
+.folio .gd-pages a:hover b { color: var(--fo-jade-deep); }
+.folio .gd-go { margin-top: 18px; }
+
+/* ── G · Jobs: a band per job, the job on the left, its pages on the right ── */
+.folio .jb-band { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 40px; margin-top: 40px; padding-top: 22px; border-top: 2px solid var(--fo-navy); }
+.folio .jb-band:first-of-type { margin-top: 44px; }
+.folio .jb-n { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; color: var(--fo-jade-deep); }
+.folio .jb-side h3 { margin-top: 6px; font-family: var(--fo-serif); font-size: 1.75rem; font-weight: 700; line-height: 1.1; color: var(--fo-navy); }
+.folio .jb-side p { margin-top: 8px; font-size: 0.95rem; color: var(--fo-ink-soft); }
+.folio .jb-lines > li { grid-template-columns: 84px minmax(150px, 0.7fr) minmax(0, 1.4fr) auto; padding: 12px 0; }
+.folio .jb-lines > li:first-child { padding-top: 2px; }
+.folio .jb-desc { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.86rem; color: var(--fo-ink-faint); }
+
+/* ── H · Reference: a spec table and the endpoints ── */
+.folio .rf-spec > div { display: grid; grid-template-columns: 180px minmax(0, 1fr) 72px; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--fo-hair); }
+.folio .rf-spec dt a { font-size: 0.9rem; font-weight: 600; color: var(--fo-navy); text-decoration: none; }
+.folio .rf-spec dt a:hover { color: var(--fo-jade-deep); }
+.folio .rf-spec dd { margin: 0; }
+.folio .rf-spec code { font-size: 0.86rem; color: var(--fo-ink); }
+.folio .rf-spec > div > span { text-align: right; }
+.folio .rf-group { padding: 18px 0 8px; border-bottom: 1px solid var(--fo-hair); }
+.folio .rf-group h3 { display: flex; align-items: baseline; gap: 14px; }
+.folio .rf-group h3 a { flex: none; font-family: var(--fo-serif); font-size: 1.35rem; font-weight: 700; color: var(--fo-navy); text-decoration: none; }
+.folio .rf-group h3 a:hover { color: var(--fo-jade-deep); }
+.folio .rf-group h3 span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.86rem; color: var(--fo-ink-faint); }
+.folio .rf-group ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); column-gap: 32px; margin-top: 8px; }
+.folio .rf-group li a { display: flex; align-items: baseline; gap: 12px; padding: 6px 0; text-decoration: none; }
+.folio .rf-group li a:hover code { color: var(--fo-jade-deep); }
+.folio .rf-group code { font-size: 0.84rem; color: var(--fo-navy); }
+.folio .rf-m { flex: none; width: 52px; font-family: var(--fo-mono); font-size: 0.72rem; font-weight: 700; color: var(--fo-ink-faint); }
+.folio .rf-m.is-get { color: var(--fo-jade-deep); }
+.folio .rf-m.is-post { color: var(--fo-navy); }
+.folio .rf-m.is-patch, .folio .rf-m.is-put { color: var(--fo-gold); }
+.folio .rf-m.is-delete { color: var(--fo-danger); }
+.folio .rf-more { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin-top: 18px; font-size: 0.9rem; }
+.folio .rf-more span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fo-ink-faint); }
+.folio .rf-more a { color: var(--fo-navy); font-weight: 500; text-decoration: underline; text-decoration-color: var(--fo-hair-strong); text-underline-offset: 3px; }
+.folio .rf-more a:hover { color: var(--fo-jade-deep); }
+
+@media (max-width: 860px) {
+  .folio .jb-band { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .folio .jb-lines > li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .folio .jb-desc { white-space: normal; }
+  .folio .jb-lines .fo-line-actions { display: none; }
+}
+@media (max-width: 760px) {
+  .folio .r3-sec { padding: 56px 0 48px; }
+  .folio .gd-ch { grid-template-columns: minmax(0, 1fr); }
+  .folio .gd-n { font-size: 2rem; }
+  .folio .gd-title { font-size: 1.55rem; }
+  .folio .gd-pages a { flex-direction: column; gap: 0; }
+  .folio .gd-pages a span { white-space: normal; }
+  .folio .gd-pages .fo-stage { display: none; }
+  .folio .rf-spec > div { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; }
+  .folio .rf-spec dd { grid-column: 1 / -1; grid-row: 2; }
+  .folio .rf-spec code { word-break: break-word; }
+  .folio .rf-group h3 { flex-direction: column; gap: 2px; }
+  .folio .rf-group h3 span { white-space: normal; }
+  .folio .rf-group ul { grid-template-columns: minmax(0, 1fr); }
+  .folio .rf-group code { word-break: break-all; }
+  .folio .r3-log small { white-space: normal; }
+}

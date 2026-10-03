@@ -186,8 +186,8 @@
     "Reading the schema",
     "When it does not validate",
     "Artifact inputs",
-    "The rule behind the schemas",
-    "Why it is built this way",
+    "How intake fields are scoped",
+    "What a mechanism field would break",
     "Seeing what was actually used"
   ],
   "/concepts/library": [
@@ -380,12 +380,21 @@
     "Troubleshooting"
   ],
   "/how-esy-works": [
-    "The five nouns",
-    "What happens inside a run",
-    "The lifecycle you will actually see",
-    "Ask for outcomes, not mechanisms",
-    "Where the money is counted",
-    "What Esy is not"
+    "Execution overview",
+    "Workspaces and projects",
+    "Workflows",
+    "Runs",
+    "Run statuses",
+    "Steps and gates",
+    "Step kinds",
+    "Automated gates",
+    "Human gates",
+    "Artifacts",
+    "Inputs and model selection",
+    "Costs and budgets",
+    "Budgets",
+    "End to end",
+    "What Esy manages"
   ],
   "/integrations/beehiiv": [
     "The model",
