@@ -32,6 +32,20 @@
     "POST /v1/artifacts/{artifact_id}/comments",
     "DELETE /v1/artifacts/{artifact_id}"
   ],
+  "/api/characters": [
+    "From nothing to a run",
+    "Characters",
+    "Versions and the gate",
+    "People and consent",
+    "Provider copies",
+    "Errors"
+  ],
+  "/api/clients": [
+    "Clients",
+    "Contacts",
+    "Projects",
+    "Errors"
+  ],
   "/api/costs": [
     "GET /v1/costs",
     "GET /v1/budgets",
@@ -137,6 +151,19 @@
     "Day directives",
     "The feedback loop"
   ],
+  "/concepts/characters": [
+    "The parts",
+    "Versions keep the face the same",
+    "Consent is its own record",
+    "The gate",
+    "Disclosure and provenance"
+  ],
+  "/concepts/clients": [
+    "Who is who",
+    "Billing terms",
+    "Status",
+    "What rolls up to a client"
+  ],
   "/concepts/collections": [
     "Collection, order, or artifact?",
     "What a collection holds",
@@ -186,8 +213,8 @@
     "Reading the schema",
     "When it does not validate",
     "Artifact inputs",
-    "The rule behind the schemas",
-    "Why it is built this way",
+    "How intake fields are scoped",
+    "What a mechanism field would break",
     "Seeing what was actually used"
   ],
   "/concepts/library": [
@@ -308,7 +335,10 @@
     "Artifact schema",
     "Budget",
     "Capability flag",
+    "Character",
+    "Client",
     "Collection",
+    "Consent",
     "Cost ledger",
     "Cost state",
     "Gate",
@@ -380,12 +410,21 @@
     "Troubleshooting"
   ],
   "/how-esy-works": [
-    "The five nouns",
-    "What happens inside a run",
-    "The lifecycle you will actually see",
-    "Ask for outcomes, not mechanisms",
-    "Where the money is counted",
-    "What Esy is not"
+    "Execution overview",
+    "Workspaces and projects",
+    "Workflows",
+    "Runs",
+    "Run statuses",
+    "Steps and gates",
+    "Step kinds",
+    "Automated gates",
+    "Human gates",
+    "Artifacts",
+    "Inputs and model selection",
+    "Costs and budgets",
+    "Budgets",
+    "End to end",
+    "What Esy manages"
   ],
   "/integrations/beehiiv": [
     "The model",

@@ -72,6 +72,28 @@ const TERMS: Term[] = [
     href: '/concepts/intake',
   },
   {
+    term: 'Character',
+    also: 'avatar',
+    def: (
+      <>
+        A face a project uses again and again, invented (synthetic) or depicting a real person (likeness).
+        Its versions never change and runs pin one; a likeness needs the person’s active consent, checked on
+        every run.
+      </>
+    ),
+    href: '/concepts/characters',
+  },
+  {
+    term: 'Client',
+    def: (
+      <>
+        A business a workspace works for. It groups the projects that are its domains and carries the business:
+        status, billing terms, contacts. A project with no client is one of the workspace’s own brands.
+      </>
+    ),
+    href: '/concepts/clients',
+  },
+  {
     term: 'Collection',
     also: 'collective artifact, pack',
     def: (
@@ -81,6 +103,17 @@ const TERMS: Term[] = [
       </>
     ),
     href: '/concepts/collections',
+  },
+  {
+    term: 'Consent',
+    also: 'likeness consent',
+    def: (
+      <>
+        A real person’s permission to use their face and/or voice: which uses, where, from when to when, with
+        the evidence. Pending until activated; its terms freeze once active; revoked is final.
+      </>
+    ),
+    href: '/concepts/characters',
   },
   {
     term: 'Cost ledger',
