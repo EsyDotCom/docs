@@ -280,6 +280,39 @@ export const navigation: NavSection[] = [
     ],
   },
   {
+    title: 'Clients and avatars',
+    items: [
+      {
+        title: 'Clients',
+        href: '/concepts/clients',
+        description: 'The businesses a workspace works for: status, billing terms, contacts, and the projects that are their domains.',
+        icon: 'users',
+        since: '2026-10-03',
+      },
+      {
+        title: 'Characters',
+        href: '/concepts/characters',
+        description: 'Avatars, invented or real: versions that never change, and a real person’s consent checked on every run.',
+        icon: 'shield',
+        since: '2026-10-03',
+      },
+      {
+        title: 'Clients API',
+        href: '/api/clients',
+        description: 'Clients, contacts, status history, and which projects belong to whom.',
+        icon: 'users',
+        since: '2026-10-03',
+      },
+      {
+        title: 'Characters API',
+        href: '/api/characters',
+        description: 'Characters, versions, people, likeness consent, provider copies, and the gate.',
+        icon: 'shield',
+        since: '2026-10-03',
+      },
+    ],
+  },
+  {
     title: 'Automation',
     items: [
       {
