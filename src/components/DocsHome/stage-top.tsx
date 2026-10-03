@@ -11,8 +11,8 @@ import './merges.css';
 // ───────────────────────────────────────────────────────────────────────────
 // E's top, shared by E and round 3 (F, G, H) so it is the same in each: a bar
 // that starts navy over the hero and becomes Folio's raised paper bar past
-// it, then C's hero (headline, search) and the replay. Only what comes below
-// the fold changes between them.
+// it, taking over search from the hero then; C's hero (headline, search);
+// and the replay. Only what comes below the fold changes between them.
 // ───────────────────────────────────────────────────────────────────────────
 
 const TOP: [string, string][] = [
@@ -48,7 +48,8 @@ export function StageTop({ onFind }: { onFind: (q?: string) => void }) {
             ))}
           </nav>
           <div className="sd-bar-end">
-            <FindButton tone={solid ? 'paper' : 'navy'} label="Search" onOpen={() => onFind()} />
+            {/* One search on screen at a time: the hero's own field until it scrolls away, then this one. */}
+            {solid && <FindButton label="Search" onOpen={() => onFind()} />}
             <a className={`fo-btn ${solid ? 'fo-btn--primary' : 'fo-btn--light'}`} href={APP_URL}>
               Get an API key
             </a>
