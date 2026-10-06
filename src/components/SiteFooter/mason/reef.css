@@ -1,0 +1,66 @@
+/* Copied verbatim from esy.com, src/components/BrandShapes/reef.css (main at 4767ae31, 2026-10-06), so docs.esy.com ends the way esy.com does. Re-copy it rather than editing here. */
+/* Mason's reef: the rules the live footer world needs (2026-10-06).
+ * Copied from the prototype sheet (brand-shapes.css, rounds 3, 5 and 10) so
+ * the footer ships a couple of kilobytes instead of every prototype's styles.
+ * The prototype sheet keeps its own copies; the selectors match exactly, so
+ * where both load they agree. */
+
+/* The scene in the footer slot: as wide as the old factory plate, wider on phones. */
+.bs-fw { --bs-mint: #2BD8BB; }
+.bs-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.bs-fw .bs-fs { width: min(1500px, 104vw); height: auto; display: block; flex: none; overflow: visible; }
+@media (max-width: 900px) { .bs-fw .bs-fs { width: 190vw; } }
+.bs-fs .bs-svg, .bs-fs svg { overflow: hidden; }
+.bs-sim *, .bs-oct g { transform-box: view-box; }
+
+/* Mason: each arm curls in a travelling wave, the body bobs, he blinks. */
+.bs-oct-seg { animation: bs-curl 3.4s ease-in-out calc(var(--a) * -0.42s + var(--k) * -0.28s) infinite; }
+@keyframes bs-curl { 0%, 100% { rotate: calc(var(--amp) * -1); } 50% { rotate: var(--amp); } }
+.bs-oct-body { animation: bs-oct-bob 3.4s ease-in-out infinite; }
+@keyframes bs-oct-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+.bs-oct-eyes { animation: bs-blink 5s ease-in-out infinite; }
+@keyframes bs-blink { 0%, 92%, 100% { scale: 1 1; } 95% { scale: 1 0.1; } }
+
+/* The reef: light from the surface, kelp, a passing school, bubbles. */
+.bs-reef-ray { opacity: 0.06; animation: bs-ray 7s ease-in-out calc(var(--n) * -1.4s) infinite alternate; }
+@keyframes bs-ray { to { opacity: 0.16; } }
+.bs-reef-surface { opacity: 0.25; animation: bs-surface 3s ease-in-out infinite alternate; }
+@keyframes bs-surface { to { opacity: 0.5; } }
+.bs-reef-kelp { animation: bs-curl calc(4s + var(--a) * 0.4s) ease-in-out calc(var(--a) * -0.7s + var(--k) * -0.3s) infinite; }
+.bs-reef-school--a { animation: bs-school-a 28s linear infinite; }
+@keyframes bs-school-a { from { translate: -200px 150px; } to { translate: 1450px 110px; } }
+.bs-reef-fish { animation: bs-fish 0.8s ease-in-out calc(var(--n) * -0.13s) infinite alternate; }
+@keyframes bs-fish { to { translate: 0 -4px; } }
+.bs-reef-bubble { opacity: 0; animation: bs-reef-bubble 5s ease-out calc(var(--n) * 0.6s) infinite; }
+@keyframes bs-reef-bubble { 0% { opacity: 0; translate: 0 0; } 10% { opacity: 0.9; } 100% { opacity: 0; translate: 8px -300px; } }
+
+/* The wave line where the reef begins, drifting slowly: the edge between the
+   page and Mason's world (the gap the factory's open sky used to give). */
+.bs-reef-crests { animation: bs-crests 14s linear infinite; }
+.bs-reef-crests--back { animation-duration: 9s; animation-direction: reverse; }
+@keyframes bs-crests { to { translate: -80px 0; } }
+
+/* Under a wave line, bubbles fade out before they reach the surface. */
+.bs-reef-bubble--under { animation-name: bs-reef-bubble-under; }
+@keyframes bs-reef-bubble-under { 0% { opacity: 0; translate: 0 0; } 10% { opacity: 0.9; } 70% { opacity: 0.6; } 100% { opacity: 0; translate: 6px -170px; } }
+
+/* The sim: sim.tsx moves Mason and the slabs; these add the crouch, the
+   quicker arms while walking, and the puff of sand when a slab lands. */
+.bs-sim-octo-inner { transition: scale 0.35s ease-out; }
+.bs-sim-octo.is-crouch .bs-sim-octo-inner { scale: 1.06 0.88; }
+.bs-sim-octo.is-walking .bs-oct-seg { animation-duration: 1.1s; }
+.bs-sim-puff rect { opacity: 0; }
+.bs-sim-item.is-placed .bs-sim-puff rect { animation: bs-sim-puff 0.9s ease-out calc(var(--k) * 0.04s) 1 both; }
+@keyframes bs-sim-puff { from { opacity: 0.9; translate: 0 0; } to { opacity: 0; translate: calc((var(--k) - 1.5) * 12px) -16px; } }
+
+/* The gate lights and a school swims through it when it's whole. */
+.bs-mason-glow { opacity: 0; transition: opacity 1.2s; }
+.bs-mason.is-done .bs-mason-glow { opacity: 0.3; }
+.bs-mason-school { opacity: 0; }
+.bs-mason.is-done .bs-mason-school { animation: bs-mason-school 6s ease-in-out 0.6s 1 both; }
+@keyframes bs-mason-school { 0% { translate: 640px 270px; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { translate: 1120px 260px; opacity: 0; } }
+
+/* Reduced motion: the sim shows the finished gate; the loops stand still. */
+@media (prefers-reduced-motion: reduce) {
+  .bs-fw *, .bs-fw *::before, .bs-fw *::after { animation: none !important; transition: none !important; }
+}
