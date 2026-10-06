@@ -4,7 +4,7 @@ import { Callout, PageHeader, StepList, Table } from '@/components/docs/Primitiv
 export const metadata = {
   title: 'Outreach: customers and jobs',
   description:
-    'How Esy outreach works: one engine, two lanes. Customers and jobs compared side by side — who you target, who decides, the follow-up rhythm, the email, and the rules every lane shares.',
+    'How Esy outreach works: one engine, two lanes. Customers and jobs compared side by side — who you target, who decides, the follow-up rhythm, the email, the rules every lane shares, and how the Outreach page is laid out.',
 };
 
 // The Customers vs Jobs comparison, as rows: what changes between the two
@@ -25,6 +25,18 @@ const comparison = [
   ['Finish line', 'They become a client', 'An interview, then an offer'],
 ];
 
+// Where each part of the Outreach page lives, ordered by how often you touch
+// it. Source: the outreach prototypes O1–O8 in os.esy.com /_agency/outreach
+// (PR #322); O8 · Triage is the layout that shipped.
+const layout = [
+  ['Several times a day', 'Needs you (the home tab)', 'One item open at a time, most urgent first: replies, then drafts, then accounts to approve. The rest are one-line rows. You edit the email in place, and acting on an item opens the next one.', 'That person’s context: who works there and what has happened so far.'],
+  ['When something breaks', 'Held mail', 'A banner above the queue, only while there’s a problem, such as a mailbox that paused itself.', '—'],
+  ['Daily glance', 'Sent', 'Every email sent today. Filter to replied or bounced, and click a row to read it.', 'Mailbox health: each mailbox’s sends against its daily cap, bounce and spam rates, and the domain checks.'],
+  ['Weekly', 'Pipeline', 'The funnel as a strip of stages. Picking a stage filters the list below it, and there’s a search box.', 'With a stage picked, why people stopped before it. With none picked, the rules that built the list.'],
+  ['Now and then', 'Campaign', 'The steps, each with its own sign-off setting; who it reaches; and the guardrails: when it stops, who it skips, and what every email carries.', 'Budget against the cap, with a field to change the cap, and results so far.'],
+  ['Rarely', 'Clay, HighLevel and Cal.com', 'Not on the Outreach page. These connections live in Data.', 'One line in Campaign’s rail says where to find them.'],
+];
+
 export default function OutreachGuidePage() {
   return (
     <DocsPageShell>
@@ -41,9 +53,10 @@ export default function OutreachGuidePage() {
       />
 
       <Callout title="In design">
-        Outreach is being designed in Esy OS (the Outreach section of /agency). This guide explains
-        how it will work. The API endpoints aren’t public yet; this page will link to them when
-        they are.
+        The Outreach page is live in Esy OS (the Outreach section of /agency), but it runs on sample
+        data: the API behind it isn’t built yet, so nothing it shows is looked up and nothing sends.
+        This guide explains how it will work. The API endpoints aren’t public yet; this page will
+        link to them when they are.
       </Callout>
 
       <h2>One engine, two lanes</h2>
@@ -108,6 +121,66 @@ export default function OutreachGuidePage() {
           },
         ]}
       />
+
+      <h2>How the Outreach page is laid out</h2>
+      <p>
+        Each part of the page sits where it does because of how often you use it. The main column
+        is where you act. The rail on the right explains whatever is open in the main column.
+      </p>
+      <Table
+        head={['How often', 'What', 'Main column', 'Rail']}
+        rows={layout.map(([often, what, main, rail]) => [<strong key={often}>{often}</strong>, what, main, rail])}
+      />
+      <p>
+        One switch in the header picks <strong>Customers</strong> or <strong>Jobs</strong>, and it
+        shows how many things wait in each lane, so you never miss the one you aren’t looking at.
+      </p>
+
+      <h3>Why it’s laid out this way</h3>
+      <ul>
+        <li>
+          <strong>What you touch most gets the most room.</strong> Replies and drafts come several
+          times a day, so they own the home tab. Settings you change once a month sit two tabs
+          away.
+        </li>
+        <li>
+          <strong>The main column is for doing; the rail explains.</strong> When a reply is open,
+          the rail shows that person’s history. When you look at what was sent, the rail shows
+          the mailboxes it went through. Nothing sits in the rail just because there was space.
+        </li>
+        <li>
+          <strong>Held mail is a banner, not a queue row.</strong> A paused mailbox is a problem
+          with the pipes, not a person waiting for an answer, so it appears above the queue only
+          while it’s true.
+        </li>
+        <li>
+          <strong>The lane switch appears once.</strong> Customers and Jobs change every tab, so
+          the switch sits in the header instead of adding a second row of tabs.
+        </li>
+        <li>
+          <strong>Inputs only where the choice is real.</strong> Each step has its own sign-off
+          dropdown, the budget cap is a field you can type in, and drafts are edited in place
+          instead of behind an Edit button.
+        </li>
+      </ul>
+
+      <h3>What we tried first</h3>
+      <p>
+        This layout is the pick from eight prototypes (O1–O8, os.esy.com PR #322). Two alternatives
+        lost:
+      </p>
+      <ul>
+        <li>
+          <strong>One mixed list with no Sent tab</strong> (O7). Drafts, replies, held mail and
+          accounts all shared one list, so you couldn’t filter by kind, and there was nowhere to
+          check what had already gone out.
+        </li>
+        <li>
+          <strong>A list and a reader side by side</strong> inside the main column, like an email
+          app. It’s faster once the queue runs past about 15 items, but it squeezes the email
+          editor, so it stays the runner-up until queues get that long.
+        </li>
+      </ul>
     </DocsPageShell>
   );
 }
