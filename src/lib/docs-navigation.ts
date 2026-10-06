@@ -442,6 +442,12 @@ export const navigation: NavSection[] = [
         description: 'Connect a publication to Beehiiv and turn any article into a reviewed email draft.',
         icon: 'globe',
       },
+      {
+        title: 'Outreach: customers and jobs',
+        href: '/guides/outreach',
+        description: 'One outreach engine, two lanes: customers and jobs compared side by side.',
+        icon: 'globe',
+      },
     ],
   },
   {

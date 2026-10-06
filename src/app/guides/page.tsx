@@ -39,6 +39,12 @@ const guides = [
     title: 'Send articles to Beehiiv',
     desc: 'Connect a publication to your Beehiiv newsletter and turn any article into a reviewed, email-safe draft — no auto-sending.',
   },
+  {
+    href: '/guides/outreach',
+    label: 'outreach',
+    title: 'Outreach: customers and jobs',
+    desc: 'Email from your own mailboxes, signed off by you. One engine, two lanes: customers and jobs compared side by side.',
+  },
 ];
 
 function Arrow() {
