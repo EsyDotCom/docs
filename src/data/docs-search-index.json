@@ -387,6 +387,12 @@
     "Read the response",
     "Inspect telemetry"
   ],
+  "/guides/outreach": [
+    "One engine, two lanes",
+    "Customers vs Jobs",
+    "What every lane shares",
+    "How the work flows"
+  ],
   "/guides/publish-packs-with-a-worker-team": [
     "What one shift does",
     "Step 1 — Create the outlet",
