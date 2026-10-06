@@ -39,6 +39,47 @@ export interface Prototype {
 // Newest first: the index opens with the first one's story.
 export const PROTOTYPES: Prototype[] = [
   {
+    slug: 'not-found',
+    name: 'The docs 404, told by Mason',
+    date: '2026-10-06',
+    headline: 'Three 404 pages, each told by Mason in his reef. B shipped.',
+    intro:
+      'A docs 404 that stays on brand: the message and the way back up top, then the footer, where Mason\u2019s reef tells the 404 instead of his usual gate. Try all three and pick the one that should ship.',
+    summary: 'Three docs.esy.com 404 pages: the page drifted off, the piece that doesn\u2019t fit, and a cloud of ink clearing to show 404.',
+    rounds: [{ n: 1, title: 'Three ways to say not found', summary: 'The same page each time; the footer\u2019s reef tells it three ways.' }],
+    variants: [
+      {
+        slug: 'drifted',
+        key: 'A',
+        name: 'Drifted',
+        round: 1,
+        title: 'This page drifted off.',
+        blurb: 'Mason looks around the seabed while a slab marked 404 drifts up and out of reach, leaving an empty outline.',
+        poster: ['#0E4A5C', '#F4F1EA'],
+      },
+      {
+        slug: 'piece',
+        key: 'B',
+        name: 'Missing piece',
+        round: 1,
+        title: 'That piece isn\u2019t here.',
+        blurb: 'His gate is missing its top slab. He tries one marked 404 in the gap; it sits crooked, he looks around, and it goes back. Live as docs.esy.com\u2019s 404.',
+        poster: ['#0A2E48', '#00A896'],
+        live: true,
+        liveHref: '/this-page-does-not-exist',
+      },
+      {
+        slug: 'ink',
+        key: 'C',
+        name: 'Ink',
+        round: 1,
+        title: 'This page vanished in a cloud of ink.',
+        blurb: 'Octopuses ink when startled: a cloud blooms and clears to show 4-0-4 set in slabs on the seabed, the 0 his octagon gate.',
+        poster: ['#061527', '#2BD8BB'],
+      },
+    ],
+  },
+  {
     slug: 'home',
     name: 'The docs homepage, in Folio',
     date: '2026-10-03',
