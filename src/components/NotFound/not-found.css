@@ -1,0 +1,57 @@
+/* The 404 prototypes (2026-10-06): the message on top, then the footer with a
+   reef scene that tells the 404 in place of Mason's usual gate. */
+
+.nf { min-height: 100vh; background: #FFFFFF; }
+/* On a page with a 404 world, the usual footer world steps aside; the card floats over this one. */
+body:has(.nf-world) .fw:not(.nf-world) { display: none; }
+.nf-bar { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 22px 32px; }
+.nf-bar a { color: inherit; text-decoration: none; }
+.nf-msg { max-width: 760px; margin: 0 auto; padding: 28px 32px 4px; text-align: center; color: #102033; font-family: var(--font-inter), system-ui, sans-serif; }
+.nf-kicker { margin: 0 0 14px; font: 400 0.95rem var(--font-black-ops-one), sans-serif; letter-spacing: 0.08em; color: #00A896; }
+.nf-msg h1 { margin: 0 0 16px; font-family: var(--font-literata), Georgia, serif; font-weight: 600; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; color: #0A2540; }
+.nf-msg p { margin: 0 auto 22px; max-width: 54ch; font-size: 1.05rem; line-height: 1.65; color: #41566D; }
+.nf-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.nf-links a {
+  padding: 10px 16px; font-size: 0.92rem; font-weight: 600; color: #0A2540; background: #EEF3F6; text-decoration: none;
+  clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+}
+.nf-links a:first-child { background: #0A2540; color: #FFFFFF; }
+.nf-links a:hover { background: #00A896; color: #FFFFFF; }
+
+/* On a 404 the reef is the point, so it's a little smaller than the footer's, to sit on the first screen. */
+.nf-world .bs-fs { width: min(1240px, 104vw); }
+
+/* The scenes. */
+.nf-drift *, .nf-piece *, .nf-ink * { transform-box: view-box; }
+.nf-404 { font-family: var(--font-black-ops-one), sans-serif; fill: #0A2540; letter-spacing: 0.04em; }
+
+/* A · Drifted: the page floats up and away out of reach. */
+.nf-float { animation: nf-drift 12s ease-in-out infinite; }
+@keyframes nf-drift {
+  0% { translate: 760px 340px; rotate: 0deg; opacity: 0; }
+  8% { opacity: 1; }
+  60% { translate: 940px 200px; rotate: -8deg; }
+  85% { translate: 1050px 130px; rotate: -14deg; opacity: 0.6; }
+  100% { translate: 1100px 112px; rotate: -16deg; opacity: 0; }
+}
+.nf-float-bob { animation: bs-fish 1.6s ease-in-out infinite alternate; }
+
+/* B · Missing piece: the gap pulses; while the wrong piece sits in it, it goes pale. */
+.nf-gap { animation: nf-gap 1.6s ease-in-out infinite alternate; }
+@keyframes nf-gap { from { opacity: 0.3; } to { opacity: 0.9; } }
+.nf-piece.is-stuck .nf-gap { stroke: #F4F1EA; }
+
+/* C · Ink: the cloud blooms, hangs, and clears to show 4-0-4. */
+.nf-puff { fill: #061527; opacity: 0; animation: nf-ink 11s ease-out calc(var(--n) * 0.12s) infinite; }
+@keyframes nf-ink {
+  0% { opacity: 0; scale: 0.2; }
+  6% { opacity: 0.95; scale: 1; }
+  30% { opacity: 0.95; scale: 1.08; }
+  55% { opacity: 0; scale: 1.25; }
+  100% { opacity: 0; scale: 1.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-float { translate: 940px 200px; opacity: 1; }
+  .nf-puff { opacity: 0; }
+}

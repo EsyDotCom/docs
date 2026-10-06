@@ -55,11 +55,11 @@ const COLUMNS: { title: string; links: [string, string][] }[] = [
   },
 ];
 
-/** The page ending: the world, then the footer card over it. */
-export default function SiteFooter() {
+/** The page ending: the world, then the footer card over it. `world` swaps the scene (the 404 prototypes do). */
+export default function SiteFooter({ world }: { world?: React.ReactNode } = {}) {
   return (
     <>
-      <FooterWorld />
+      {world ?? <FooterWorld />}
       <footer className="footer footer--light">
         <div className="footer-overlay" />
 
