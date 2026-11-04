@@ -45,6 +45,18 @@ const guides = [
     title: 'Outreach: customers and jobs',
     desc: 'Email from your own mailboxes, signed off by you. One engine, two lanes: customers and jobs compared side by side.',
   },
+  {
+    href: '/guides/run-your-week',
+    label: 'planning',
+    title: 'Run your week with the planner',
+    desc: 'Set a goal with a number and a date, put the must-dos on the critical checklist, and run each day from Today and Home.',
+  },
+  {
+    href: '/guides/set-up-your-plan',
+    label: 'planning',
+    title: 'Set up your Plan',
+    desc: 'In design. Write the bet, map each brand’s engine, give every channel a rhythm, and tag your links so Esy can tell what works.',
+  },
 ];
 
 function Arrow() {
