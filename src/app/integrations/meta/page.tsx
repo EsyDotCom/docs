@@ -69,19 +69,28 @@ export default function MetaIntegrationPage() {
       <h2>What the course returns</h2>
       <p>
         <code>GET /v1/verticals/{'{id}'}/course</code> carries <code>reach</code> (or <code>null</code> when nothing
-        was read), and the funnel’s <code>reach</code> is its <code>views</code>. The total adds up only the channels
-        that were read. <code>notCounted.reach</code> names the rest.
+        was read), with <code>syncedAt</code>, and the funnel’s <code>reach</code> is its <code>views</code>. The total
+        adds up only the channels that were read. <code>notCounted.reach</code> names the rest.{' '}
+        <code>GET /v1/connections</code> lists the connection and its last sync;{' '}
+        <code>POST /v1/connections/meta:sync</code> syncs now.
       </p>
       <CodeBlock title="the course, in part" language="json">
         {course}
       </CodeBlock>
 
-      <h2>Freshness</h2>
+      <h2>Syncing</h2>
       <ul>
-        <li>Numbers are read when the board asks, and kept for 15 minutes, so reloading doesn’t call Meta again.</li>
         <li>
-          If Meta refuses or can’t be reached, that channel isn’t counted and the Plan gives Meta’s reason. Everything
-          else on the board still loads.
+          Esy syncs Meta every 3 hours and stores each day’s views, so the Plan reads stored numbers and never waits on
+          Meta. Days are kept, so views add up past Meta’s 28-day window.
+        </li>
+        <li>
+          The <strong>Data</strong> page shows when Meta last synced, each account’s views, and when the next sync runs.
+          Owners and admins can <strong>Sync now</strong>.
+        </li>
+        <li>
+          If Meta refuses or can’t be reached, the account keeps its last numbers and Data says “Last sync failed” with
+          Meta’s reason. Everything else still loads.
         </li>
       </ul>
 
