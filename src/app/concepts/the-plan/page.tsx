@@ -90,6 +90,19 @@ export default function ThePlanPage() {
         three weeks of tagged links, because before that it’s noise.
       </p>
 
+      <h2>Reach: how many times people saw the posts</h2>
+      <p>
+        The funnel starts before the signup. <strong>Reach</strong> is how many times a brand’s posts were seen over the
+        last four weeks, read from each network. Today Esy reads Instagram and Facebook through{' '}
+        <a href="/integrations/meta">Meta</a>. Each social channel then shows its views, the accounts it reached, its
+        views on each of the last seven days, and its recent posts ranked by views. With the subscribers it brought,
+        that gives the share of views that join.
+      </p>
+      <p>
+        A network Esy can’t read yet (YouTube, LinkedIn, X, TikTok) says so by name. It never counts as 0, so a total
+        that covers only some networks says it’s partial.
+      </p>
+
       <h2>This week: staying the course</h2>
       <Table
         head={['Tile', 'Counts']}
@@ -126,7 +139,7 @@ export default function ThePlanPage() {
           ['Esy counts', 'Pace, yields, the course and drift are computed by api.esy.com and shown by the dashboard.'],
           ['Goals stay goals', 'The plan points at goals; their numbers and pace are the goals’ own.'],
           ['Order is priority', 'The first goal is the one that matters most, everywhere.'],
-          ['Counted, never guessed', 'Sources come from tags; untagged is “No tag”.'],
+          ['Counted, never guessed', 'Sources come from tags; untagged is “No tag”. A network that isn’t read is named, never 0.'],
           ['No silent changes', 'Changes to the bet, window and goals are revisions.'],
         ]}
       />

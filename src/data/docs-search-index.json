@@ -40,6 +40,11 @@
     "Projects",
     "Errors"
   ],
+  "/api/commitments": [
+    "Commitments",
+    "Today",
+    "A day: done, excused, rested"
+  ],
   "/api/costs": [
     "GET /v1/costs",
     "GET /v1/budgets",
@@ -168,6 +173,14 @@
     "What stays with your app",
     "Kinds"
   ],
+  "/concepts/commitments": [
+    "The three cadences",
+    "Items: the steps, each with a deadline and proof",
+    "Proof",
+    "How a day ends",
+    "The chain and the score",
+    "Starting fresh"
+  ],
   "/concepts/costs": [
     "Cost is not price",
     "What one run costs",
@@ -203,6 +216,14 @@
     "The review queue",
     "What approval will refuse",
     "Typed holds"
+  ],
+  "/concepts/goals": [
+    "Horizons",
+    "A measure",
+    "Readings",
+    "Pace",
+    "Milestones",
+    "Tasks under a goal"
   ],
   "/concepts/intake": [
     "Reading the schema",
@@ -241,6 +262,13 @@
     "Workers publish to outlets — the framework",
     "Syndication — one artifact, many outlets"
   ],
+  "/concepts/planning": [
+    "From the bet down to today",
+    "Three kinds of record, two tones",
+    "Where you see it",
+    "Scope: the organization and its brands",
+    "Tasks in a sentence or two"
+  ],
   "/concepts/publications": [
     "Three orthogonal axes",
     "What a publication holds",
@@ -270,6 +298,15 @@
     "Parent and child runs",
     "Cost rollup",
     "Related concepts"
+  ],
+  "/concepts/the-plan": [
+    "The ladder",
+    "Engines: channels → newsletter → offers",
+    "Sources: which channel brought each subscriber",
+    "Reach: how many times people saw the posts",
+    "This week: staying the course",
+    "What Esy reads",
+    "The rules, in short"
   ],
   "/concepts/versioning": [
     "Versions never change",
@@ -406,12 +443,27 @@
     "Verifying a run",
     "When nothing appears on your site"
   ],
+  "/guides/run-your-week": [
+    "1. Set the goal that matters most",
+    "2. Put the must-dos on the critical checklist",
+    "3. File tasks under the goal",
+    "4. Run each day",
+    "5. Look at the week"
+  ],
   "/guides/send-articles-to-beehiiv": [
     "Before you start",
     "Steps",
     "What the draft contains",
     "Doing it over the API",
     "Troubleshooting"
+  ],
+  "/guides/set-up-your-plan": [
+    "1. Decide the bet and its window",
+    "2. Map each brand’s engine",
+    "3. Give every channel a rhythm",
+    "4. Set the score",
+    "5. Tag your links",
+    "6. Check in once a week"
   ],
   "/how-esy-works": [
     "Execution overview",
@@ -436,6 +488,13 @@
     "Security",
     "Requirements",
     "API surface"
+  ],
+  "/integrations/meta": [
+    "What’s read",
+    "Which account is a channel’s",
+    "What the course returns",
+    "Freshness",
+    "Security"
   ],
   "/quickstart": [
     "Before you start",

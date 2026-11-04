@@ -371,6 +371,13 @@ export const navigation: NavSection[] = [
         opener: 'docks',
       },
       {
+        title: 'Meta (Instagram and Facebook reach)',
+        href: '/integrations/meta',
+        description: 'Views and reach read from Instagram and Facebook, read-only, as the Plan’s Reach.',
+        icon: 'plug',
+        since: '2026-11-04',
+      },
+      {
         title: 'Commitments API',
         href: '/api/commitments',
         description: 'Create commitments, read today’s judged now, mark steps done, excuse a day, take a rest day.',
